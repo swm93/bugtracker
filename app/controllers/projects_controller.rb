@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    redirect_to({:controller => :bugs, :action => :index, :project_id => params[:id]})
+    redirect_to({:controller => :bugs, :action => :feed, :project_id => params[:id]})
   end
 
   def new
