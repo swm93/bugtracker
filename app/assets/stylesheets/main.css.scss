@@ -1,0 +1,68 @@
+/*/     MAIN STYLES
+ *  Styles set here apply to the entire website, regardless of which layout the
+ *  HTML resides within.
+/*/
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+* {
+    outline: none !important;
+}
+
+.navbar {
+    border-radius: 0;
+}
+
+a.list-group-item.active {
+    background-color: $green-faded-active;
+    border-color: $green-faded-active;
+
+    &:hover {
+        background-color: $green-faded-active;
+        border-color: $green-faded-active;
+    }
+}
+
+td.fit-width {
+    width: 1px;
+}
+
+.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th {
+    background-color: $green-faded-active-light;
+}
+
+.absolute-center {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.no-select {
+    cursor: default;
+    @include user-select(none);
+}
+
+.no-link-style {
+    color: black;
+
+    &:hover {
+        color: black;
+        text-decoration: none;
+    }
+}
