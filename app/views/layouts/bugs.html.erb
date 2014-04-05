@@ -1,9 +1,9 @@
-    <!DOCTYPE html>
-    <html>
+<!DOCTYPE html>
+<html>
     <head>
       <title>Bugtracker</title>
       <%= stylesheet_link_tag get_relative_asset_path, media: "all", "data-turbolinks-track" => true %>
-      <%= javascript_include_tag "_manifest", get_relative_asset_path, "data-turbolinks-track" => true %>
+      <%= javascript_include_tag "application", get_relative_asset_path, "data-turbolinks-track" => true %>
       <%= csrf_meta_tags %>
     </head>
     <body>
@@ -41,12 +41,12 @@
                 </div>
             </div>
         </nav>
+        <div class="navbar navbar-positioner"></div>
 
         <div class="container-fluid">
             <div class="row-fluid">
                 <%= yield %>
             </div>
         </div>
-
     </body>
-    </html>
+</html>

@@ -5,6 +5,8 @@
 
 
 body {
+    background-color: #F1F1F1;
+
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
 }
@@ -18,8 +20,31 @@ h1, h2, h3, h4, h5, h6, p {
     outline: none !important;
 }
 
+.content-area {
+    background-color: white;
+
+    border-width: 1px;
+    border-color: #e7e7e7;
+    border-style: solid;
+}
+
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    z-index: 1;
+    box-sizing: content-box;
+
+    background-color: #FFFFFF;
+
     border-radius: 0;
+
+    &.navbar-positioner {
+        position: relative;
+        z-index: 0;
+    }
 }
 
 a.list-group-item.active {
