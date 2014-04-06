@@ -71,15 +71,17 @@
             cursor: pointer;
         }
     }
+}
 
-    .container-no-bugs {
-        .msg-no-bugs {
-            color: #666666;
-        }
-        .btn-create-bug {
-            background-color: $green-faded-active;
-            border-color: $green-faded-active-dark;
-            color: #FFFFFF;
-        }
+#container-no-bugs {
+    padding: 48px;
+    
+    .msg-no-bugs {
+        color: #666666;
+    }
+    .btn-create-bug {
+        background-color: $green-faded-active;
+        border-color: $green-faded-active-dark;
+        color: #FFFFFF;
     }
 }

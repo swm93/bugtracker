@@ -87,8 +87,8 @@
     </div>
 <% else %>
     <div class="col-sm-1"></div>
-    <div class="col-sm-10 col-xs-12">
-        <div class="container-no-bugs jumbotron text-center">
+    <div class="col-sm-10 col-xs-12 padded-column">
+        <div id="container-no-bugs" class="jumbotron content-area text-center">
             <p class="msg-no-bugs">You haven't added any bugs yet. Add one now?</p>
             <a class="btn-create-bug btn btn-default" href="<%= new_project_bug_path %>">Create a Bug</a>
         </div>
