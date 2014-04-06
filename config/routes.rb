@@ -7,8 +7,11 @@ Bugtracker::Application.routes.draw do
     resources :bugs
   end
 
-  get 'login' => 'users#login'
-  get 'signup' => 'users#signup'
+  get 'login' => 'sessions#login'
+  get 'logout' => 'sessions#logout'
+  post 'login_attempt' => 'sessions#login_attempt'
+  get 'signup' => 'users#new'
+  resources :users, :only => ['create']
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
