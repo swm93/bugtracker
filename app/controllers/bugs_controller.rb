@@ -1,5 +1,7 @@
 class BugsController < ApplicationController
+  before_action :authenticate_user
   before_action :validate_bug_owner, :only => [:show, :edit, :destroy]
+  before_action :validate_project_owner
 
   def index
     @bugs = Bug.where(:project_id => params[:project_id])
@@ -71,6 +73,8 @@ class BugsController < ApplicationController
     end
   end
 
+  def validate_project_owner
+    if (!User.find(session[:user_id]).projects.where(:id => params[:project_id]).exists?())
       not_found()
     end
   end

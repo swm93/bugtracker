@@ -1,8 +1,10 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user
+  before_action :validate_project_owner, :only => [:show, :edit, :destory]
   layout :get_projects_layout
 
   def index
-    @projects = Project.all()
+    @projects = User.find(session[:user_id]).projects
 
     respond_to do |format|
       format.html
@@ -21,9 +23,10 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(project_params)
+    @user = User.find(session[:user_id])
+    @project = @user.projects.create(project_params())
 
-    if @project.save()
+    if (@project.save())
       redirect_to(@project)
     else
       render('new')
@@ -59,5 +62,11 @@ class ProjectsController < ApplicationController
       :name,
       :description
     )
+  end
+
+  def validate_project_owner
+    if (!User.find(session[:user_id]).projects.where(:id => params[:id]).exists?())
+      not_found()
+    end
   end
 end
