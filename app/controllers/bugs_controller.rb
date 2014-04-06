@@ -1,6 +1,5 @@
 class BugsController < ApplicationController
-  before_action :validate_project_existance
-  before_action :validate_bug_existance, :only => [:show]
+  before_action :validate_bug_owner, :only => [:show, :edit, :destroy]
 
   def index
     @bugs = Bug.where(:project_id => params[:project_id])
@@ -23,7 +22,7 @@ class BugsController < ApplicationController
     if @bug.save()
       redirect_to(project_bug_path(:id => @bug.id))
     else
-      render('new')
+      render(new_project_bug_url)
     end
   end
 
@@ -37,7 +36,7 @@ class BugsController < ApplicationController
     if @bug.update(bug_params)
       redirect_to(@bug)
     else
-      render('edit')
+      render(edit_project_bug_url(params[:id]))
     end
   end
 
@@ -66,14 +65,12 @@ class BugsController < ApplicationController
     )
   end
 
-  def validate_project_existance
-    if (!Project.where(:id => params[:project_id]).exists?())
+  def validate_bug_owner
+    if (!Bug.where({:id => params[:id], :project_id => params[:project_id]}).exists?())
       not_found()
     end
   end
 
-  def validate_bug_existance
-    if (!Bug.where({:id => params[:id], :project_id => params[:project_id]}).exists?())
       not_found()
     end
   end
