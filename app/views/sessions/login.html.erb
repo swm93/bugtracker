@@ -8,28 +8,28 @@
 </div>
 <div class="login-content row">
     <div id="login-panel" class="form-panel col-xs-6">
-        <form role="form">
+        <%= form_tag(:action => 'login_attempt') do %>
             <div class="form-group-email form-group">
                 <label for="field-login-email" class="field-label">
                     <span class="glyphicon glyphicon-envelope"></span>
                     Email Address
                 </label>
-                <input id="field-login-email" class="form-control" type="email" placeholder="Email"></input>
+                <input id="field-login-email" class="form-control" name="email" type="email" placeholder="Email"></input>
             </div>
             <div class="form-group-password form-group">
                 <label for="field-login-password" class="field-label">
                     <span class="glyphicon glyphicon-asterisk"></span>
                     Password
                 </label>
-                <input id="field-login-password" class="form-control" type="password" placeholder="Password"></input>
+                <input id="field-login-password" class="form-control" name="password" type="password" placeholder="Password"></input>
             </div>
             <button class="btn-login btn btn-default">Login</button>
             <div class="checkbox-remember-me checkbox">
                 <label>
-                    <input type="checkbox">Remember me</input>
+                    <input name="remember_me" type="checkbox">Remember me</input>
                 </label>
             </div>
-        </form>
+        <% end %>
     </div>
     <div id="signup-panel" class="form-panel col-xs-6">
         <form role="form" action="/signup" method="get">
