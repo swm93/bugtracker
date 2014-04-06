@@ -30,7 +30,10 @@ Bugtracker.Classes.CommentPopoverHandler.prototype.initialize = function($el, op
 Bugtracker.Classes.CommentPopoverHandler.prototype.bindShowEvent = function() {
     var that = this;
 
-    this.$el.on('show.bs.popover', function() {
+    this.$el.on('show.bs.popover', function(e) {
         that.$el.not($(this)).popover('hide');
+    });
+    this.$el.on('click', function(e) {
+        return false;
     });
 };
