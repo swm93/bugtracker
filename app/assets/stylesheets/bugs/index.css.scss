@@ -5,7 +5,7 @@
     position: fixed;
     width: 220px;
     height: 100%;
-    padding: 0 25px;
+    padding: 10px 25px;
 
     border-width: 0 1px 0 0;
 
@@ -18,7 +18,7 @@
                 font-weight: 500;
                 letter-spacing: 1px;
                 text-transform: uppercase;
-                color: rgb(103, 167, 103);
+                color: $green-active-dark;
 
                 .glyphicon {
                     margin-right: 1em;
@@ -37,6 +37,8 @@
                     padding: 3px 8px;
 
                     font-weight: 400;
+
+                    cursor: pointer;
                 }
 
                 input {
@@ -44,22 +46,30 @@
                 }
 
                 input:checked + label {
-                    background-color: #888888;
+                    background-color: $green-faded-active;
                     color: #FFFFFF;
                 }
             }
+        }
+
+        .sidebar-grouping-divider {
+            height: 1px;
+
+            background-color: #DEDEDE;
         }
     }
 }
 
 #bug-list-container {
     width: calc(100% - 220px);
-    padding: 15px 5%;
     margin-left: auto;
 
     .table-container {
         height: 100%;
-        padding: 10px;
+
+        .bug-row {
+            cursor: pointer;
+        }
     }
 
     .container-no-bugs {
