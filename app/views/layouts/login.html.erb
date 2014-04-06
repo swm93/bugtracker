@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Login</title>
-      <%= stylesheet_link_tag get_relative_asset_path, media: "all", "data-turbolinks-track" => true %>
-      <%= javascript_include_tag "application", get_relative_asset_path, "data-turbolinks-track" => true %>
-      <%= csrf_meta_tags %>
+        <title>Login</title>
+        <%= stylesheet_link_tag get_relative_asset_path, media: "all", "data-turbolinks-track" => true %>
+        <%= javascript_include_tag "application", get_relative_asset_path, "data-turbolinks-track" => true %>
+        <%= csrf_meta_tags %>
     </head>
     <body>
-        <div id="login-container" class="container absolute-center">
+        <% flash.each do |name, msg| %>
+            <div class="alert alert-dismissable alert-<%= name %>">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <span><%= msg %></span>
+            </div>
+        <% end %>
+        <div id="login-container" class="container content-area absolute-center">
             <%= yield %>
         </div>
     </body>
