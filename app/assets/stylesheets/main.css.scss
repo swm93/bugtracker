@@ -87,6 +87,14 @@ td.fit-width {
     width: 1px;
 }
 
+.table {
+    margin: 0;
+
+    tbody > tr:last-child > td {
+        border-bottom: 1px solid #dddddd;
+    }
+}
+
 .table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th {
     background-color: $green-faded-active-light;
 }
