@@ -74,7 +74,7 @@
 }
 
 #container-no-bugs {
-    padding: 48px;
+    padding: 48px 24px;
     
     .msg-no-bugs {
         color: #666666;
@@ -83,5 +83,14 @@
         background-color: $green-faded-active;
         border-color: $green-faded-active-dark;
         color: #FFFFFF;
+    }
+}
+
+@media screen and (max-width:768px) {
+    #bug-sidebar-container {
+        display: none;
+    }
+    #bug-list-container {
+        width: 100%;
     }
 }

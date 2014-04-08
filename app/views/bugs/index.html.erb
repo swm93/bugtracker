@@ -64,21 +64,21 @@
                     <tr>
                         <th>ID</th>
                         <th>Summary</th>
-                        <th>Assignee</th>
-                        <th>Group</th>
-                        <th></th>
-                        <th></th>
+                        <th class="hidden-xs">Assignee</th>
+                        <th class="hidden-xs">Group</th>
+                        <th class="hidden-xs"></th>
+                        <th class="hidden-xs"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <% @bugs.each do |bug| %>
                         <tr class="bug-row" onclick="location.href='<%= project_bug_path(:id => bug) %>'">
-                            <td class="cell-bug-id"><%= bug.id %></td>
+                            <td class="cell-bug-id fit-width"><%= bug.id %></td>
                             <td class="cell-bug-summary"><%= bug.summary %></td>
-                            <td class="cell-bug-assignee"><%# bug.assignee %></td>
-                            <td class="cell-bug-group"><%# bug.group %></td>
-                            <td class="cell-bug-comment fit-width clickable"><span class="glyphicon glyphicon-comment"></span></td>
-                            <td class="cell-bug-close fit-width clickable"><span class="glyphicon glyphicon-ok-circle"></span></td>
+                            <td class="cell-bug-assignee hidden-xs"><%# bug.assignee %></td>
+                            <td class="cell-bug-group hidden-xs"><%# bug.group %></td>
+                            <td class="cell-bug-comment hidden-xs fit-width clickable"><span class="glyphicon glyphicon-comment"></span></td>
+                            <td class="cell-bug-close hidden-xs fit-width clickable"><span class="glyphicon glyphicon-ok-circle"></span></td>
                         </tr>
                     <% end %>
                 </tbody>
