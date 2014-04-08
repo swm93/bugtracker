@@ -1,29 +1,3 @@
-/*/     MANIFEST
- *  This file includes styles that should be applied for all pages in the
- *  website.
- *
- *  Expectations:
- *  - included by all 'action' stylesheets
- *  - not included by any 'shared' stylesheet
-/*/
-
-
-/*/     LAYOUTS
- *  This file applies to styles that are used within the layout file for the
- *  current controller.
- *
- *  Expectations:
- *  - included by all 'action' stylesheets under the current layout directory if
- *    it exists within the current layout directory
-/*/
-
-
-/*/     ACTION
- *  This file includes styles that should be applied to the currently active
- *  action for the current controller.
-/*/
-
-
 @import "bourbon";
 @import "bootstrap";
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,900italic,700italic,500italic,400italic,300italic,100italic,900,700,500,300,100);
