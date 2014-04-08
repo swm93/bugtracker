@@ -1,13 +1,13 @@
 <div class="login-header row">
-    <div class="col-xs-6">
+    <div class="col-sm-6 col-xs-12">
         <h3>Existing User</h3>
     </div>
-    <div class="col-xs-6">
+    <div class="col-sm-6 hidden-xs">
         <h3>Create Account</h3>
     </div>
 </div>
 <div class="login-content row">
-    <div id="login-panel" class="form-panel col-xs-6">
+    <div id="login-panel" class="form-panel col-sm-6 col-xs-12">
         <%= form_tag(:action => 'login_attempt') do %>
             <div class="form-group-email form-group">
                 <label for="field-login-email" class="field-label">
@@ -31,12 +31,12 @@
             </div>
         <% end %>
     </div>
-    <div id="signup-panel" class="form-panel col-xs-6">
+    <div id="signup-panel" class="form-panel col-sm-6 col-xs-12">
         <form role="form" action="/signup" method="get">
             <button class="btn-signup btn btn-default">Sign Up</button>
         </form>
     </div>
-    <div class="panel-divider absolute-center">
+    <div class="panel-divider absolute-center hidden-xs">
         <div class="vertical-line"></div>
         <span class="or-text no-select">OR</span>
     </div>

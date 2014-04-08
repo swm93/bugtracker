@@ -1,69 +1,10 @@
 @import "../manifest";
 
 
-.login-header {
-    position: relative;
-    height: 10%;
-
-    h3 {
-        width: 100%;
-        margin: 0;
-
-        line-height: inherit;
-        text-align: center;
-    }
-}
-
 .login-content {
-    position: relative;
-    height: 90%;
-
     .form-panel {
-        display: table;
-        z-index: 1;
-        height: 100%;
-        padding: 0 40px;
-
-        form {
-            display: table-cell;
-            vertical-align: middle;
-            text-align: center;
-
-            .field-label > .glyphicon {
-                margin-right: 5px;
-            }
-        }
-
-        .form-group {
-            text-align: left;
-        }
-        .form-group-email {
-            color: #DA9292;
-        }
-        .form-group-password {
-            color: #6EAEC7;
-        }
         .btn-login {
             float: left;
-        }
-        .btn-signup {
-            width: 130px;
-
-            border-color: #CFA5D1;
-
-            color: #9C3498;
-
-            &:focus {
-                background-color: #FFFFFF;
-            }
-            &:hover {
-                background-color: rgb(250, 242, 250);
-            }
-            &:active {
-                background-color: rgb(250, 242, 250);
-
-                @include box-shadow(inset 0 3px 5px rgba(185, 93, 163, 0.125));
-            }
         }
         .checkbox-remember-me {
             float: right;
