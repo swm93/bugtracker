@@ -1,5 +1,3 @@
-//= require_tree ../templates/bugs/feed
-
 $(document).ready(function() {
     var feedRenderer = new Bugtracker.Classes.FeedRenderer($('.col-sm-9.col-md-10'), {
         sourcePath: '/subscribe/everyone',

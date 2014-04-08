@@ -1,5 +1,3 @@
-//= require_tree ../templates/bugs/index
-
 $(document).ready(function() {
     var popoverHandler = new Bugtracker.Classes.CommentPopoverHandler($('.cell-bug-comment'));
 });

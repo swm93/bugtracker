@@ -6,3 +6,7 @@
 //= require handlebars.runtime
 
 //= require bugtracker
+
+//= require_tree ./templates
+
+//= require_tree ./bugs

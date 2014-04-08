@@ -30,3 +30,22 @@
 
 @import "variables";
 @import "main";
+
+@import "layouts/bugs";
+@import "layouts/login";
+@import "layouts/projects";
+
+@import "bugs/edit";
+@import "bugs/feed";
+@import "bugs/groups";
+@import "bugs/index";
+@import "bugs/new";
+@import "bugs/show";
+
+@import "projects/edit";
+@import "projects/index";
+@import "projects/new";
+
+@import "sessions/login";
+
+@import "users/new";
