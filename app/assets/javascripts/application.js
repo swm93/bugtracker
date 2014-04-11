@@ -4,7 +4,9 @@
 //= require bootstrap
 //= require underscore
 //= require handlebars.runtime
+//= require nprogress
 //= require select2
+
 //= require string_capitalize
 
 //= require bugtracker

@@ -1,11 +1,14 @@
 @import "bourbon";
 @import "bootstrap";
+@import "nprogress";
 @import "select2";
 @import "select2-bootstrap";
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,900italic,700italic,500italic,400italic,300italic,100italic,900,700,500,300,100);
 
 @import "variables";
 @import "main";
+
+@import "vendor_overrides/nprogress";
 
 @import "layouts/bugs";
 @import "layouts/login";
