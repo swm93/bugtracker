@@ -2,6 +2,22 @@ class UsersController < ApplicationController
   before_action :save_login_state, :only => [:new, :create]
   layout :get_login_layout
 
+
+  def index
+    if (params[:name])
+      @users = User.where('name LIKE ?', "%#{params[:name]}%")
+    elsif (params[:email])
+      @users = User.where('email LIKE ?', "%#{params[:email]}%")
+    else
+      @users = User.all();
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @users, :only => [:id, :name, :email] }
+    end
+  end
+
   def new
     @user = User.new()
   end
