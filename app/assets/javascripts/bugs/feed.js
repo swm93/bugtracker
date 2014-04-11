@@ -1,8 +1,8 @@
-$(document).ready(function() {
+Bugtracker.Views.Bugs.Feed = function() {
     var feedRenderer = new Bugtracker.Classes.FeedRenderer($('.col-sm-9.col-md-10'), {
         sourcePath: '/subscribe/everyone',
     });
-});
+};
 
 
 Bugtracker.Classes.FeedRenderer = function($el, options) {

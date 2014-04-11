@@ -1,10 +1,12 @@
-$(document).ready(function() {
+Bugtracker.Views.Bugs.Index = function() {
     var popoverHandler = new Bugtracker.Classes.CommentPopoverHandler($('.cell-bug-comment'));
-});
+};
 
 
 Bugtracker.Classes.CommentPopoverHandler = function($el, options) {
-    defaults = {
+    this.$el = $el;
+
+    var defaults = {
         title: 'Add a Comment',
         content: HandlebarsTemplates['bugs/index/comment_popover'](),
         container: 'body',
@@ -14,18 +16,16 @@ Bugtracker.Classes.CommentPopoverHandler = function($el, options) {
     };
     options = _.defaults(options || {}, defaults);
 
-    this.initialize($el, options);
+    this.initialize(options);
 };
 
-Bugtracker.Classes.CommentPopoverHandler.prototype.initialize = function($el, options) {
-    this.$el = $el;
+Bugtracker.Classes.CommentPopoverHandler.prototype.initialize = function(options) {
+    this.$el.popover(options);
 
-    $el.popover(options);
-
-    this.bindShowEvent($el);
+    this.addShowListener();
 };
 
-Bugtracker.Classes.CommentPopoverHandler.prototype.bindShowEvent = function() {
+Bugtracker.Classes.CommentPopoverHandler.prototype.addShowListener = function() {
     var that = this;
 
     this.$el.on('show.bs.popover', function(e) {
