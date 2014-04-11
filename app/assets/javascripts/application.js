@@ -4,6 +4,7 @@
 //= require bootstrap
 //= require underscore
 //= require handlebars.runtime
+//= require select2
 //= require string_capitalize
 
 //= require bugtracker
