@@ -63,7 +63,11 @@ class BugsController < ApplicationController
   def bug_params
     params.require(:bug).permit(
       :summary,
-      :description
+      :description,
+      :status,
+      :priority,
+      :assignee_id,
+      :reporter_id
     )
   end
 

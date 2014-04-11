@@ -16,6 +16,10 @@ ActiveRecord::Schema.define(version: 20140406071605) do
   create_table "bugs", force: true do |t|
     t.string   "summary"
     t.text     "description"
+    t.string   "status"
+    t.string   "priority"
+    t.integer  "assignee_id"
+    t.integer  "reporter_id"
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
