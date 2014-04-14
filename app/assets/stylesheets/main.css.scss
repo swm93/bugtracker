@@ -35,7 +35,7 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .padded-column {
-    padding: 15px 5%;
+    padding: 15px 50px;
 }
 
 .navbar {
@@ -54,6 +54,12 @@ h1, h2, h3, h4, h5, h6, p {
     &.navbar-positioner {
         position: relative;
         z-index: 0;
+    }
+
+    li.active>a {
+        padding-bottom: 11px;
+
+        border-bottom: 4px solid $green-faded-active;
     }
 }
 
