@@ -37,7 +37,6 @@ group :doc do
 end
 
 
-gem 'puma'
 gem 'bcrypt'
 
 gem 'sass-rails', '~> 4.0.0'
