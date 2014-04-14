@@ -58,14 +58,53 @@
 }
 
 #bug-list-container {
-    width: calc(100% - 220px);
-    margin-left: auto;
+    margin-left: 220px;
 
     .table-container {
         height: 100%;
 
-        .bug-row {
-            cursor: pointer;
+        tr {
+            td {
+                @include box-sizing(content-box);
+            }
+        }
+
+        .bugs-header-cell {
+            @include user-select(none);
+        }
+
+        .bug-cell-id {
+            width: 48px;
+            max-width: 48px;
+            min-width: 24px;
+        }
+
+        .bug-cell-summary {
+            min-width: 72px;
+        }
+
+        .bug-cell-assignee {
+            width: 120px;
+            max-width: 120px;
+            min-width: 68px;
+        }
+
+        .bug-cell-priority {
+            width: 80px;
+            max-width: 80px;
+            min-width: 58px;
+        }
+
+        .bug-cell-status {
+            width: 100px;
+            max-width: 100px;
+            min-width: 53px;
+        }
+
+        .bug-cell-edit, .bug-cell-view {
+            width: 14px;
+            max-width: 14px;
+            min-width: 14px;
         }
     }
 }
@@ -83,11 +122,11 @@
     }
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:767px) {
     #bug-sidebar-container {
         display: none;
     }
     #bug-list-container {
-        width: 100%;
+        margin-left: auto;
     }
 }

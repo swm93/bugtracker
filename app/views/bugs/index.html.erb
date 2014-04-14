@@ -1,4 +1,5 @@
-<% if !@bugs.empty? %>
+<%# if !@bugs.empty? %>
+<% if true %>
     <div id="bug-sidebar-container" class="content-area">
         <div class="sidebar no-select">
             <div class="sidebar-grouping">
@@ -60,30 +61,18 @@
     <div id="bug-list-container" class="padded-column">
         <div class="table-container content-area">
             <table class="table table-striped table-hover">
-                <thead>
+                <thead id="bugs-list-table-header">
                     <tr>
-                        <th>ID</th>
-                        <th>Summary</th>
-                        <th class="hidden-xs">Assignee</th>
-                        <th class="hidden-xs">Group</th>
-                        <th class="hidden-xs"></th>
-                        <th class="hidden-xs"></th>
+                        <th class="bugs-header-cell clickable" data-field="id" data-order=""><span class="fa fa-sort"></span> ID</th>
+                        <th class="bugs-header-cell clickable" data-field="summary" data-order=""><span class="fa fa-sort"></span> Summary</th>
+                        <th class="bugs-header-cell clickable hidden-xs" data-field="assignee" data-order=""><span class="fa fa-sort"></span> Assignee</th>
+                        <th class="bugs-header-cell clickable hidden-xs" data-field="priority" data-order=""><span class="fa fa-sort"></span> Priority</th>
+                        <th class="bugs-header-cell clickable hidden-xs" data-field="status" data-order=""><span class="fa fa-sort"></span> Status</th>
+                        <th class="bugs-header-cell clickable hidden-xs"></th>
+                        <th class="bugs-header-cell clickable hidden-xs"></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <% @bugs.each do |bug| %>
-                        <tr class="bug-row">
-                            <td class="cell-bug-id fit-width">
-                                <a class="no-link-style" href="<%= project_bug_path(:id => bug) %>"><%= bug.id %></a>
-                            </td>
-                            <td class="cell-bug-summary"><%= bug.summary %></td>
-                            <td class="cell-bug-assignee hidden-xs"><%# bug.assignee %></td>
-                            <td class="cell-bug-group hidden-xs"><%# bug.group %></td>
-                            <td class="cell-bug-comment hidden-xs fit-width clickable"><span class="glyphicon glyphicon-comment"></span></td>
-                            <td class="cell-bug-close hidden-xs fit-width clickable"><span class="glyphicon glyphicon-ok-circle"></span></td>
-                        </tr>
-                    <% end %>
-                </tbody>
+                <tbody id="bug-list-table-body"></tbody>
             </table>
         </div>
     </div>
