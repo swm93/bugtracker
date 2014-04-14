@@ -22,9 +22,9 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="<%= project_bugs_feed_path %>">Feed</a></li>
-                        <li><a href="<%= project_bugs_path %>">Bug List</a></li>
-                        <li><a href="<%= new_project_bug_path %>">File a Bug</a></li>
+                        <li class="<%= 'active' if (action_name == 'feed') %>"><a href="<%= project_bugs_feed_path %>">Feed</a></li>
+                        <li class="<%= 'active' if (action_name == 'index') %>"><a href="<%= project_bugs_path %>">Bug List</a></li>
+                        <li class="<%= 'active' if (action_name == 'new') %>"><a href="<%= new_project_bug_path %>">File a Bug</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="<%= projects_path %>">Change Project</a></li>

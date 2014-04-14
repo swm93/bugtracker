@@ -22,8 +22,8 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="<%= projects_path %>">All Projects</a></li>
-                        <li><a href="<%= new_project_path %>">Create Project</a></li>
+                        <li class="<%= 'active' if (action_name == 'index') %>"><a href="<%= projects_path %>">All Projects</a></li>
+                        <li class="<%= 'active' if (action_name == 'new') %>"><a href="<%= new_project_path %>">Create Project</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
