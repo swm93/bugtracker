@@ -131,3 +131,9 @@ td.fit-width {
         text-decoration: none;
     }
 }
+
+@media screen and (max-width:767px) {
+    .padded-column {
+        padding: 15px;
+    }
+}
