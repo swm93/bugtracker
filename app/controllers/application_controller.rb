@@ -45,4 +45,8 @@ class ApplicationController < ActionController::Base
   def not_found
     raise ActionController::RoutingError.new('Not Found')
   end
+
+  def parse_query_string(query_string)
+    CGI.parse(query_string)
+  end
 end

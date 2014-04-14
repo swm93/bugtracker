@@ -4,7 +4,11 @@ class BugsController < ApplicationController
   before_action :validate_project_owner
 
   def index
-    @bugs = Bug.where(:project_id => params[:project_id])
+    if (request.query_string && params[:format] == "json")
+      @bugs = get_bugs_with_query(request.query_string)
+    else
+      @bugs = Bug.where(:project_id => params[:project_id])
+    end
 
     respond_to do |format|
       format.html
@@ -81,5 +85,11 @@ class BugsController < ApplicationController
     if (!User.find(session[:user_id]).projects.where(:id => params[:project_id]).exists?())
       not_found()
     end
+  end
+
+  def get_bugs_with_query(query_string)
+    query_data = parse_query_string(query_string)
+    query_data[:project_id] = params[:project_id]
+    Bug.where(query_data)
   end
 end
