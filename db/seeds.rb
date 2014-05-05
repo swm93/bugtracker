@@ -6,6 +6,35 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+permission_types = PermissionType.create([
+  {
+    :name => "admin",
+    :read => 1,
+    :write => 1,
+  },
+  {
+    :name => "guest",
+    :read => 0,
+    :write => 1,
+  }
+  #in theory we could add another permission_type called blocked where read and write would be 0
+  #this should result in the public property being ignored and the user not being able to view the project at all
+  #however this would not prevent them from viewing public projects by loggin out
+])
+
+permissions = Permission.create([
+  {
+    :project_id => 1,
+    :user_id => 1,
+    :permission_type_id => 1
+  },
+  {
+    :project_id => 2,
+    :user_id => 1,
+    :permission_type_id => 2
+  }
+])
+
 users = User.create([
   {
     :name => "Scott Mielcarski",
@@ -23,12 +52,12 @@ projects = Project.create([
   {
     :name => "Project Number One",
     :description => "This is the first project.",
-    :users => [users.first()]
+    :public => 1
   },
   {
     :name => "Project Number Two",
     :description => "This is the second project.",
-    :users => [users.first()]
+    :public => 0
   }
 ])
 
@@ -40,7 +69,7 @@ bugs = Bug.create([
     :status => "assigned",
     :priority => "normal",
     :assignee_id => users.first().id,
-    :reporter_id => users.first().id,
+    :reporter_id => users.first().id
   },
   {
     :summary => "2.1",
@@ -49,7 +78,7 @@ bugs = Bug.create([
     :status => "assigned",
     :priority => "normal",
     :assignee_id => users.first().id,
-    :reporter_id => users.first().id,
+    :reporter_id => users.first().id
   },
   {
     :summary => "3.1",
@@ -58,7 +87,7 @@ bugs = Bug.create([
     :status => "assigned",
     :priority => "normal",
     :assignee_id => users.first().id,
-    :reporter_id => users.first().id,
+    :reporter_id => users.first().id
   },
   {
     :summary => "4.1",
@@ -67,7 +96,7 @@ bugs = Bug.create([
     :status => "assigned",
     :priority => "normal",
     :assignee_id => users.first().id,
-    :reporter_id => users.first().id,
+    :reporter_id => users.first().id
   },
   {
     :summary => "5.1",
@@ -76,7 +105,7 @@ bugs = Bug.create([
     :status => "assigned",
     :priority => "normal",
     :assignee_id => users.first().id,
-    :reporter_id => users.first().id,
+    :reporter_id => users.first().id
   },
   {
     :summary => "6.1",
@@ -85,7 +114,7 @@ bugs = Bug.create([
     :status => "assigned",
     :priority => "normal",
     :assignee_id => users.first().id,
-    :reporter_id => users.first().id,
+    :reporter_id => users.first().id
   },
   {
     :summary => "7.1",
@@ -94,7 +123,7 @@ bugs = Bug.create([
     :status => "assigned",
     :priority => "normal",
     :assignee_id => users.first().id,
-    :reporter_id => users.first().id,
+    :reporter_id => users.first().id
   },
   {
     :summary => "8.1",
@@ -103,7 +132,7 @@ bugs = Bug.create([
     :status => "assigned",
     :priority => "normal",
     :assignee_id => users.first().id,
-    :reporter_id => users.first().id,
+    :reporter_id => users.first().id
   },
   {
     :summary => "9.1",
@@ -112,7 +141,7 @@ bugs = Bug.create([
     :status => "assigned",
     :priority => "normal",
     :assignee_id => users.first().id,
-    :reporter_id => users.first().id,
+    :reporter_id => users.first().id
   },
   {
     :summary => "10.1",
@@ -121,6 +150,6 @@ bugs = Bug.create([
     :status => "assigned",
     :priority => "normal",
     :assignee_id => users.first().id,
-    :reporter_id => users.first().id,
+    :reporter_id => users.first().id
   },
 ])
