@@ -16,15 +16,7 @@ window.Bugtracker = {
     },
 
     initialize: function() {
-        this.initializeNProgress();
-
         this.addPageChangeListeners();
-    },
-
-    initializeNProgress: function() {
-        NProgress.configure({
-            showSpinner: false,
-        });
     },
 
     addPageChangeListeners: function() {
@@ -39,12 +31,10 @@ window.Bugtracker = {
     },
 
     pageWillChange: function() {
-        NProgress.start();
+        
     },
 
     pageDidChange: function() {
-        NProgress.done();
-
         this.loadView();
     },
 

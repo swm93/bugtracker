@@ -51,6 +51,7 @@ gem 'underscore-rails'
 gem 'bourbon'
 gem 'select2-rails'
 gem 'font-awesome-rails'
+gem 'nprogress-rails'
 gem 'paperclip'
 
 gem 'jbuilder', '~> 1.2'
