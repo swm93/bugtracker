@@ -1,7 +1,15 @@
-<%# if !@bugs.empty? %>
-<% if true %>
+<% if !@bugs.empty? %>
     <div id="bug-sidebar-container" class="content-area">
         <div class="sidebar no-select">
+            <div class="sidebar-header">
+                <p>
+                    <span>Showing </span>
+                    <span class="visible-bug-count">0</span>
+                    <span> of </span>
+                    <span class="total-bug-count"><%= @bugs.length %></span>
+                    <span> bugs</span>
+                </p>
+            </div>
             <div class="sidebar-grouping">
                 <h4><span class="glyphicon glyphicon-tasks"></span>Status</h4>
                 <ul class="list-unstyled">
@@ -74,6 +82,15 @@
                 </thead>
                 <tbody id="bug-list-table-body"></tbody>
             </table>
+        </div>
+        <div class="container-none-found">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10 col-xs-12 padded-column">
+                <div id="container-no-bugs" class="jumbotron content-area text-center">
+                    <p class="msg-no-bugs">No bugs found.</p>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
         </div>
     </div>
 <% else %>

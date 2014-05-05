@@ -57,6 +57,8 @@ Bugtracker.Classes.BugsRenderer.prototype.render = function(modelData) {
 
     this.$el.empty();
     this.$el.append(html);
+    $('#bug-list-container').toggleClass('no-content', !html);
+    $('.visible-bug-count').text(modelData.length);
 
     this.sortHandler.refreshSort();
 };
