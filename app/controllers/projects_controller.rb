@@ -28,8 +28,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @user = User.find(session[:user_id])
-    @project = @user.projects.create(project_params())
+    @project = @current_user.projects.create(project_params())
 
     if (@project.save())
       redirect_to(@project)

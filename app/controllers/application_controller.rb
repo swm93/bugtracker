@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  #TODO: validate_read_permissions/validate_write_permissions may make this unneeded
   def authenticate_user
     if (session[:user_id])
        # set current user object to @current_user object variable
@@ -32,13 +31,11 @@ class ApplicationController < ActionController::Base
   end
 
   def validate_write_permissions
-    id_key = get_project_id_key()
-    permission_denied() if (!Permission.joins(:permission_type).where({:user_id => session[:user_id], :project_id => params[id_key], :permission_types => {:write => 1}}).exists?())
+    permission_denied() unless has_write_permission?()
   end
 
   def validate_read_permissions
-    id_key = get_project_id_key()
-    permission_denied() if (!params[:public] && !Permission.joins(:permission_type).where({:user_id => session[:user_id], :project_id => params[id_key], :permission_types => {:read => 1}}).exists?())
+    permission_denied() unless has_read_permission?()
   end
 
   def save_login_state
@@ -63,6 +60,26 @@ class ApplicationController < ActionController::Base
 
   def parse_query_string(query_string)
     CGI.parse(query_string)
+  end
+
+  #return the permission for the current user and project if there is one, otherwise nil
+  def get_permission
+    if (@current_user)
+      project_id_key = get_project_id_key()
+      permission = Permission.where({:user_id => @current_user.id, :project_id => params[project_id_key]})[0]
+    end
+  end
+
+  #check if the current user has read permissions for the current project
+  def has_read_permission?
+    permission = get_permission() if @current_user
+    permission.permission_type.read unless permission.nil?
+  end
+
+  #check if the current user has write permissions for the current project
+  def has_write_permission?
+    permission = get_permission() if @current_user
+    permission.permission_type.write unless permission.nil?
   end
 
   def get_project_id_key
