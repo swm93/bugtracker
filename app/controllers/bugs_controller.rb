@@ -1,7 +1,8 @@
 class BugsController < ApplicationController
   before_action :authenticate_user
-  before_action :validate_bug_owner, :only => [:show, :edit, :destroy]
-  before_action :validate_project_owner
+  before_action :validate_bug_existance, :only => [:show, :edit, :update, :destroy]
+  before_action :validate_write_permissions, :only => [:new, :create, :edit, :update, :destory]
+  before_action :validate_read_permissions
 
   def index
     if (request.query_string && params[:format] == "json")
@@ -75,16 +76,8 @@ class BugsController < ApplicationController
     )
   end
 
-  def validate_bug_owner
-    if (!Bug.where({:id => params[:id], :project_id => params[:project_id]}).exists?())
-      not_found()
-    end
-  end
-
-  def validate_project_owner
-    if (!User.find(session[:user_id]).projects.where(:id => params[:project_id]).exists?())
-      not_found()
-    end
+  def validate_bug_existance
+    not_found() if (!Bug.where({:id => params[:id]}).exists?())
   end
 
   def get_bugs_with_query(query_string)

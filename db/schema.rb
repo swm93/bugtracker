@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140406071605) do
+ActiveRecord::Schema.define(version: 20140503012317) do
 
   create_table "bugs", force: true do |t|
     t.string   "summary"
@@ -25,9 +25,26 @@ ActiveRecord::Schema.define(version: 20140406071605) do
     t.datetime "updated_at"
   end
 
+  create_table "permission_types", force: true do |t|
+    t.string   "name"
+    t.boolean  "read"
+    t.boolean  "write"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "permissions", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.integer  "permission_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "projects", force: true do |t|
     t.string   "name"
     t.text     "description"
+    t.boolean  "public"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -62,11 +79,6 @@ ActiveRecord::Schema.define(version: 20140406071605) do
     t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "users_projects", force: true do |t|
-    t.integer "user_id"
-    t.integer "project_id"
   end
 
 end

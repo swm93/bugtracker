@@ -5,7 +5,10 @@ Bugtracker::Application.routes.draw do
     get 'bugs/feed' => 'bugs#feed'
     get 'bugs/groups' => 'bugs#groups'
     resources :bugs
+    resources :permissions, :only => ['create']
   end
+
+  resources :permission_types, :only => ['index']
 
   get 'login' => 'sessions#login'
   get 'logout' => 'sessions#logout'

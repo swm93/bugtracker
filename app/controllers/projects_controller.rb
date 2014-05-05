@@ -1,10 +1,11 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user
-  before_action :validate_project_owner, :only => [:show, :edit, :destory]
+  before_action :validate_write_permissions, :only => [:edit, :update, :destory]
+  before_action :validate_read_permissions, :except => [:index, :new, :create]
   layout :get_projects_layout
 
   def index
-    @projects = User.find(session[:user_id]).projects
+    @projects = Project.joins(:permissions).where({:permissions => {:user_id => session[:user_id]}})
 
     respond_to do |format|
       format.html
@@ -15,7 +16,11 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    redirect_to({:controller => :bugs, :action => :feed, :project_id => params[:id]})
+
+    respond_to do |format|
+      format.html { redirect_to({:controller => :bugs, :action => :feed, :project_id => params[:id]}) }
+      format.json { render(:json => @project, :include => { :permissions => { :include => [ :permission_type, :user => { :except => [:password, :password_salt] }]}})}#:include => { :users => { :except => [:password, :password_salt], :include => { :permissions => { :include => :permission_type }}}}) }
+    end
   end
 
   def new
@@ -40,10 +45,10 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
 
-    if @project.update(project_params)
-      redirect_to(@project)
+    if (@project.update(project_params()))
+      render(:nothing => true)
     else
-        render('edit')
+      render('edit')
     end
   end
 
@@ -60,13 +65,8 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(
       :name,
-      :description
+      :description,
+      :public
     )
-  end
-
-  def validate_project_owner
-    if (!User.find(session[:user_id]).projects.where(:id => params[:id]).exists?())
-      not_found()
-    end
   end
 end

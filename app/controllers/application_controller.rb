@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  #TODO: validate_read_permissions/validate_write_permissions may make this unneeded
   def authenticate_user
     if (session[:user_id])
        # set current user object to @current_user object variable
@@ -28,6 +29,16 @@ class ApplicationController < ActionController::Base
       redirect_to(:controller => 'sessions', :action => 'login')
       return false
     end
+  end
+
+  def validate_write_permissions
+    id_key = get_project_id_key()
+    permission_denied() if (!Permission.joins(:permission_type).where({:user_id => session[:user_id], :project_id => params[id_key], :permission_types => {:write => 1}}).exists?())
+  end
+
+  def validate_read_permissions
+    id_key = get_project_id_key()
+    permission_denied() if (!params[:public] && !Permission.joins(:permission_type).where({:user_id => session[:user_id], :project_id => params[id_key], :permission_types => {:read => 1}}).exists?())
   end
 
   def save_login_state
@@ -43,10 +54,18 @@ class ApplicationController < ActionController::Base
   private
 
   def not_found
-    raise ActionController::RoutingError.new('Not Found')
+    render(:file => "public/404.html", :status => :not_found)
+  end
+
+  def permission_denied
+    render(:file => "public/401.html", :status => :unauthorized)
   end
 
   def parse_query_string(query_string)
     CGI.parse(query_string)
+  end
+
+  def get_project_id_key
+    controller_name === "projects" ? :id : :project_id
   end
 end

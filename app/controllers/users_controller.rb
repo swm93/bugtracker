@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json => @users, :only => [:id, :name, :email] }
+      format.json { render :json => @users, :except => [:password, :password_salt] }
     end
   end
 
