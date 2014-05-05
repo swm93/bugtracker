@@ -22,6 +22,7 @@ group :development do
   gem 'rails_best_practices'
   gem 'bullet'
   gem 'better_errors'
+  gem 'meta_request'
 end
 
 group :development, :test do
