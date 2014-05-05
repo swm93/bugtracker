@@ -7,6 +7,7 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require select2
+//= require jquery_editable_label
 
 //= require string_capitalize
 
@@ -15,3 +16,4 @@
 //= require_tree ./templates
 
 //= require_tree ./bugs
+//= require_tree ./projects

@@ -16,6 +16,12 @@ h1, h2, h3, h4, h5, h6, p {
     font-weight: 300;
 }
 
+tbody {
+    border-width: 0 1px;
+    border-style: solid;
+    border-color: #dddddd;
+}
+
 * {
     outline: none !important;
 }
@@ -26,6 +32,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 .content-area {
     padding: 10px;
+    margin: 10px 0;
 
     background-color: white;
 
