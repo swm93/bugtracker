@@ -3,6 +3,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require underscore
+//= require angular
 //= require handlebars.runtime
 //= require nprogress
 //= require nprogress-turbolinks
