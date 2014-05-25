@@ -1,6 +1,7 @@
 class CreateBugs < ActiveRecord::Migration
   def change
     create_table :bugs do |t|
+      t.integer :number
       t.string :summary
       t.text :description
       t.string :status

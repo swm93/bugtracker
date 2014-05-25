@@ -7,4 +7,16 @@
 #     behavior, date due, version fixed in
 class Bug < ActiveRecord::Base
   belongs_to :project
+
+  validate :number, :unique => true
+  before_validation :set_bug_number, :on => :create
+
+
+  private
+
+  def set_bug_number
+    next_number = self.project.bug_count + 1
+    self.number = next_number
+    self.project.update_column(:bug_count, next_number)
+  end
 end
