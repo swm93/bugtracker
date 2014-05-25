@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20140503012317) do
 
   create_table "bugs", force: true do |t|
+    t.integer  "number"
     t.string   "summary"
     t.text     "description"
     t.string   "status"
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(version: 20140503012317) do
     t.string   "name"
     t.text     "description"
     t.boolean  "public"
+    t.integer  "bug_count",   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -77,6 +79,7 @@ ActiveRecord::Schema.define(version: 20140503012317) do
     t.string   "name"
     t.string   "password"
     t.string   "password_salt"
+    t.string   "authentication_token"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
