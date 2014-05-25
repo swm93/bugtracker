@@ -63,42 +63,47 @@ projects = Project.create([
 
 bugs = Bug.create([
   {
+    :number => 1,
     :summary => "1.1",
     :description => "First bug.",
     :project => projects.first(),
     :status => "assigned",
-    :priority => "normal",
+    :priority => "high",
     :assignee_id => users.first().id,
     :reporter_id => users.first().id
   },
   {
+    :number => 2,
     :summary => "2.1",
     :description => "Second bug.",
     :project => projects.first(),
-    :status => "assigned",
-    :priority => "normal",
+    :status => "resolved",
+    :priority => "high",
     :assignee_id => users.first().id,
     :reporter_id => users.first().id
   },
   {
+    :number => 3,
     :summary => "3.1",
     :description => "Third bug.",
     :project => projects.first(),
-    :status => "assigned",
+    :status => "investigate",
     :priority => "normal",
     :assignee_id => users.first().id,
     :reporter_id => users.first().id
   },
   {
+    :number => 4,
     :summary => "4.1",
     :description => "Forth bug.",
     :project => projects.first(),
-    :status => "assigned",
-    :priority => "normal",
+    :status => "investigate",
+    :priority => "low",
     :assignee_id => users.first().id,
     :reporter_id => users.first().id
   },
   {
+    :number => 5,
     :summary => "5.1",
     :description => "Fifth bug.",
     :project => projects.first(),
@@ -108,47 +113,52 @@ bugs = Bug.create([
     :reporter_id => users.first().id
   },
   {
+    :number => 6,
     :summary => "6.1",
     :description => "Sixth bug.",
     :project => projects.first(),
-    :status => "assigned",
+    :status => "investigate",
     :priority => "normal",
     :assignee_id => users.first().id,
     :reporter_id => users.first().id
   },
   {
+    :number => 7,
     :summary => "7.1",
     :description => "Seventh bug.",
     :project => projects.first(),
-    :status => "assigned",
-    :priority => "normal",
+    :status => "resolved",
+    :priority => "low",
     :assignee_id => users.first().id,
     :reporter_id => users.first().id
   },
   {
+    :number => 8,
     :summary => "8.1",
     :description => "Eighth bug.",
     :project => projects.first(),
-    :status => "assigned",
-    :priority => "normal",
+    :status => "resolved",
+    :priority => "high",
     :assignee_id => users.first().id,
     :reporter_id => users.first().id
   },
   {
+    :number => 9,
     :summary => "9.1",
     :description => "Nineth bug.",
     :project => projects.first(),
-    :status => "assigned",
+    :status => "resolved",
     :priority => "normal",
     :assignee_id => users.first().id,
     :reporter_id => users.first().id
   },
   {
+    :number => 10,
     :summary => "10.1",
     :description => "Tenth bug.",
     :project => projects.first(),
     :status => "assigned",
-    :priority => "normal",
+    :priority => "high",
     :assignee_id => users.first().id,
     :reporter_id => users.first().id
   },
