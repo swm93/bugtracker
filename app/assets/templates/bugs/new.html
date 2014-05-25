@@ -1,0 +1,27 @@
+<div class="col-xs-12 padded-column">
+    <div class="content-area stacked-panel">
+        <div class="form-group-summary form-group">
+            <label for="field-bug-summary" class="field-label">
+                Summary
+            </label>
+            <input id="field-bug-summary" class="form-control" name="bug[summary]" type="text" placeholder="Summary"></input>
+        </div>
+        <div class="form-group-description form-group">
+            <label for="field-bug-description" class="field-label">
+                Description
+            </label>
+            <textarea id="field-bug-description" class="form-control" name="bug[description]" rows="3" placeholder="Description"></textarea>
+        </div>
+        <div class="form-group-assignee form-group">
+            <label for="field-bug-assignee" class="field-label">
+                Assignee
+            </label>
+            <div id="field-bug-assignee" class="form-control" name="bug[assignee]"></div>
+        </div>
+     
+        <div class="form-group">
+            <a class="btn-back btn btn-default" href="<%= project_bugs_path %>">Back</a>
+            <button class="btn-create btn btn-default" name="commit" value="save" type="submit">Create</button>
+        </div>
+    </div>
+</div>

@@ -1,20 +1,18 @@
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap
 //= require underscore
 //= require angular
+//= require angular-route
+//= require angular-animate
+//= require angular-resource
+//= require angular-ui-router
 //= require handlebars.runtime
-//= require nprogress
-//= require nprogress-turbolinks
+//= require ngprogress-lite
 //= require select2
 //= require jquery_editable_label
 
 //= require string_capitalize
 
-//= require bugtracker
-
-//= require_tree ./templates
-
-//= require_tree ./bugs
-//= require_tree ./projects
+//= require main
+//= require_tree ./angular

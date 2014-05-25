@@ -1,8 +1,4 @@
-.projects.edit {
-    .row-fluid {
-        padding: 0 5%;
-    }
-
+// .projects.edit {
     .form-header > * {
         // padding: 4px;
         margin: 0 0 5px 0;
@@ -15,7 +11,7 @@
             padding: 0;
 
             background: none;
-            box-shadow: none;
+            box-shadow: none !important;
 
             font-size: inherit;
             font-weight: inherit;
@@ -32,10 +28,6 @@
         }
     }
 
-    .form-content {
-        padding: 4px;
-    }
-
     .form-sub-text {
         font-size: 12px;
     }
@@ -45,5 +37,7 @@
     }
 
     #label-project-name {}
-    #label-project-description {}
-}
+    #label-project-description {
+        text-align: justify;
+    }
+// }

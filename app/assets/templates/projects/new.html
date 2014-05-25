@@ -1,5 +1,5 @@
-<div class="col-xs-12">
-    <%= form_for @project do |f| %>
+<div class="col-xs-12 padded-column">
+    <div class="content-area stacked-panel">
         <div class="form-group-name form-group">
             <label for="field-project-name" class="field-label">
                 Project Name
@@ -14,8 +14,8 @@
         </div>
      
         <div class="form-group">
-            <a class="btn-back btn btn-default" href="<%= projects_path %>">Back</a>
+            <a class="btn-back btn btn-default" ui-sref="projects.index">Back</a>
             <button class="btn-create btn btn-default" name="commit" value="save" type="submit">Create</button>
         </div>
-    <% end %>
+    </div>
 </div>

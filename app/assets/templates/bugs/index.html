@@ -1,0 +1,117 @@
+<div ng-show="hasBugs()" id="bug-sidebar-container" class="content-area">
+    <div class="sidebar no-select">
+        <div class="sidebar-header">
+            <p>
+                <span>Showing </span>
+                <span class="visible-bug-count">{{ (bugs | filterMultiple:filter).length }}</span>
+                <span> of </span>
+                <span class="total-bug-count">{{ bugs.length }}</span>
+                <span> bugs</span>
+            </p>
+        </div>
+        <div class="sidebar-grouping">
+            <h4><span class="glyphicon glyphicon-tasks"></span>Status</h4>
+            <ul class="list-unstyled">
+                <li>
+                    <input id="filter-status-assigned" class="bugs-filter-checkbox" type="checkbox" />
+                    <label ng-click="toggleFilter('status', 'assigned')" for="filter-status-assigned">Assigned</label>
+                </li>
+                <li>
+                    <input id="filter-status-investigate" class="bugs-filter-checkbox" type="checkbox" />
+                    <label ng-click="toggleFilter('status', 'investigate')" for="filter-status-investigate">Investigate</label>
+                </li>
+                <li>
+                    <input id="filter-status-resolved" class="bugs-filter-checkbox" type="checkbox" />
+                    <label ng-click="toggleFilter('status', 'resolved')" for="filter-status-resolved">Resolved</label>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar-grouping-divider"></div>
+        <div class="sidebar-grouping">
+            <h4><span class="glyphicon glyphicon-fire"></span>Priority</h4>
+            <ul class="list-unstyled">
+                <li>
+                    <input id="filter-priority-high" class="bugs-filter-checkbox" type="checkbox" />
+                    <label ng-click="toggleFilter('priority', 'high')" for="filter-priority-high">High</label>
+                </li>
+                <li>
+                    <input id="filter-priority-normal" class="bugs-filter-checkbox" type="checkbox" />
+                    <label ng-click="toggleFilter('priority', 'normal')" for="filter-priority-normal">Normal</label>
+                </li>
+                <li>
+                    <input id="filter-priority-low" class="bugs-filter-checkbox" type="checkbox" />
+                    <label ng-click="toggleFilter('priority', 'low')" for="filter-priority-low">Low</label>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar-grouping-divider"></div>
+        <div class="sidebar-grouping">
+            <h4><span class="glyphicon glyphicon-user"></span>Assignee</h4>
+            <ul class="list-unstyled">
+                <li>
+                    <input id="filter-assignee-scott" class="bugs-filter-checkbox" type="checkbox" />
+                    <label ng-click="toggleFilter('assignee', 'scott')" for="filter-assignee-scott">Scott</label>
+                </li>
+                <li>
+                    <input id="filter-assignee-rick" class="bugs-filter-checkbox" type="checkbox" />
+                    <label ng-click="toggleFilter('assignee', 'rick')" for="filter-assignee-rick">Rick</label>
+                </li>
+                <li>
+                    <input id="filter-assignee-newman" class="bugs-filter-checkbox" type="checkbox" />
+                    <label ng-click="toggleFilter('assignee', 'newman')" for="filter-assignee-newman">Newman</label>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div ng-show="hasBugs()" id="bug-list-container">
+    <div ng-show="hasVisibleBugs()" class="col-xs-12">
+        <div class="table-container content-area stacked-panel">
+            <table class="table table-striped table-hover">
+                <thead id="bugs-list-table-header">
+                    <tr>
+                        <th ng-click="toggleSort('id')" class="bugs-header-cell clickable">
+                            <span class="fa {{ getSortIconClass('id') }}"></span> ID <sup class="sort-marker">{{ getSortIndex('id') }}</sup>
+                        </th>
+                        <th ng-click="toggleSort('summary')" class="bugs-header-cell clickable">
+                            <span class="fa {{ getSortIconClass('summary') }}"></span> Summary <sup class="sort-marker">{{ getSortIndex('summary') }}</sup>
+                        </th>
+                        <th ng-click="toggleSort('assignee')" class="bugs-header-cell hidden-xs clickable">
+                            <span class="fa {{ getSortIconClass('assignee') }}"></span> Assignee <sup class="sort-marker">{{ getSortIndex('assignee') }}</sup>
+                        </th>
+                        <th ng-click="toggleSort('priority')" class="bugs-header-cell hidden-xs clickable">
+                            <span class="fa {{ getSortIconClass('priority') }}"></span> Priority <sup class="sort-marker">{{ getSortIndex('priority') }}</sup>
+                        </th>
+                        <th ng-click="toggleSort('status')" class="bugs-header-cell hidden-xs clickable">
+                            <span class="fa {{ getSortIconClass('status') }}"></span> Status <sup class="sort-marker">{{ getSortIndex('status') }}</sup>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="bug-list-table-body">
+                    <tr ng-repeat="bug in bugs | filterMultiple:filter | orderBy:sort" ui-sref="projects.single.bugs.single.show({bugId: bug.id})" class="bug-row clickable">
+                        <td class="bug-cell-id">{{ bug.id }}</td>
+                        <td class="bug-cell-summary">{{ bug.summary }}</td>
+                        <td class="bug-cell-assignee hidden-xs">{{ bug.assignee_id }}</td>
+                        <td class="bug-cell-priority hidden-xs">{{ bug.priority }}</td>
+                        <td class="bug-cell-status hidden-xs">{{ bug.status }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div ng-hide="hasVisibleBugs()" class="col-xs-12 padded-column">
+        <div id="container-no-bugs" class="jumbotron content-area stacked-panel text-center">
+            <p class="msg-no-bugs">No bugs found.</p>
+        </div>
+    </div>
+</div>
+
+<div ng-hide="hasBugs()">
+    <div class="col-xs-12 padded-column">
+        <div id="container-no-bugs" class="jumbotron content-area stacked-panel text-center">
+            <p class="msg-no-bugs">You haven't added any bugs yet. Add one now?</p>
+            <a ui-sref="projects.single.bugs.new" class="btn-create-bug btn btn-default">Create a Bug</a>
+        </div>
+    </div>
+</div>

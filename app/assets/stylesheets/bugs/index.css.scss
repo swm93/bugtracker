@@ -14,6 +14,8 @@
             }
         }
         .sidebar-grouping {
+            margin: 10px 0;
+            
             h4 {
                 margin-bottom: 3px;
 
@@ -29,6 +31,8 @@
             }
 
             ul {
+                margin: 0;
+
                 font-size: 11px;
                 line-height: 14px;
                 text-transform: uppercase;
@@ -66,15 +70,6 @@
 #bug-list-container {
     margin-left: 220px;
 
-    &.no-content {
-        .table-container {
-            display: none;
-        }
-        .container-none-found {
-            display: block;
-        }
-    }
-
     .table-container {
         height: 100%;
 
@@ -86,6 +81,11 @@
 
         .bugs-header-cell {
             @include user-select(none);
+
+            .sort-marker {
+                font-weight: 100;
+                color: #AAAAAA;
+            }
         }
 
         .bug-cell-id {
@@ -122,14 +122,13 @@
             min-width: 14px;
         }
     }
-
-    .container-none-found {
-        display: none;
-    }
 }
 
 #container-no-bugs {
     padding: 48px 24px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
     
     .msg-no-bugs {
         color: #666666;

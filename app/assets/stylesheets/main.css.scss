@@ -16,6 +16,10 @@ h1, h2, h3, h4, h5, h6, p {
     font-weight: 300;
 }
 
+textarea {
+    resize: vertical;
+}
+
 tbody {
     border-width: 0 1px;
     border-style: solid;
@@ -24,6 +28,13 @@ tbody {
 
 * {
     outline: none !important;
+
+    &::selection {
+        background: $selection-color;
+        }
+    &::-moz-selection {
+        background: $selection-color;
+    }
 }
 
 .row {
@@ -32,17 +43,33 @@ tbody {
 
 .content-area {
     padding: 10px;
-    margin: 10px 0;
 
     background-color: white;
 
     border-width: 1px;
     border-color: #e7e7e7;
     border-style: solid;
+
+    h1, h2, h3, h4, h5, h6 {
+        margin-top: 0;
+    }
+
+    p.content-header {
+        font-size: 15px;
+        font-weight: 700;
+    }
+}
+
+.form-content {
+    padding: 4px;
+}
+
+.stacked-panel {
+    margin: 10px 0;
 }
 
 .padded-column {
-    padding: 15px 50px;
+    padding: 0 50px;
 }
 
 .navbar {
@@ -63,10 +90,42 @@ tbody {
         z-index: 0;
     }
 
-    li.active>a {
-        padding-bottom: 11px;
+    li > a {
+        @include transition(color 0.15s ease, background-color 0.15s ease);
+    }
 
-        border-bottom: 4px solid $green-faded-active;
+    li.active > a {
+        color: #FFFFFF !important;
+        background-color: $green-faded-active !important;
+    }
+}
+
+.breadcrumb {
+    margin: 0;
+    padding: 4px 15px;
+
+    border-width: 0 1px 1px 1px;
+    border-style: solid;
+    border-color: #e7e7e7;
+    border-radius: 0;
+
+    > li + li::before {
+        padding: 0 0 0 5px;
+    }
+
+    li {
+        font-size: 12px;
+        font-weight: 400;
+        text-transform: uppercase;
+
+        a {
+            color: $green-faded-active;
+
+            &:hover, &:active, &:focus {
+                color: $green-active-dark;
+                text-decoration: none;
+            }
+        }
     }
 }
 
@@ -139,7 +198,34 @@ td.fit-width {
     }
 }
 
-@media screen and (max-width:767px) {
+.media {
+    > .pull-left {
+        margin-right: 25px;
+    }
+    > .pull-right {
+        margin-left: 25px;
+    }
+}
+
+.btn-primary {
+    background-color: $green-faded-active;
+
+    border-color: transparent;
+
+    &:hover, &:active, &:focus {
+        background-color: $green-faded-active-dark;
+
+        border-color: transparent;
+    }
+}
+
+.logo-isometric-cube {
+    height: 16px;
+    margin-top: -4px;
+    margin-right: 4px;
+}
+
+@media screen and (max-width: $screen-xs-max) {
     .padded-column {
         padding: 15px;
     }
