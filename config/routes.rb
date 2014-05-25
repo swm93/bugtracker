@@ -1,20 +1,34 @@
 Bugtracker::Application.routes.draw do
-  root 'projects#index'
+  root 'home#index'
 
-  resources :projects do
-    get 'bugs/feed' => 'bugs#feed'
-    get 'bugs/groups' => 'bugs#groups'
-    resources :bugs
-    resources :permissions, :only => ['create']
+  scope :api do
+    post 'users/login_attempt' => 'sessions#login_attempt'
+    get 'users/logout' => 'sessions#logout'
+    get 'users/current_user' => 'users#get_current_user'
+
+    resources :projects, :only => ['index', 'show', 'create', 'update', 'destroy'], :format => :json do
+      get 'bugs/feed' => 'bugs#feed'
+      resources :bugs, :only => ['index', 'show', 'create', 'update', 'destroy']
+      resources :permissions, :only => ['index', 'show', 'create', 'update', 'destroy']
+    end
+
+    resources :permission_types, :only => ['index', 'show'], :format => :json
   end
 
-  resources :permission_types, :only => ['index']
+  # resources :projects do
+  #   get 'bugs/feed' => 'bugs#feed'
+  #   get 'bugs/groups' => 'bugs#groups'
+  #   resources :bugs
+  #   resources :permissions, :only => ['create']
+  # end
 
-  get 'login' => 'sessions#login'
-  get 'logout' => 'sessions#logout'
-  post 'login_attempt' => 'sessions#login_attempt'
-  get 'signup' => 'users#new'
-  resources :users, :only => ['create', 'index']
+  # resources :permission_types, :only => ['index']
+
+  # get 'login' => 'sessions#login'
+  # get 'logout' => 'sessions#logout'
+  # post 'login_attempt' => 'sessions#login_attempt'
+  # get 'signup' => 'users#new'
+  # resources :users, :only => ['create', 'index']
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
