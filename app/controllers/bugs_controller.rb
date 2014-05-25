@@ -5,61 +5,53 @@ class BugsController < ApplicationController
   before_action :validate_read_permissions
 
   def index
-    if (request.query_string && params[:format] == "json")
+    if (request.query_string)
       @bugs = get_bugs_with_query(request.query_string)
     else
       @bugs = Bug.where(:project_id => params[:project_id])
     end
 
-    respond_to do |format|
-      format.html
-      format.json { render :json => @bugs }
-    end
-    project_bugs_path.inspect()
+    render(:json => @bugs)
   end
 
-  def new
-    @bug = Bug.new()
+  def show
+    @bug = Bug.find(params[:id])
+
+    render(:json => @bug)
   end
 
   def create
-    @project = Project.find(params[:project_id])
-    @bug = @project.bugs.create(bug_params())
+    # @project = Project.find(params[:project_id])
+    # @bug = @project.bugs.create(bug_params())
+    permitted = bug_params()
+    @bug = Bug.new(permitted)
+    @bug.project_id = params[:project_id] unless permitted.has_key?(:project_id)
 
-    if @bug.save()
-      redirect_to(project_bug_path(:id => @bug.id))
+    if (@bug.save())
+      render(:json => @bug, :status => :created)
     else
-      render(new_project_bug_url)
+      render(:json => @bug.errors, :status => :unprocessable_entity)
     end
-  end
-
-  def edit
-    @bug = Bug.find(params[:id])
   end
 
   def update
     @bug = Bug.find(params[:id])
 
-    if @bug.update(bug_params)
-      redirect_to(@bug)
+    if (@bug.update(bug_params()))
+      render(:json => @bug, :status => :ok)
     else
-      render(edit_project_bug_url(params[:id]))
+      render(:json => @bug.errors, :status => :unprocessable_entity)
     end
   end
 
   def destroy
     @bug = Bug.find(params[:id])
-    @bug.destroy()
-
-    redirect_to(project_bugs_path)
-  end
-
-  def feed
-
-  end
-
-  def groups
-
+    
+    if (@bug.destroy())
+      render(:nothing => true, :status => :no_content)
+    else
+      render(:json => @bug.errors, :status => :unprocessable_entity)
+    end
   end
 
 
@@ -76,6 +68,7 @@ class BugsController < ApplicationController
     )
   end
 
+  #TODO: remove this
   def validate_bug_existance
     not_found() if (!Bug.where({:id => params[:id]}).exists?())
   end

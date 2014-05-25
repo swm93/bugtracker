@@ -1,33 +1,21 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  protect_from_forgery :with => :exception
 
 
-  def get_bugs_layout
-    return 'bugs'
-  end
+  def current_user
+    @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find_by_authentication_token(cookies[:auth_token]) if (cookies[:auth_token])
 
-  def get_projects_layout
-    return 'projects'
-  end
-
-  def get_login_layout
-    return 'login'
+    @current_user
   end
 
 
   protected
 
   def authenticate_user
-    if (session[:user_id])
-       # set current user object to @current_user object variable
-      @current_user = User.find(session[:user_id])
-      return true 
-    else
-      redirect_to(:controller => 'sessions', :action => 'login')
-      return false
-    end
+    session[:user_id].present?()
   end
 
   def validate_write_permissions
@@ -40,7 +28,6 @@ class ApplicationController < ActionController::Base
 
   def save_login_state
     if (session[:user_id])
-      redirect_to(:controller => 'projects', :action => 'index')
       return false
     else
       return true
@@ -51,11 +38,11 @@ class ApplicationController < ActionController::Base
   private
 
   def not_found
-    render(:file => "public/404.html", :status => :not_found)
+    render(:nothing => true, :status => :not_found)
   end
 
   def permission_denied
-    render(:file => "public/401.html", :status => :unauthorized)
+    render(:nothing => true, :status => :unauthorized)
   end
 
   def parse_query_string(query_string)
@@ -64,22 +51,22 @@ class ApplicationController < ActionController::Base
 
   #return the permission for the current user and project if there is one, otherwise nil
   def get_permission
-    if (@current_user)
+    if (current_user)
       project_id_key = get_project_id_key()
-      permission = Permission.where({:user_id => @current_user.id, :project_id => params[project_id_key]})[0]
+      permission = Permission.where({:user_id => current_user.id, :project_id => params[project_id_key]})[0]
     end
   end
 
   #check if the current user has read permissions for the current project
   def has_read_permission?
-    permission = get_permission() if @current_user
-    permission.permission_type.read unless permission.nil?
+    permission = get_permission() if current_user
+    permission.permission_type.read unless permission.nil?()
   end
 
   #check if the current user has write permissions for the current project
   def has_write_permission?
-    permission = get_permission() if @current_user
-    permission.permission_type.write unless permission.nil?
+    permission = get_permission() if current_user
+    permission.permission_type.write unless permission.nil?()
   end
 
   def get_project_id_key

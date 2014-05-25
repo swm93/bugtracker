@@ -1,10 +1,15 @@
 class PermissionTypesController < ApplicationController
 
+
   def index
     @permission_types = PermissionType.all()
 
-    respond_to do |format|
-      format.json { render :json => @permission_types }
-    end
+    render(:json => @permission_types)
+  end
+
+  def show
+    @permission_type = PermissionType.find(params[:id])
+
+    render(:json => @permission_type)
   end
 end
