@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       authorized_user.save()
 
       session[:user_id] = authorized_user.id
-      render(:json => authorized_user)
+      render(:json => {:user => authorized_user} || {}, :except => [:password, :password_salt, :authentication_token])
     else
       render(:json => {:errors => "Invalid email or password."}, :status => :unprocessable_entity)
     end

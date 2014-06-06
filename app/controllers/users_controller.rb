@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def get_current_user
-    render(:json => current_user, :except => [:password, :password_salt])
+    render(:json => {:user => current_user} || {}, :except => [:password, :password_salt, :authentication_token])
   end
 
 

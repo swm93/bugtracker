@@ -34,7 +34,6 @@ bugtracker.config(['$stateProvider', '$httpProvider', '$locationProvider', 'ngPr
         }
     });
 
-
     $stateProvider.state('projects', {
         abstract: true,
         url: '/projects',
@@ -158,99 +157,6 @@ bugtracker.config(['$stateProvider', '$httpProvider', '$locationProvider', 'ngPr
         }
     });
 
-
-
-    // $stateProvider.state('projects', {
-    //     abstract: true,
-    //     url: '/projects',
-    //     templateUrl: '/assets/layouts/projects.html',
-    //     controller: 'ProjectCtrl'
-    // });
-    // $stateProvider.state('projects.index', {
-    //     url: '',
-    //     templateUrl: '/assets/projects/index.html',
-    //     controller: 'ProjectIndexCtrl',
-    //     resolve: {
-    //         projects: resolve.project.all
-    //     },
-    //     breadcrumb: 'Projects'
-    // });
-    // $stateProvider.state('projects.show', {
-    //     url: '/{projectId:[0-9]{1,8}}',
-    //     templateUrl: '/assets/projects/show.html',
-    //     controller: 'ProjectShowCtrl',
-    //     resolve: {
-    //         project: resolve.project.findById,
-    //         bugs: resolve.bug.all,
-    //         permissions: resolve.permission.all
-    //     },
-    //     breadcrumb: 'Projects/{{ projectId }}'
-    // });
-    // $stateProvider.state('projects.new', {
-    //     url: '/new',
-    //     templateUrl: '/assets/projects/new.html',
-    //     controller: 'ProjectNewCtrl',
-    //     breadcrumb: 'Projects/New'
-    // });
-    // $stateProvider.state('projects.edit', {
-    //     url: '/{projectId:[0-9]{1,8}}/edit',
-    //     templateUrl: '/assets/projects/edit.html',
-    //     controller: 'ProjectEditCtrl',
-    //     resolve: {
-    //         project: resolve.project.findById
-    //     },
-    //     breadcrumb: 'Projects/{{ projectId }}/Edit'
-    // });
-
-    // $stateProvider.state('bugs', {
-    //     abstract: true,
-    //     url: '/projects/{projectId:[0-9]{1,8}}/bugs',
-    //     templateUrl: '/assets/layouts/bugs.html',
-    //     controller: 'BugCtrl'
-    // });
-    // $stateProvider.state('bugs.index', {
-    //     url: '',
-    //     templateUrl: '/assets/bugs/index.html',
-    //     controller: 'BugIndexCtrl',
-    //     resolve: {
-    //         bugs: resolve.bug.all
-    //     },
-    //     breadcrumb: 'Projects/{{ projectId }}/Bugs'
-    // });
-    // $stateProvider.state('bugs.show', {
-    //     url: '/{bugId:[0-9]{1,8}}',
-    //     templateUrl: '/assets/bugs/show.html',
-    //     controller: 'BugShowCtrl',
-    //     resolve: {
-    //         bug: resolve.bug.findById
-    //     },
-    //     breadcrumb: 'Projects/{{ projectId }}/Bugs/{{ bugId }}'
-    // });
-    // $stateProvider.state('bugs.new', {
-    //     url: '/new',
-    //     templateUrl: '/assets/bugs/new.html',
-    //     controller: 'BugNewCtrl',
-    //     breadcrumb: 'Projects/{{ projectId }}/Bugs/New'
-    // });
-    // $stateProvider.state('bugs.edit', {
-    //     url: '/{bugId:[0-9]{1,8}}/edit',
-    //     templateUrl: '/assets/bugs/edit.html',
-    //     controller: 'BugEditCtrl',
-    //     resolve: {
-    //         bugs: resolve.bug.findById
-    //     },
-    //     breadcrumb: 'Projects/{{ projectId }}/Bugs/{{ bugId }}/Edit'
-    // });
-    // $stateProvider.state('bugs.feed', {
-    //     url: '/feed',
-    //     templateUrl: '/assets/bugs/feed.html',
-    //     controller: 'BugFeedCtrl',
-    //     resolve: {
-    //         bugs: resolve.bug.all
-    //     },
-    //     breadcrumb: 'Projects/{{ projectId }}/Bugs/Feed'
-    // });
-
     $stateProvider.state('error', {
         abstract: true,
         templateUrl: '/assets/layouts/errors.html',
@@ -269,13 +175,14 @@ bugtracker.config(['$stateProvider', '$httpProvider', '$locationProvider', 'ngPr
 }]);
 
 bugtracker.run(['$rootScope', '$state', 'ngProgressLite', 'User', function($rootScope, $state, ngProgressLite, User) {
+    //set the current user if a session is still in progress
     User.currentUser(function(successData) {
-        $rootScope.currentUser = successData;
-    }, function(errorData) {
-        $state.transitionTo('error.401');
-    });
+        if (successData.user) {
+            $rootScope.currentUser = successData.user;
+        }
+    }, function(errorData) {});
 
-    $rootScope.$on('$stateChangeStart', function() {
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         ngProgressLite.start();
     });
     $rootScope.$on('$stateChangeSuccess', function() {
@@ -283,7 +190,14 @@ bugtracker.run(['$rootScope', '$state', 'ngProgressLite', 'User', function($root
     });
 
     $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
-        $state.transitionTo('error.' + error.status);
+        if (error.status === 401) {
+            $state.transitionTo('users.login');
+        }
+        else {
+            $state.transitionTo('error.' + error.status);
+        }
+        
+        ngProgressLite.done();
     });
 }]);
 
