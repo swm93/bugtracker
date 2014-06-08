@@ -15,5 +15,9 @@ var bug = bugtracker.factory('Bug', ['$resource', function($resource) {
         return this.service.get({bugId: bugId, projectId: projectId}, success, error);
     };
 
+    Bug.prototype.create = function(bugId, projectId, params, success, error) {
+        return this.service.save({bugId: bugId, projectId: projectId}, params, success, error);
+    };
+
     return new Bug;
 }]);
