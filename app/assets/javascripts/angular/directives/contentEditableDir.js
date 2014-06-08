@@ -19,7 +19,7 @@ bugtracker.directive('contenteditable', function() {
       function read() {
         var val = element.text();
         ngModel.$setViewValue(val);
-      }
+      };
     }
   };
 });
