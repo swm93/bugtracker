@@ -5,6 +5,7 @@
 //= require angular
 //= require angular-route
 //= require angular-animate
+//= require angular-flash
 //= require angular-resource
 //= require angular-ui-router
 //= require handlebars.runtime

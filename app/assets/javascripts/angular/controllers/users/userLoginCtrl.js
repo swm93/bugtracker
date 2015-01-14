@@ -1,4 +1,4 @@
-bugtracker.controller('UserLoginCtrl', ['$rootScope', '$scope', '$state', 'User', function($rootScope, $scope, $state, User) {
+bugtracker.controller('UserLoginCtrl', ['$rootScope', '$scope', '$state', 'flash', 'User', function($rootScope, $scope, $state, flash, User) {
     $scope.credentials = {
         email: '',
         password: '',
@@ -11,8 +11,7 @@ bugtracker.controller('UserLoginCtrl', ['$rootScope', '$scope', '$state', 'User'
 
             $state.transitionTo('projects.index');
         }, function(errorData) {
-            //TODO: change this to flash error
-            $state.transitionTo('error.401');
+            flash.error = "The email or password entered was incorrect, please try again.";
         });
     };
 }]);

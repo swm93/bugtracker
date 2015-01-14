@@ -37,5 +37,9 @@
     <div class="panel-divider absolute-center hidden-xs">
         <div class="vertical-line"></div>
         <span class="or-text no-select">OR</span>
+
+    <div flash-alert active-class="in" class="alert slide" duration="3000">
+        <button type="button" class="close" ng-click="hide()">&times;</button>
+        <span class="alert-message">{{flash.message}}</span>
     </div>
 </div>
