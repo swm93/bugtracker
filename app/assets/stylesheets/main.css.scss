@@ -268,7 +268,7 @@ td.fit-width {
     margin-right: 4px;
 }
 
-@media screen and (max-width: $screen-xs-max) {
+@media (max-width: $screen-xs-max) {
     .padded-column {
         padding: 15px;
     }
