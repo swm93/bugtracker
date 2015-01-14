@@ -7,7 +7,7 @@ class PermissionsController < ApplicationController
   def index
     @permissions = Permission.where(:project_id => params[:project_id])
 
-    render(:json => @permissions, :except => [:user_id, :permission_type_id, :project_id], :include => {
+    render(:json => {:permissions => @permissions}, :except => [:user_id, :permission_type_id, :project_id], :include => {
       :user => { :only => [:id, :name] },
       :permission_type => { :only => [:id, :name] },
       :project => { :only => [:id, :name] }
@@ -17,7 +17,7 @@ class PermissionsController < ApplicationController
   def show
     @permission = Permission.find(params[:id])
 
-    render(:json => @permission)
+    render(:json => {:permission => @permission})
   end
 
   def create
