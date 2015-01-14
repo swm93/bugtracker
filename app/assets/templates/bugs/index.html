@@ -68,34 +68,37 @@
 <div ng-show="hasBugs()" id="bug-list-container">
     <div ng-show="hasVisibleBugs()" class="col-xs-12">
         <div class="table-container content-area stacked-panel">
-            <input ui-sref="projects.single.bugs.new" class="create-bug-btn btn btn-default" type="button" value="New Bug"></input>
+            <div class="table-toolbar">
+                <button ui-sref="projects.single.bugs.new" class="create-bug-btn btn btn-primary" data-toggle="tooltip" data-placement="right" title="Add a bug" type="button">+</button>
+            </div>
+
             <table class="table table-striped table-hover">
                 <thead id="bugs-list-table-header">
                     <tr>
-                        <th ng-click="toggleSort('id')" class="bugs-header-cell clickable">
+                        <th ng-click="toggleSort('id')" class="bug-id-header-cell clickable">
                             <span class="fa {{ getSortIconClass('id') }}"></span> ID <sup class="sort-marker">{{ getSortIndex('id') }}</sup>
                         </th>
-                        <th ng-click="toggleSort('summary')" class="bugs-header-cell clickable">
+                        <th ng-click="toggleSort('summary')" class="bug-summary-header-cell clickable">
                             <span class="fa {{ getSortIconClass('summary') }}"></span> Summary <sup class="sort-marker">{{ getSortIndex('summary') }}</sup>
                         </th>
-                        <th ng-click="toggleSort('assignee')" class="bugs-header-cell hidden-xs clickable">
+                        <th ng-click="toggleSort('assignee')" class="bug-assignee-header-cell hidden-xs clickable">
                             <span class="fa {{ getSortIconClass('assignee') }}"></span> Assignee <sup class="sort-marker">{{ getSortIndex('assignee') }}</sup>
                         </th>
-                        <th ng-click="toggleSort('priority')" class="bugs-header-cell hidden-xs clickable">
+                        <th ng-click="toggleSort('priority')" class="bug-priority-header-cell hidden-xs clickable">
                             <span class="fa {{ getSortIconClass('priority') }}"></span> Priority <sup class="sort-marker">{{ getSortIndex('priority') }}</sup>
                         </th>
-                        <th ng-click="toggleSort('status')" class="bugs-header-cell hidden-xs clickable">
+                        <th ng-click="toggleSort('status')" class="bug-status-header-cell hidden-xs clickable">
                             <span class="fa {{ getSortIconClass('status') }}"></span> Status <sup class="sort-marker">{{ getSortIndex('status') }}</sup>
                         </th>
                     </tr>
                 </thead>
-                <tbody id="bug-list-table-body">
+                <tbody id="bugs-list-table-body">
                     <tr ng-repeat="bug in bugs | filterMultiple:filter | orderBy:sort" ui-sref="projects.single.bugs.single.show({bugId: bug.id})" class="bug-row clickable">
-                        <td class="bug-cell-id">{{ bug.id }}</td>
-                        <td class="bug-cell-summary">{{ bug.summary }}</td>
-                        <td class="bug-cell-assignee hidden-xs">{{ bug.assignee_id }}</td>
-                        <td class="bug-cell-priority hidden-xs">{{ bug.priority }}</td>
-                        <td class="bug-cell-status hidden-xs">{{ bug.status }}</td>
+                        <td class="bug-id-cell">{{ bug.id }}</td>
+                        <td class="bug-summary-cell">{{ bug.summary }}</td>
+                        <td class="bug-assignee-cell hidden-xs">{{ bug.assignee_id }}</td>
+                        <td class="bug-priority-cell hidden-xs">{{ bug.priority }}</td>
+                        <td class="bug-status-cell hidden-xs">{{ bug.status }}</td>
                     </tr>
                 </tbody>
             </table>

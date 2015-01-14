@@ -28,6 +28,8 @@ bugtracker.controller('BugIndexCtrl', ['$scope', '$stateParams', '$filter', 'bug
                 typeFilters.splice(index, 1);
             }
         }
+
+        resizeTable(true);
     };
 
     $scope.toggleSort = function(sortType) {
@@ -84,4 +86,38 @@ bugtracker.controller('BugIndexCtrl', ['$scope', '$stateParams', '$filter', 'bug
             return '-' + sortType;
         }
     };
+
+    var resizeTable = function() {
+        var $tableContainer = $('.table-container');
+        var $tableContainerParent = $tableContainer.parent();
+        var $tableBody = $('tbody', $tableContainer);
+        var tableContainerVerticalExtension = $tableContainer.outerHeight(true) - $tableContainer.height();
+        var tableToolbarHeight = $('.table-toolbar', $tableContainer).height();
+        var tableHeaderHeight = $('thead', $tableContainer).height();
+
+        var prevHeight = -1;
+
+        var resize = function(forceResize) {
+            var newHeight = $tableContainerParent.height();
+
+            if (prevHeight != newHeight || forceResize === true) {
+                var maxHeight = newHeight - tableContainerVerticalExtension - tableToolbarHeight - tableHeaderHeight;
+                var idealHeight = 0;
+                $tableBody.children().each(function() {
+                    idealHeight = idealHeight + $(this).outerHeight();
+                });
+                $tableBody.height(Math.min(maxHeight, idealHeight));
+
+                prevHeight = newHeight;
+            }
+        };
+        return function(forceResize) {
+            setTimeout(function() {
+                resize(forceResize);
+            }, 0);
+        };
+    }();
+
+    $(window).on('resize', resizeTable);
+    resizeTable();
 }]);
