@@ -10,7 +10,13 @@
         </div>
         <div class="form-group-assignee form-group">
             <label for="field-bug-assignee" class="field-label">Assignee</label>
-            <div id="field-bug-assignee" class="form-control"></div>
+            <!-- <div id="field-bug-assignee" class="form-control"></div> -->
+            <div ui-select ng-model="permission.selected" theme="bootstrap">
+                <div ui-select-match placeholder="Assignee">{{$select.selected.user.name}}</div>
+                <div ui-select-choices repeat="permission in permissions track by $index">
+                    <div ng-bind-html="permission.user.name | highlight: $select.search"></div>
+                </div>
+            </div>
         </div>
      
         <div class="form-group">
