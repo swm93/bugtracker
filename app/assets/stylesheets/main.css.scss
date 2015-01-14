@@ -4,8 +4,15 @@
 /*/
 
 
+html {
+    height: 100%;
+}
+
 body {
-    background-color: #F1F1F1;
+    overflow: hidden;
+    height: 100%;
+
+    background-color: #EBEBEB;
 
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
@@ -35,6 +42,16 @@ tbody {
     &::-moz-selection {
         background: $selection-color;
     }
+}
+
+div[ui-view] {
+    display: block;
+    overflow: auto;
+    height: inherit;
+}
+
+.container-fluid {
+    height: inherit;
 }
 
 .row {
@@ -72,14 +89,29 @@ tbody {
     padding: 0 50px;
 }
 
+#main-container {
+    position: absolute;
+    box-sizing: border-box;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    padding-top: $navbar-height + $breadcrumb-height;
+
+    > div {
+        overflow: auto;
+        height: inherit;
+    }
+}
+
 .navbar {
-    position: fixed;
+    position: relative;
+    box-sizing: border-box;
+    z-index: 2;
     top: 0;
     left: 0;
     right: 0;
+    height: $navbar-height;
     margin: 0;
-    z-index: 1;
-    box-sizing: content-box;
 
     background-color: #FFFFFF;
 
@@ -87,7 +119,7 @@ tbody {
 
     &.navbar-positioner {
         position: relative;
-        z-index: 0;
+        z-index: -1;
     }
 
     li > a {
