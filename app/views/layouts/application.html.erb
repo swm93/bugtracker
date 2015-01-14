@@ -5,7 +5,15 @@
         <%= stylesheet_link_tag :application, media: "all" %>
         <%= javascript_include_tag :application %>
         <%= csrf_meta_tags %>
+
         <meta name="viewport" content="minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=device-dpi, user-scalable=no">
+
+        <!-- favicon setup -->
+        <%= favicon_resolutions_link_tag %>
+        <!-- ios home screen icon -->
+        <%= apple_touch_icon_link_tag %>
+        <!-- windows tile -->
+        <%= windows_icon_link_tag %>
     </head>
     <body>
         <div ui-view></div>
