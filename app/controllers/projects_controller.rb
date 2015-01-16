@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user
+  before_action :validate_logged_in, :except => [:show]
   before_action :validate_write_permissions, :only => [:edit, :update, :destory]
   before_action :validate_read_permissions, :except => [:index, :new, :create]
 

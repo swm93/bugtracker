@@ -18,12 +18,16 @@ class ApplicationController < ActionController::Base
     session[:user_id].present?()
   end
 
+  def validate_logged_in
+    forbidden() unless current_user
+  end
+
   def validate_write_permissions
-    permission_denied() unless has_write_permission?()
+    unauthorized() unless has_permission?('write')
   end
 
   def validate_read_permissions
-    permission_denied() unless has_read_permission?()
+    unauthorized() unless has_permission?('read')
   end
 
   def save_login_state
@@ -41,7 +45,11 @@ class ApplicationController < ActionController::Base
     render(:nothing => true, :status => :not_found)
   end
 
-  def permission_denied
+  def forbidden
+    render(:nothing => true, :status => :forbidden)
+  end
+
+  def unauthorized
     render(:nothing => true, :status => :unauthorized)
   end
 
@@ -57,16 +65,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  #check if the current user has read permissions for the current project
-  def has_read_permission?
+  #check if the current user has permissions for the current project
+  def has_permission?(type)
     permission = get_permission() if current_user
-    permission.permission_type.read unless permission.nil?()
-  end
-
-  #check if the current user has write permissions for the current project
-  def has_write_permission?
-    permission = get_permission() if current_user
-    permission.permission_type.write unless permission.nil?()
+    permission.permission_type[type] unless permission.nil?()
   end
 
   def get_project_id_key
