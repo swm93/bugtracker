@@ -31,6 +31,8 @@ group :development, :test do
   gem 'sqlite3'
   gem 'binding_of_caller'
   gem 'debugger'
+
+  gem 'jasmine'
 end
 
 group :doc do
