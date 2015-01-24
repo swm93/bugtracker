@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
 
+  # TODO: Investigate differences between save_login_state and authenticate_user
   protected
 
   def authenticate_user
@@ -41,14 +42,20 @@ class ApplicationController < ActionController::Base
 
   private
 
+  ##    Not Found
+  #   Return: Error with status :not_found (404).
   def not_found
     render(:nothing => true, :status => :not_found)
   end
 
+  ##    Forbidden
+  #   Return: Error with status :forbidden (403).
   def forbidden
     render(:nothing => true, :status => :forbidden)
   end
 
+  ##    Unauthorized
+  #   Returns: Error with status :unauthorized (401).
   def unauthorized
     render(:nothing => true, :status => :unauthorized)
   end
@@ -57,7 +64,11 @@ class ApplicationController < ActionController::Base
     CGI.parse(query_string)
   end
 
-  #return the permission for the current user and project if there is one, otherwise nil
+  ##    Get Permission
+  #   ToDo:   This function is very odd... Gets permission for project, nothing
+  #           else
+  #   Return: Permission for the current user and project if one exists,
+  #           otherwise nil
   def get_permission
     if (current_user)
       project_id_key = get_project_id_key()
