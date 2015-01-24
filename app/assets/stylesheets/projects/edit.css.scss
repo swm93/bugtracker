@@ -1,0 +1,43 @@
+// .projects.edit {
+    .form-header > * {
+        // padding: 4px;
+        margin: 0 0 5px 0;
+
+        font-size: 15px;
+        font-weight: 700;
+        color: #000000;
+
+        button {
+            padding: 0;
+
+            background: none;
+            box-shadow: none !important;
+
+            font-size: inherit;
+            font-weight: inherit;
+            color: inherit;
+        }
+    }
+
+    .form-section {
+        margin-bottom: 10px;
+
+        > * {
+            font-size: 14px;
+            font-weight: 300;
+        }
+    }
+
+    .form-sub-text {
+        font-size: 12px;
+    }
+
+    .permissions-remove-cell {
+        text-align: center;
+    }
+
+    #label-project-name {}
+    #label-project-description {
+        text-align: justify;
+    }
+// }

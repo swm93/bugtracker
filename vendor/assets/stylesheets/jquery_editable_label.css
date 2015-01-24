@@ -1,0 +1,31 @@
+.editable-label {
+    position: relative;
+    padding: 4px;
+}
+
+.editable-label.editing .edit-icon {
+    opacity: 1;
+}
+
+.editable-label:not(.focus):not(.editing) {
+    border-color: transparent !important;
+}
+
+.editable-label .value-label {
+    width: 100%;
+    padding-right: 14px;
+}
+
+.editable-label .edit-icon {
+    position: absolute;
+    right: 0;
+    margin-top: 0;
+    margin-right: 3px;
+
+    opacity: 0.2;
+    pointer-events: none;
+
+    line-height: inherit;
+    font-size: 14px;
+    color: rgb(51, 51, 51);
+}

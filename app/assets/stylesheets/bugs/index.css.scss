@@ -1,0 +1,182 @@
+#bug-sidebar-container {
+    position: fixed;
+    width: 220px;
+    height: 100%;
+    padding: 10px 25px;
+
+    border-width: 0 1px 0 0;
+
+    .sidebar {
+        .sidebar-header {
+            p {
+                font-size: 12px;
+                color: #BBBBBB;
+            }
+        }
+        .sidebar-grouping {
+            margin: 10px 0;
+            
+            h4 {
+                margin-bottom: 3px;
+
+                font-size: 12px;
+                font-weight: 500;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                color: $green-active-dark;
+
+                .glyphicon {
+                    margin-right: 1em;
+                }
+            }
+
+            ul {
+                margin: 0;
+
+                font-size: 11px;
+                line-height: 14px;
+                text-transform: uppercase;
+                color: #888888;
+
+                label {
+                    width: 100%;
+                    margin: 0;
+                    padding: 3px 8px;
+
+                    font-weight: 400;
+
+                    cursor: pointer;
+                }
+
+                input {
+                    display: none;
+                }
+
+                input:checked + label {
+                    background-color: $green-faded-active;
+                    color: #FFFFFF;
+                }
+            }
+        }
+
+        .sidebar-grouping-divider {
+            height: 1px;
+
+            background-color: #DEDEDE;
+        }
+    }
+}
+
+
+$bug-id-cell-width: 60px;
+$bug-assignee-cell-width: 96px;
+$bug-priority-cell-width: 84px;
+$bug-status-cell-width: 84px;
+
+#bug-list-container {
+    height: inherit;
+    margin-left: 220px;
+    padding: 10px 15px;
+
+    > div {
+        height: inherit;
+    }
+
+    .table-container {
+        max-height: 100%;
+        margin: 0;
+
+        thead, tbody {
+            display: block;
+            width: 100%;
+        }
+
+        thead {
+            height: 38px;
+        }
+
+        tbody {
+            overflow: auto;
+            height: 100%;
+
+            border-bottom: 1px solid #dddddd;
+        }
+
+        tr {
+            display: block;
+            width: 100%;
+
+            font-size: 0;
+
+            &:last-child > td {
+                border-bottom: none;
+            }
+
+            td, th {
+                display: inline-block !important;
+                @include box-sizing(border-box);
+
+                line-height: 20px;
+                font-size: 14px;
+            }
+
+            th {
+                @include user-select(none);
+
+                .sort-marker {
+                    font-weight: 100;
+                    color: #AAAAAA;
+                }
+            }
+
+            td {
+                height: 37px;
+            }
+        }
+
+        .bug-id-cell, .bug-id-header-cell {
+            width: $bug-id-cell-width;
+        }
+
+        .bug-summary-cell, .bug-summary-header-cell {
+            width: calc(100% - (#{$bug-id-cell-width + $bug-assignee-cell-width + $bug-priority-cell-width + $bug-status-cell-width}));
+        }
+
+        .bug-assignee-cell, .bug-assignee-header-cell {
+            width: $bug-assignee-cell-width;
+        }
+
+        .bug-priority-cell, .bug-priority-header-cell {
+            width: $bug-priority-cell-width;
+        }
+
+        .bug-status-cell, .bug-status-header-cell {
+            width: $bug-status-cell-width;
+        }
+    }
+}
+
+#container-no-bugs {
+    padding: 48px 24px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    .msg-no-bugs {
+        color: #666666;
+    }
+    .btn-create-bug {
+        background-color: $green-faded-active;
+        border-color: $green-faded-active-dark;
+        color: #FFFFFF;
+    }
+}
+
+@media (max-width:767px) {
+    #bug-sidebar-container {
+        display: none;
+    }
+    #bug-list-container {
+        margin-left: auto;
+    }
+}

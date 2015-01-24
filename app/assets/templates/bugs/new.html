@@ -1,0 +1,27 @@
+<div class="col-xs-12 padded-column">
+    <div class="content-area stacked-panel">
+        <div class="form-group-summary form-group">
+            <label for="field-bug-summary" class="field-label">Summary</label>
+            <input ng-model="bug.summary" id="field-bug-summary" class="form-control" type="text" placeholder="Summary"></input>
+        </div>
+        <div class="form-group-description form-group">
+            <label for="field-bug-description" class="field-label">Description</label>
+            <textarea ng-model="bug.description" id="field-bug-description" class="form-control" rows="3" placeholder="Description"></textarea>
+        </div>
+        <div class="form-group-assignee form-group">
+            <label for="field-bug-assignee" class="field-label">Assignee</label>
+            <!-- <div id="field-bug-assignee" class="form-control"></div> -->
+            <div ui-select ng-model="permission.selected" theme="bootstrap">
+                <div ui-select-match placeholder="Assignee">{{$select.selected.user.name}}</div>
+                <div ui-select-choices repeat="permission in permissions track by $index">
+                    <div ng-bind-html="permission.user.name | highlight: $select.search"></div>
+                </div>
+            </div>
+        </div>
+     
+        <div class="form-group">
+            <button ng-click="createBug()" class="btn-create btn btn-default" name="commit" value="save" type="submit">Create</button>
+            <button ui-sref="projects.single.bugs.index" class="btn-back btn btn-default" type="button">Back</button>
+        </div>
+    </div>
+</div>

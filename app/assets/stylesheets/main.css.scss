@@ -1,0 +1,307 @@
+/*/     MAIN STYLES
+ *  Styles set here apply to the entire website, regardless of which layout the
+ *  HTML resides within.
+/*/
+
+
+html {
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    height: 100%;
+
+    background-color: #EBEBEB;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+textarea {
+    resize: vertical;
+}
+
+tbody {
+    border-width: 0 1px;
+    border-style: solid;
+    border-color: #dddddd;
+}
+
+* {
+    outline: none !important;
+
+    &::selection {
+        background: $selection-color;
+        }
+    &::-moz-selection {
+        background: $selection-color;
+    }
+}
+
+div[ui-view] {
+    display: block;
+    overflow: auto;
+    height: inherit;
+}
+
+.container-fluid {
+    height: inherit;
+}
+
+.row {
+    margin: 0;
+}
+
+.content-area {
+    padding: 10px;
+
+    background-color: white;
+
+    border-width: 1px;
+    border-color: #e7e7e7;
+    border-style: solid;
+
+    h1, h2, h3, h4, h5, h6 {
+        margin-top: 0;
+    }
+
+    p.content-header {
+        font-size: 15px;
+        font-weight: 700;
+    }
+}
+
+.form-content {
+    padding: 4px;
+}
+
+.stacked-panel {
+    margin: 10px 0;
+}
+
+.padded-column {
+    padding: 0 50px;
+}
+
+#main-container {
+    position: absolute;
+    box-sizing: border-box;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    padding-top: $navbar-height + $breadcrumb-height;
+
+    > div {
+        overflow: auto;
+        height: inherit;
+    }
+}
+
+.navbar {
+    position: relative;
+    box-sizing: border-box;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: $navbar-height;
+    margin: 0;
+
+    background-color: #FFFFFF;
+
+    border-radius: 0;
+
+    &.navbar-positioner {
+        position: relative;
+        z-index: -1;
+    }
+
+    li > a {
+        @include transition(color 0.15s ease, background-color 0.15s ease);
+    }
+
+    li.active > a {
+        color: #FFFFFF !important;
+        background-color: $green-faded-active !important;
+    }
+}
+
+.alert {
+    position: absolute;
+    @include box-sizing(border-box);
+    z-index: 1;
+    left: 0;
+    height: $alert-height;
+    width: 100%;
+    margin: 0;
+
+    border-radius: 0;
+
+    &.slide {
+        bottom: -$alert-height;
+
+        opacity: 0;
+
+        @include transition(bottom 0.3s ease-in-out);
+
+        &.in {
+            bottom: 0;
+
+            opacity: 1;
+        }
+    }
+}
+
+breadcrumbs {
+    display: block;
+
+    .breadcrumb {
+        position: relative;
+        box-sizing: border-box;
+        z-index: 1;
+        height: $breadcrumb-height;
+        width: 100%;
+        margin: 0;
+        padding: 4px 15px;
+
+        border-width: 0 1px 1px 1px;
+        border-style: solid;
+        border-color: #e7e7e7;
+        border-radius: 0;
+
+        > li + li::before {
+            padding: 0 0 0 5px;
+        }
+
+        &.breadcrumb-positioner {
+            position: relative;
+            z-index: -1;
+            padding: 0;
+
+            border: 0;
+        }
+
+        li {
+            font-size: 12px;
+            font-weight: 400;
+            text-transform: uppercase;
+
+            a {
+                color: $green-faded-active;
+
+                &:hover, &:active, &:focus {
+                    color: $green-active-dark;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
+
+.alert-dismissable {
+    padding: 15px 50px;
+
+    text-align: center;
+
+    .close {
+        top: 0;
+        right: -50px;
+        padding: 15px;
+        margin-top: -15px;
+        width: 20px;
+        height: 20px;
+        @include box-sizing(content-box);
+    }
+}
+
+a.list-group-item.active {
+    background-color: $green-faded-active;
+    border-color: $green-faded-active;
+
+    &:hover {
+        background-color: $green-faded-active;
+        border-color: $green-faded-active;
+    }
+}
+
+td.fit-width {
+    width: 1px;
+}
+
+.table {
+    margin: 0;
+
+    tbody > tr:last-child > td {
+        border-bottom: 1px solid #dddddd;
+    }
+}
+
+.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th {
+    background-color: $green-faded-active-light;
+}
+
+.absolute-center {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.no-select {
+    cursor: default;
+    @include user-select(none);
+}
+
+.no-link-style {
+    color: black;
+
+    &:hover {
+        color: black;
+        text-decoration: none;
+    }
+}
+
+.media {
+    > .pull-left {
+        margin-right: 25px;
+    }
+    > .pull-right {
+        margin-left: 25px;
+    }
+}
+
+.btn-primary {
+    background-color: $green-faded-active;
+
+    border-color: transparent;
+
+    &:hover, &:active, &:focus {
+        background-color: $green-faded-active-dark;
+
+        border-color: transparent;
+    }
+}
+
+.logo-isometric-cube {
+    height: 16px;
+    margin-top: -4px;
+    margin-right: 4px;
+}
+
+@media (max-width: $screen-xs-max) {
+    .padded-column {
+        padding: 15px;
+    }
+}
