@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140503012317) do
+ActiveRecord::Schema.define(version: 20150123063829) do
 
   create_table "bugs", force: true do |t|
     t.integer  "number"
@@ -46,9 +46,13 @@ ActiveRecord::Schema.define(version: 20140503012317) do
     t.string   "name"
     t.text     "description"
     t.boolean  "public"
-    t.integer  "bug_count",   default: 0
+    t.integer  "bug_count",          default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "sqlite_sp_functions", id: false, force: true do |t|

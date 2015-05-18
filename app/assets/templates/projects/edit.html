@@ -6,6 +6,9 @@
         <div class="form-section">
             <div ng-model="project.description" contenteditable id="label-project-description" class="form-content">{{ project.description }}</div>
         </div>
+        <div class="form-section">
+            <input type="file" name="file" onchange="angular.element(this).scope().uploadImage(this.files)" />
+        </div>
     </div>
     <div class="content-area stacked-panel">
         <div class="form-header">
