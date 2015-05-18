@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-ruby '2.1.1'
+ruby '2.1.2'
 gem 'rails', '4.0.1'
 
 group :production do
@@ -30,7 +30,7 @@ group :development, :test do
   gem 'pry'
   gem 'sqlite3'
   gem 'binding_of_caller'
-  gem 'debugger'
+  gem 'byebug'
 
   gem 'jasmine'
 end
@@ -55,6 +55,6 @@ gem 'underscore-rails'
 gem 'bourbon'
 gem 'font-awesome-rails'
 gem 'nprogress-rails'
-gem 'paperclip'
+gem 'paperclip', '~> 4.2'
 
 gem 'jbuilder', '~> 1.2'
