@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :save_login_state, :only => [:new, :create]
+  wrap_parameters :format => [:json]
+
+  # before_action :save_login_state, :only => [:new, :create]
 
 
   #TODO: remove/refactor this

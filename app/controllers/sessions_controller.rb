@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :save_login_state, :only => [:login, :login_attempt]
+  # before_action :save_login_state, :only => [:login, :login_attempt]
 
 
   def login_attempt
@@ -33,14 +33,9 @@ class SessionsController < ApplicationController
   private
 
   def update_authentication_token(user, remember_me = nil)
-    if (remember_me)
-      auth_token = SecureRandom.urlsafe_base64
+    auth_token = remember_me ? SecureRandom.urlsafe_base64 : nil
 
-      user.authentication_token = auth_token
-      cookies.permanent[:auth_token] = auth_token
-    else
-      user.authentication_token = nil
-      cookies.permanent[:auth_token] = nil
-    end
+    user.authentication_token = auth_token
+    cookies.permanent[:auth_token] = auth_token
   end
 end
