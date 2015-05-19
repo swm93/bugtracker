@@ -15,9 +15,10 @@ var breadcrumbs = function($interpolate, $state) {
                 updateBreadcrumbsArray();
             });
 
-            /**
-             * Start with the current state and traverse up the path to build the
-             * array of breadcrumbs that can be used in an ng-repeat in the template.
+            /*
+             * Start with the current state and traverse up the path to build
+             * the array of breadcrumbs that can be used in an ng-repeat in
+             * the template.
              */
             function updateBreadcrumbsArray() {
                 var breadcrumbs = [];
@@ -35,7 +36,7 @@ var breadcrumbs = function($interpolate, $state) {
             function addBreadcrumb(state, breadcrumbs) {
                 var displayName = getDisplayName(state);
                 var route = getRoute(state);
-                
+
                 if (displayName === false || route === false) {
                     return;
                 }
@@ -55,10 +56,13 @@ var breadcrumbs = function($interpolate, $state) {
                 });
             }
 
-            /**
-             * Resolve the displayName of the specified state. Take the property specified by the `displayname-property`
-             * attribute and look up the corresponding property on the state's config object. The specified string can be interpolated against any resolved
-             * properties on the state config object, by using the usual {{ }} syntax.
+            /*
+             * Resolve the displayName of the specified state. Take the
+             * property specified by the `displayname-property` attribute and
+             * look up the corresponding property on the state's config
+             * object. The specified string can be interpolated against any
+             * resolved properties on the state config object, by using the
+             * usual {{ }} syntax.
              * @param currentState
              * @returns {*}
              */
@@ -101,7 +105,8 @@ var breadcrumbs = function($interpolate, $state) {
             }
 
             /**
-             * Given a string of the type 'object.property.property', traverse the given context (eg the current $state object) and return the
+             * Given a string of the type 'object.property.property', traverse
+             * the given context (eg the current $state object) and return the
              * value found at that path.
              *
              * @param objectPath

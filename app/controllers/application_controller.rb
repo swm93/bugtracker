@@ -32,11 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def save_login_state
-    if (session[:user_id])
-      return false
-    else
-      return true
-    end
+    !session[:user_id].present?()
   end
 
 

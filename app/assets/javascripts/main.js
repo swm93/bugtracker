@@ -28,7 +28,7 @@ Bugtracker.Config.resolve = {
         all: function(Project, $q) {
             var deferred = $q.defer();
             Project.all(function(successData) {
-                deferred.resolve(successData); 
+                deferred.resolve(successData);
             }, function(errorData) {
                 deferred.reject(errorData);
             });
@@ -37,7 +37,7 @@ Bugtracker.Config.resolve = {
         findById: function(Project, $q, $stateParams) {
             var deferred = $q.defer();
             Project.findById($stateParams.projectId, function(successData) {
-                deferred.resolve(successData); 
+                deferred.resolve(successData);
             }, function(errorData) {
                 deferred.reject(errorData);
             });
@@ -48,7 +48,7 @@ Bugtracker.Config.resolve = {
         all: function(Bug, $q, $stateParams) {
             var deferred = $q.defer();
             Bug.all($stateParams.projectId, function(successData) {
-                deferred.resolve(successData); 
+                deferred.resolve(successData);
             }, function(errorData) {
                 deferred.reject(errorData);
             });
@@ -57,7 +57,7 @@ Bugtracker.Config.resolve = {
         findById: function(Bug, $q, $stateParams) {
             var deferred = $q.defer();
             Bug.findById($stateParams.bugId, $stateParams.projectId, function(successData) {
-                deferred.resolve(successData); 
+                deferred.resolve(successData);
             }, function(errorData) {
                 deferred.reject(errorData);
             });
@@ -68,7 +68,7 @@ Bugtracker.Config.resolve = {
         all: function(Permission, $q, $stateParams) {
             var deferred = $q.defer();
             Permission.all($stateParams.projectId, function(successData) {
-                deferred.resolve(successData.permissions); 
+                deferred.resolve(successData.permissions);
             }, function(errorData) {
                 deferred.reject(errorData);
             });
@@ -77,7 +77,7 @@ Bugtracker.Config.resolve = {
         findById: function(Permission, $q, $stateParams) {
             var deferred = $q.defer();
             Permission.findById($stateParams.permissionId, $stateParams.projectId, function(successData) {
-                deferred.resolve(successData.permission); 
+                deferred.resolve(successData.permission);
             }, function(errorData) {
                 deferred.reject(errorData);
             });
@@ -319,7 +319,7 @@ bugtracker.config([
  *  - setup loading indicator
 /*/
 bugtracker.run([
-    '$rootScope', 
+    '$rootScope',
     '$state',
     'ngProgressLite',
     'User',
@@ -351,7 +351,7 @@ bugtracker.run([
             default:
                 $state.transitionTo('error.' + error.status);
         }
-        
+
         ngProgressLite.done();
     });
 }]);
