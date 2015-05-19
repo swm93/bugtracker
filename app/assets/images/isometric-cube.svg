@@ -1,46 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="145.17px" height="166.193px" viewBox="0 0 145.17 166.193" enable-background="new 0 0 145.17 166.193"
-	 xml:space="preserve">
-<g>
-	<g enable-background="new    ">
-		<defs>
-			<polygon id="SVGID_1_" enable-background="new    " points="0,125.235 0.231,43.72 71.171,84.677 70.939,166.193 			"/>
-		</defs>
-		<clipPath id="SVGID_2_">
-			<use xlink:href="#SVGID_1_"  overflow="visible"/>
-		</clipPath>
-		<g clip-path="url(#SVGID_2_)">
-			<polyline fill="#58BC71" points="71.171,84.677 0.231,43.72 0,125.235 70.939,166.193 71.171,84.677 			"/>
-		</g>
-	</g>
-</g>
-<g>
-	<g enable-background="new    ">
-		<defs>
-			<polygon id="SVGID_3_" enable-background="new    " points="74.23,166.193 73.999,84.677 144.938,43.72 145.17,125.236 			"/>
-		</defs>
-		<clipPath id="SVGID_4_">
-			<use xlink:href="#SVGID_3_"  overflow="visible"/>
-		</clipPath>
-		<g clip-path="url(#SVGID_4_)">
-			<polyline fill="#3FA056" points="144.938,43.72 73.999,84.677 74.23,166.193 145.17,125.236 144.938,43.72 			"/>
-		</g>
-	</g>
-</g>
-<g>
-	<g enable-background="new    ">
-		<defs>
-			<polygon id="SVGID_5_" enable-background="new    " points="1.88,40.958 72.358,0 143.299,40.957 72.82,81.915 			"/>
-		</defs>
-		<clipPath id="SVGID_6_">
-			<use xlink:href="#SVGID_5_"  overflow="visible"/>
-		</clipPath>
-		<g clip-path="url(#SVGID_6_)">
-			<polyline fill="#93CE98" points="143.299,40.957 72.358,0 1.88,40.958 72.82,81.915 143.299,40.957 			"/>
-		</g>
-	</g>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 100 100">
+    <g>
+        <polyline class="face face-left" points="49.02596955,50.95100275 0.1591237859,26.30676382 0,75.35515936 48.86615692,100 49.02596955,50.95100275"/>
+        <polyline class="face face-right" points="99.84018737,26.30676382 50.97403045,50.95100275 51.13315423,100 100,75.35576107 99.84018737,26.30676382"/>
+        <polyline class="face face-top" points="98.71116622,24.64423893 49.8436316,0 1.295033409,24.64484064 50.16187918,49.28907956 98.71116622,24.64423893"/>
+    </g>
 </svg>

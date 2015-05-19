@@ -6,10 +6,12 @@
 @import "jquery_editable_label";
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,900italic,700italic,500italic,400italic,300italic,100italic,900,700,500,300,100);
 
-@import "directives/contentEdiatableDir.css.scss";
 @import "variables";
 @import "mixins";
 @import "main";
+
+@import "directives/contentEdiatableDir.css.scss";
+@import "directives/logo.css.scss";
 
 @import "vendor_overrides/ngprogress-lite";
 

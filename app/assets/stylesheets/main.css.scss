@@ -130,6 +130,15 @@ div[ui-view] {
         color: #FFFFFF !important;
         background-color: $green-faded-active !important;
     }
+
+    .navbar-header {
+        height: 100%;
+
+        .navbar-brand {
+            height: inherit;
+            padding: 5px 20px;
+        }
+    }
 }
 
 .alert {
@@ -295,9 +304,7 @@ td.fit-width {
 }
 
 .logo-isometric-cube {
-    height: 16px;
-    margin-top: -4px;
-    margin-right: 4px;
+    height: inherit;
 }
 
 @media (max-width: $screen-xs-max) {
