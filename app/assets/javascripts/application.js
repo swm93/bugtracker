@@ -10,6 +10,7 @@
 //= require angular-sanitize
 //= require angular-ui-router
 //= require angular-ui-select
+//= require angular-mocks
 //= require handlebars.runtime
 //= require ngprogress-lite
 //= require jquery_editable_label
