@@ -104,7 +104,7 @@ $bug-status-cell-width: 84px;
             overflow: auto;
             height: 100%;
 
-            border-bottom: 1px solid #dddddd;
+            border-bottom: 1px solid $border-light-color;
         }
 
         tr {

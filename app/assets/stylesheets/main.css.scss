@@ -27,10 +27,34 @@ textarea {
     resize: vertical;
 }
 
-tbody {
-    border-width: 0 1px;
-    border-style: solid;
-    border-color: #dddddd;
+table.table {
+    margin: 0;
+
+    tbody {
+        border-style: solid;
+        border-width: 0 1px;
+        border-color: $border-light-color;
+
+        tr {
+            border-color: $border-light-color;
+
+            &:last-child > td {
+                border-bottom: 1px solid $border-light-color;
+            }
+
+            td {
+                border-color: $border-light-color;
+
+                &.fit-width {
+                    width: 1px;
+                }
+            }
+        }
+    }
+}
+
+table.table-hover > tbody > tr:hover > td, table.table-hover > tbody > tr:hover > th {
+    background-color: $green-faded-active-light;
 }
 
 * {
@@ -237,22 +261,6 @@ a.list-group-item.active {
         background-color: $green-faded-active;
         border-color: $green-faded-active;
     }
-}
-
-td.fit-width {
-    width: 1px;
-}
-
-.table {
-    margin: 0;
-
-    tbody > tr:last-child > td {
-        border-bottom: 1px solid #dddddd;
-    }
-}
-
-.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th {
-    background-color: $green-faded-active-light;
 }
 
 .absolute-center {
