@@ -2,6 +2,11 @@
     <div class="content-area stacked-panel">
         <table class="project-table table table-striped table-hover">
             <tr ng-repeat="project in projects" class="project-row">
+                <td class="thumbnail-cell">
+                    <div class="thumbnail-container">
+                        <img ng-src="{{ project.image_url.thumb }}" />
+                    </div>
+                </td>
                 <td class="project-cell">
                     <a ui-sref="projects.single.show({projectId: project.id})" class="no-link-style">
                         <div class="project-cell-content">
