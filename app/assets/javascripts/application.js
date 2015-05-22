@@ -17,5 +17,6 @@
 
 //= require string_capitalize
 
+//= require logger
 //= require main
 //= require_tree ./angular

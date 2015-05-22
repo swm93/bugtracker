@@ -4,6 +4,9 @@
         <title>Bugtracker</title>
         <%= stylesheet_link_tag :application, media: "all" %>
         <%= javascript_include_tag :application %>
+        <%= javascript_tag do %>
+            window.loggingLevel = <%= Rails.logger.level %>;
+        <% end %>
         <%= csrf_meta_tags %>
 
         <meta name="viewport" content="minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=device-dpi, user-scalable=no">
