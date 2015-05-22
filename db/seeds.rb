@@ -48,16 +48,20 @@ users = User.create([
   }
 ])
 
+users.each { |u| u.activate }
+
 projects = Project.create([
   {
     :name => "Project Number One",
     :description => "This is the first project.",
-    :public => 1
+    :public => 1,
+    :image => nil
   },
   {
     :name => "Project Number Two",
     :description => "This is the second project.",
-    :public => 0
+    :public => 0,
+    :image => nil
   }
 ])
 

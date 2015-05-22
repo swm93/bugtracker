@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  wrap_parameters :format => [:json]
-
   # before_action :save_login_state, :only => [:new, :create]
 
 

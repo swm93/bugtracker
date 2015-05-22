@@ -5,6 +5,7 @@ class CreateProjects < ActiveRecord::Migration
       t.text :description
       t.boolean :public
       t.integer :bug_count, :default => 0
+      t.attachment :image
 
       t.timestamps
     end

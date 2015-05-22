@@ -8,7 +8,7 @@
 class Bug < ActiveRecord::Base
   belongs_to :project
 
-  validate :number, :unique => true
+  validates_uniqueness_of :number
   before_validation :set_bug_number, :on => :create
 
 
