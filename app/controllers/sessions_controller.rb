@@ -6,14 +6,29 @@ class SessionsController < ApplicationController
     authorized_user = User.authenticate(params[:email], params[:password])
 
     if (authorized_user)
-      #don't need to handle errors here, its not a big deal if it fails
-      update_authentication_token(authorized_user, params[:remember_me])
-      authorized_user.save()
+      if (authorized_user.active?)
+        #don't need to handle errors here, its not a big deal if it fails
+        update_authentication_token(authorized_user, params[:remember_me])
+        authorized_user.save()
 
-      session[:user_id] = authorized_user.id
-      render(:json => {:user => authorized_user} || {}, :except => [:password, :password_salt, :authentication_token])
+        session[:user_id] = authorized_user.id
+        render(:json => {:user => authorized_user} || {}, :except => [:password, :password_salt, :authentication_token])
+      else
+        #TODO: handle error
+        render(
+          :json => {
+            :errors => "The email for this account has not been verified."
+          },
+          :status => :unauthorized
+        )
+      end
     else
-      render(:json => {:errors => "Invalid email or password."}, :status => :unprocessable_entity)
+      render(
+        :json => {
+          :errors => "Invalid email or password."
+        },
+        :status => :unprocessable_entity
+      )
     end
   end
 

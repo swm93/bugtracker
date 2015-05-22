@@ -1,6 +1,7 @@
 bugtracker.factory('User', ['$resource', function($resource) {
     function User() {
         this.service = $resource('/api/users/:userId', {userId: '@id'}, {
+            confirm_email: {method: 'GET', url: '/api/users/confirm_email'},
             current_user: {method: 'GET', url: '/api/users/current_user'},
             logout: {method: 'GET', url: '/api/users/logout'},
             login_attempt: {method: 'POST', url: '/api/users/login_attempt'}
@@ -19,6 +20,10 @@ bugtracker.factory('User', ['$resource', function($resource) {
         return this.service.get({userId: id}, success, error);
     };
 
+    User.prototype.create = function(params, success, error) {
+        return this.service.save(params, success, error);
+    };
+
     User.prototype.currentUser = function(success, error) {
         return this.service.current_user(success, error);
     };
@@ -29,6 +34,10 @@ bugtracker.factory('User', ['$resource', function($resource) {
 
     User.prototype.logout = function(success, error) {
         return this.service.logout(success, error);
+    };
+
+    User.prototype.confirmEmail = function(confirmToken, success, error) {
+        return this.service.confirm_email({confirm_token: confirmToken}, success, error);
     };
 
     return new User;

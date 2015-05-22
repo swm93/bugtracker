@@ -12,31 +12,31 @@
                     <span class="glyphicon glyphicon-envelope"></span>
                     Email Address
                 </label>
-                <input id="field-signup-email" class="form-control" name="user[email]" type="email" placeholder="Email"></input>
+                <input ng-model="user.email" id="field-signup-email" class="form-control" name="user[email]" type="email" placeholder="Email"></input>
             </div>
             <div class="form-row-name form-row">
                 <label for="field-signup-name" class="field-label">
                     <span class="glyphicon glyphicon-user"></span>
                     Full Name
                 </label>
-                <input id="field-signup-name" class="form-control" name="user[name]" type="text" placeholder="Name"></input>
+                <input ng-model="user.name" id="field-signup-name" class="form-control" name="user[name]" type="text" placeholder="Name"></input>
             </div>
             <div class="form-row-password form-row">
                 <label for="field-signup-password" class="field-label">
                     <span class="glyphicon glyphicon-asterisk"></span>
                     Password
                 </label>
-                <input id="field-signup-password" class="form-control" name="user[password]" type="password" placeholder="Password"></input>
+                <input ng-model="user.password" id="field-signup-password" class="form-control" name="user[password]" type="password" placeholder="Password"></input>
             </div>
             <div class="form-row-password-confirm form-row">
                 <label for="field-signup-password-confirm" class="field-label">
                     <span class="glyphicon glyphicon-asterisk"></span>
                     Confirm Password
                 </label>
-                <input id="field-signup-password-confirm" class="form-control" name="user[password_confirmation]" type="password" placeholder="Confirm Password"></input>
+                <input ng-model="user.password_confirmation" id="field-signup-password-confirm" class="form-control" name="user[password_confirmation]" type="password" placeholder="Confirm Password"></input>
             </div>
             <div class="form-row-signup-submit form-row">
-                <button class="btn-signup btn btn-default" name="commit" value="save" type="submit">Sign Up</button>
+                <button ng-click="createUser()" class="btn-signup btn btn-default" name="commit" value="save" type="submit">Sign Up</button>
             </div>
         </div>
     </div>

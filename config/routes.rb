@@ -2,9 +2,12 @@ Bugtracker::Application.routes.draw do
   root 'home#index'
 
   scope :api do
-    post 'users/login_attempt' => 'sessions#login_attempt'
-    get 'users/logout' => 'sessions#logout'
-    get 'users/current_user' => 'users#get_current_user'
+    scope :users, as: 'users' do
+      post 'login_attempt' => 'sessions#login_attempt'
+      get 'logout' => 'sessions#logout'
+      get 'current_user' => 'users#get_current_user'
+      get 'confirm_email' => 'users#confirm_email'
+    end
 
     resources :projects, :only => ['index', 'show', 'create', 'update', 'destroy'], :format => :json do
       get 'bugs/feed' => 'bugs#feed'

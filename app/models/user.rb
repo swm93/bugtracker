@@ -3,8 +3,12 @@ class User < ActiveRecord::Base
   has_many :projects, :through => :permissions
   validates :email, :presence => true, :uniqueness => true, :length => { :in => 3..50 }, :format => /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i
   validates :password, :confirmation => true, :length => { :in => 6..50 }, :on => :create
+  before_create :generate_confirmation_token
   before_save :encrypt_password
   after_save :clear_password
+
+  enum status: { inactive: 0, active: 1 }
+
 
   def encrypt_password
     if (self.password_changed?())
@@ -26,8 +30,24 @@ class User < ActiveRecord::Base
       return false
     end
   end
-  
+
   def match_password(login_password = "")
     password == BCrypt::Engine.hash_secret(login_password, password_salt)
+  end
+
+  def activate
+    self.active!
+    self.confirm_token = nil
+    self.confirm_token_created_at = nil
+    save!(:validate => false)
+  end
+
+
+  private
+  def generate_confirmation_token
+    if (self.confirm_token.blank?)
+      self.confirm_token = SecureRandom.urlsafe_base64.to_s
+      self.confirm_token_created_at = DateTime.now
+    end
   end
 end

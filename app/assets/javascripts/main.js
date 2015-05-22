@@ -22,6 +22,15 @@ Bugtracker.Config.resolve = {
                 deferred.reject(errorData);
             });
             return deferred.promise;
+        },
+        confirmEmail: function(User, $q, $stateParams) {
+            var deferred = $q.defer();
+            User.confirmEmail($stateParams.confirmToken, function(successData) {
+                deferred.resolve(successData);
+            }, function(errorData) {
+                deferred.reject(errorData);
+            });
+            return deferred.promise;
         }
     },
     project: {
@@ -136,6 +145,13 @@ Bugtracker.Config.routes = {
         controller: 'UserLogoutCtrl',
         resolve: {
             user: Bugtracker.Config.resolve.user.logout
+        }
+    },
+    'users.confirm_email' : {
+        url: '/confirm_email/:confirmToken',
+        controller: 'UserConfirmEmailCtrl',
+        resolve: {
+            user: Bugtracker.Config.resolve.user.confirmEmail
         }
     },
     //  Project Routes  //

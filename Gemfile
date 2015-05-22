@@ -56,5 +56,6 @@ gem 'bourbon'
 gem 'font-awesome-rails'
 gem 'nprogress-rails'
 gem 'paperclip', '~> 4.2'
+gem 'letter_opener', :group => :development
 
 gem 'jbuilder', '~> 1.2'

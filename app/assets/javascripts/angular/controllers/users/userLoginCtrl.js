@@ -11,7 +11,7 @@ bugtracker.controller('UserLoginCtrl', ['$rootScope', '$scope', '$state', 'flash
 
             $state.transitionTo('projects.index');
         }, function(errorData) {
-            flash.error = "The email or password entered was incorrect, please try again.";
+            flash.error = errorData.data.errors;
         });
     };
 }]);
