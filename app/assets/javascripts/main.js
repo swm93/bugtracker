@@ -108,6 +108,11 @@ Bugtracker.Config.routes = {
         templateUrl: '/assets/layouts/errors.html',
         controller: 'ErrorCtrl'
     },
+    'error.400': {
+        url: '/400',
+        templateUrl: '/assets/errors/400.html',
+        controller: 'Error400Ctrl'
+    },
     'error.401': {
         url: '/401',
         templateUrl: '/assets/errors/401.html',
