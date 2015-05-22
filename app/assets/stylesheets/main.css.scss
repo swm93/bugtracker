@@ -57,6 +57,14 @@ table.table-hover > tbody > tr:hover > td, table.table-hover > tbody > tr:hover 
     background-color: $green-faded-active-light;
 }
 
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+label {
+    cursor: pointer;
+}
+
 * {
     outline: none !important;
 
@@ -72,6 +80,10 @@ div[ui-view] {
     display: block;
     overflow: auto;
     height: inherit;
+}
+
+*[ui-sref] {
+    cursor: pointer;
 }
 
 .container-fluid {
@@ -137,7 +149,7 @@ div[ui-view] {
     height: $navbar-height;
     margin: 0;
 
-    background-color: #FFFFFF;
+    background-color: $navbar-background-color;
 
     border-radius: 0;
 
@@ -161,6 +173,12 @@ div[ui-view] {
         .navbar-brand {
             height: inherit;
             padding: 5px 20px;
+        }
+    }
+
+    .navbar-collapse {
+        @media (max-width: 767px) {
+            background-color: $navbar-background-color;
         }
     }
 }
