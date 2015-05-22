@@ -8,6 +8,7 @@ Bugtracker::Application.routes.draw do
       get 'current_user' => 'users#get_current_user'
       get 'confirm_email' => 'users#confirm_email'
     end
+    resources :users, :only => ['show', 'create'], :format => :json
 
     resources :projects, :only => ['index', 'show', 'create', 'update', 'destroy'], :format => :json do
       get 'bugs/feed' => 'bugs#feed'

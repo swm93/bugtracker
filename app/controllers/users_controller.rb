@@ -15,6 +15,12 @@ class UsersController < ApplicationController
     render(:json => @users, :except => [:password, :password_salt])
   end
 
+  def show
+    @user = User.find(params[:id])
+
+    render(:json => @user, :except => [:password, :password_salt])
+  end
+
   def create
     @user = User.new(user_params())
 

@@ -13,6 +13,15 @@ Bugtracker.Config = Bugtracker.Config || {};
 /*/
 Bugtracker.Config.resolve = {
     user: {
+        findById: function(User, $q, $stateParams) {
+            var deferred = $q.defer();
+            User.findById($stateParams.userId, function(successData) {
+                deferred.resolve(successData);
+            }, function(errorData) {
+                deferred.reject(errorData);
+            });
+            return deferred.promise;
+        },
         logout: function(User, $q, $rootScope) {
             var deferred = $q.defer();
             User.logout(function(successData) {
@@ -133,7 +142,30 @@ Bugtracker.Config.routes = {
         abstract: true,
         url: '/users',
         templateUrl: '/assets/layouts/users.html',
-        controller: 'UserCtrl'
+        controller: 'UserCtrl',
+        data: {
+            breadcrumb: 'Users'
+        }
+    },
+    'users.single': {
+        abstract: true,
+        url: '/{userId:[0-9]{1,8}}',
+        template: '<div ui-view />',
+        resolve: {
+            user: Bugtracker.Config.resolve.user.findById
+        },
+        data: {
+            breadcrumb: '{{ userId }}',
+            breadcrumbRoute: 'user.single.show'
+        }
+    },
+    'users.single.show': {
+        url: '',
+        templateUrl: '/assets/users/show.html',
+        controller: 'UserShowCtrl',
+        data: {
+            breadcrumb: undefined
+        }
     },
     'users.new': {
         url: '/signup',
