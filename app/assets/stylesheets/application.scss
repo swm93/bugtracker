@@ -6,27 +6,27 @@
 @import 'jquery_editable_label.css';
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,900italic,700italic,500italic,400italic,300italic,100italic,900,700,500,300,100);
 
-@import 'variables';
-@import 'mixins';
-@import 'main';
+@import 'variables.scss';
+@import 'mixins.scss';
+@import 'main.scss';
 
-@import 'directives/contentEdiatableDir';
-@import 'directives/logo';
+@import 'directives/content_editable_dir.scss';
+@import 'directives/logo.scss';
 
-@import 'vendor_overrides/ngprogress-lite';
+@import 'vendor_overrides/ngprogress_lite.scss';
 
-@import 'layouts/bugs';
-@import 'layouts/projects';
-@import 'layouts/users';
+@import 'layouts/bugs.scss';
+@import 'layouts/projects.scss';
+@import 'layouts/users.scss';
 
-@import 'bugs/edit';
-@import 'bugs/feed';
-@import 'bugs/groups';
-@import 'bugs/index';
-@import 'bugs/new';
-@import 'bugs/show';
+@import 'bugs/edit.scss';
+@import 'bugs/feed.scss';
+@import 'bugs/groups.scss';
+@import 'bugs/index.scss';
+@import 'bugs/new.scss';
+@import 'bugs/show.scss';
 
-@import 'projects/edit';
-@import 'projects/index';
-@import 'projects/new';
-@import 'projects/show';
+@import 'projects/edit.scss';
+@import 'projects/index.scss';
+@import 'projects/new.scss';
+@import 'projects/show.scss';
