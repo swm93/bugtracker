@@ -18,5 +18,9 @@
 /log/*.log
 /tmp
 
-# Ignore secrets
+# Ignore secrets.
 /config/initializers/env_variables.rb
+
+# Ignore Sublime Text files.
+*.sublime-project
+*.sublime-workspace
