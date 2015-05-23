@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.2'
 gem 'rails', '4.2.1'
+gem 'sqlite3'
 
 group :production do
   gem 'pg'
@@ -31,7 +32,6 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry'
-  gem 'sqlite3'
   gem 'binding_of_caller'
   gem 'byebug'
 
@@ -41,7 +41,6 @@ end
 group :doc do
   gem 'sdoc', require: false
 end
-
 
 gem 'bcrypt'
 
