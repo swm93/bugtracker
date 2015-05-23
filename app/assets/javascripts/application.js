@@ -1,6 +1,6 @@
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
+//= require bootstrap-sprockets
 //= require underscore
 //= require angular
 //= require angular-animate
