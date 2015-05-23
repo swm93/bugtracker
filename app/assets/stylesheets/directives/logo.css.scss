@@ -1,25 +1,27 @@
 logo {
-    display: block;
-    height: 100%;
-    width: 100%;
+  display: block;
+  width: 100%;
+  height: 100%;
 
-    &:hover {
-        .face {
-            fill: $logo-left;
-        }
-    }
-
+  &:hover {
     .face {
-        @include transition(fill 0.3s ease-in-out);
+      fill: $logo-left;
     }
+  }
 
-    .face-left {
-        fill: $logo-left;
-    }
-    .face-right {
-        fill: $logo-right;
-    }
-    .face-top {
-        fill: $logo-top;
-    }
+  .face {
+    @include transition(fill 0.3s ease-in-out);
+  }
+
+  .face-left {
+    fill: $logo-left;
+  }
+
+  .face-right {
+    fill: $logo-right;
+  }
+
+  .face-top {
+    fill: $logo-top;
+  }
 }

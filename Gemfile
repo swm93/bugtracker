@@ -23,6 +23,9 @@ group :development do
   gem 'bullet'
   gem 'better_errors'
   gem 'meta_request'
+  gem 'letter_opener'
+  gem 'pre-commit'
+  gem 'scss_lint', require: false
 end
 
 group :development, :test do
@@ -43,19 +46,18 @@ end
 gem 'bcrypt'
 
 gem 'angularjs-rails'
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'i18n-js'
 gem 'turbolinks'
 gem 'handlebars_assets'
-gem 'bootstrap-sass', '~> 3.0.2.0'
+gem 'bootstrap-sass'
 gem 'underscore-rails'
 gem 'bourbon'
 gem 'font-awesome-rails'
 gem 'nprogress-rails'
 gem 'paperclip', '~> 4.2'
-gem 'letter_opener', :group => :development
 
 gem 'jbuilder', '~> 1.2'

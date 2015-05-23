@@ -3,7 +3,7 @@ var project = bugtracker.factory('Project', ['$resource', function($resource) {
         this.service = $resource('/api/projects/:projectId.json', {projectId: '@id'}, {
             update: {method: 'PATCH', url: '/api/projects/:projectId'}
         });
-    };
+    }
 
     Project.prototype.all = function(success, error) {
         return this.service.query(success, error);
@@ -21,5 +21,5 @@ var project = bugtracker.factory('Project', ['$resource', function($resource) {
         return this.service.update({projectId: id}, params, success, error);
     };
 
-    return new Project;
+    return new Project();
 }]);

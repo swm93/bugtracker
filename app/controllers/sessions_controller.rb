@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  # before_action :save_login_state, :only => [:login, :login_attempt]
+  # before_action :save_login_state, only: [:login, :login_attempt]
 
 
   def login_attempt
@@ -12,22 +12,27 @@ class SessionsController < ApplicationController
         authorized_user.save()
 
         session[:user_id] = authorized_user.id
-        render(:json => {:user => authorized_user} || {}, :except => [:password, :password_salt, :authentication_token])
+        render(
+          json: {
+            user: authorized_user
+          } || {},
+          except: [:password, :password_salt, :authentication_token]
+        )
       else
         #TODO: handle error
         render(
-          :json => {
-            :errors => "The email for this account has not been verified."
+          json: {
+            errors: "The email for this account has not been verified."
           },
-          :status => :unauthorized
+          status: :unauthorized
         )
       end
     else
       render(
-        :json => {
-          :errors => "Invalid email or password."
+        json: {
+          errors: "Invalid email or password."
         },
-        :status => :unprocessable_entity
+        status: :unprocessable_entity
       )
     end
   end
@@ -41,7 +46,10 @@ class SessionsController < ApplicationController
 
     session[:user_id] = nil
 
-    render(:nothing => true)
+    render(
+      nothing: true,
+      status: :no_content
+    )
   end
 
 

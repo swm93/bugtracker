@@ -401,6 +401,7 @@ bugtracker.run([
         switch (error.status) {
             case 401:
                 $state.transitionTo('users.login');
+                break;
             default:
                 $state.transitionTo('error.' + error.status);
         }

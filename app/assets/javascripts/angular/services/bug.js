@@ -1,7 +1,7 @@
 var bug = bugtracker.factory('Bug', ['$resource', function($resource) {
     function Bug() {
         this.service = $resource('/api/projects/:projectId/bugs/:bugId.json', {projectId: '@id', bugId: '@id'});
-    };
+    }
 
     Bug.prototype.all = function(projectId, success, error) {
         return this.service.query({projectId: projectId}, success, error);
@@ -19,5 +19,5 @@ var bug = bugtracker.factory('Bug', ['$resource', function($resource) {
         return this.service.save({bugId: bugId, projectId: projectId}, params, success, error);
     };
 
-    return new Bug;
+    return new Bug();
 }]);

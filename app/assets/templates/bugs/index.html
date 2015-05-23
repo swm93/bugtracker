@@ -105,7 +105,7 @@
     </div>
     <div ng-hide="hasVisibleBugs()" class="col-xs-12 padded-column">
         <div id="container-no-bugs" class="jumbotron content-area stacked-panel text-center">
-            <p class="msg-no-bugs">No bugs found.</p>
+            <p class="msg-no-bugs text-empty-view">No bugs found.</p>
         </div>
     </div>
 </div>
@@ -113,8 +113,8 @@
 <div ng-hide="hasBugs()">
     <div class="col-xs-12 padded-column">
         <div id="container-no-bugs" class="jumbotron content-area stacked-panel text-center">
-            <p class="msg-no-bugs">You haven't added any bugs yet. Add one now?</p>
-            <a ui-sref="projects.single.bugs.new" class="btn-create-bug btn btn-default">Create a Bug</a>
+            <p class="msg-no-bugs text-empty-view">You haven't added any bugs yet. Add one now?</p>
+            <a ui-sref="projects.single.bugs.new" class="btn-create-bug btn btn-default btn-empty-view">Create a Bug</a>
         </div>
     </div>
 </div>

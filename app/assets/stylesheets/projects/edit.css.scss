@@ -1,43 +1,42 @@
-// .projects.edit {
-    .form-header > * {
-        // padding: 4px;
-        margin: 0 0 5px 0;
+$project-edit-text-color: #000000;
 
-        font-size: 15px;
-        font-weight: 700;
-        color: #000000;
+.form-header > * {
+  margin: 0 0 5px 0;
 
-        button {
-            padding: 0;
+  color: $project-edit-text-color;
 
-            background: none;
-            box-shadow: none !important;
+  font-size: 15px;
+  font-weight: 700;
 
-            font-size: inherit;
-            font-weight: inherit;
-            color: inherit;
-        }
-    }
+  button {
+    padding: 0;
+    box-shadow: none !important;
 
-    .form-section {
-        margin-bottom: 10px;
+    background: none;
+    color: inherit;
 
-        > * {
-            font-size: 14px;
-            font-weight: 300;
-        }
-    }
+    font-size: inherit;
+    font-weight: inherit;
+  }
+}
 
-    .form-sub-text {
-        font-size: 12px;
-    }
+.form-section {
+  margin-bottom: 10px;
 
-    .permissions-remove-cell {
-        text-align: center;
-    }
+  > * {
+    font-size: 14px;
+    font-weight: 300;
+  }
+}
 
-    #label-project-name {}
-    #label-project-description {
-        text-align: justify;
-    }
-// }
+.form-sub-text {
+  font-size: 12px;
+}
+
+.permissions-remove-cell {
+  text-align: center;
+}
+
+#label-project-description {
+  text-align: justify;
+}

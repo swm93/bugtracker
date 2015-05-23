@@ -3,7 +3,7 @@ bugtracker.factory('Permission', ['$resource', function($resource) {
         this.service = $resource('/api/projects/:projectId/permissions/:permissionId.json', {projectId: '@id', permissionId: '@id'}, {
             query: { method: 'GET', isArray: false }
         });
-    };
+    }
 
     Permission.prototype.all = function(projectId, success, error) {
         return this.service.query({projectId: projectId}, success, error);
@@ -17,5 +17,5 @@ bugtracker.factory('Permission', ['$resource', function($resource) {
         return this.service.get({permissionId: permissionId, projectId: projectId}, success, error);
     };
 
-    return new Permission;
+    return new Permission();
 }]);

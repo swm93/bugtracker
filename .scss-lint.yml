@@ -1,0 +1,87 @@
+scss_files: 'app/assets/stylesheets/**'
+
+linters:
+  Comment:
+    enabled: false
+  HexLength:
+    style: long
+  HexNotation:
+    style: uppercase
+  IdSelector:
+    enabled: false
+  ImportantRule:
+    enabled: false
+  ImportPath:
+    filename_extension: true
+  LeadingZero:
+    style: include_zero
+  NestingDepth:
+    max_depth: 10
+  PropertySortOrder:
+    order:
+      - position
+      - display
+      - box-sizing
+      - overflow
+      - z-index
+      - vertical-align
+      - top
+      - bottom
+      - left
+      - right
+      - width
+      - height
+      - max-width
+      - max-height
+      - min-width
+      - min-height
+      - margin
+      - margin-top
+      - margin-bottom
+      - margin-left
+      - margin-right
+      - padding
+      - padding-top
+      - padding-bottom
+      - padding-left
+      - padding-right
+      - border
+      - border-style
+      - border-top
+      - border-bottom
+      - border-left
+      - border-right
+      - border-width
+      - border-radius
+      - border-color
+      - box-shadow
+      -
+      - visibility
+      - opacity
+      - background
+      - background-color
+      - color
+      - fill
+      -
+      - line-height
+      - letter-spacing
+      - text-align
+      - text-overflow
+      - white-space
+      - font-family
+      - font-size
+      - font-weight
+      - text-transform
+      -
+      - content
+      - cursor
+      - pointer-events
+  QualifyingElement:
+    allow_element_with_attribute: true
+    allow_element_with_class: true
+  SingleLinePerProperty:
+    allow_single_line_rule_sets: false
+  SelectorDepth:
+    max_depth: 10
+  Shorthand:
+    allowed_shorthands: [1, 2]

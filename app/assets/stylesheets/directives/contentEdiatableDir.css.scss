@@ -1,31 +1,32 @@
 [contenteditable] {
-    position: relative;
-    padding: 4px 24px 4px 4px;
-    border: 1px dashed lightgrey;
+  position: relative;
+  padding: 4px 24px 4px 4px;
+  border: 1px dashed $border-light-color;
 
-    &:focus {
-        &:after {
-            opacity: 1;
-        }
-    }
-
-    &:not(:hover):not(:focus) {
-        border-color: transparent !important;
-    }
-
+  &:focus {
     &:after {
-        position: absolute;
-        top: 4px;
-        right: 0;
-        margin-right: 4px;
-
-        opacity: 0.2;
-        pointer-events: none;
-
-        line-height: inherit;
-        font-size: 14px;
-        color: rgb(51, 51, 51);
-        font-family: 'Glyphicons Halflings';
-        content: "\270f";
+      opacity: 1;
     }
+  }
+
+  &:not(:hover):not(:focus) {
+    border-color: transparent !important;
+  }
+
+  &:after {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    margin-right: 4px;
+
+    opacity: 0.2;
+    color: rgb(51, 51, 51);
+
+    line-height: inherit;
+    font-family: 'Glyphicons Halflings';
+    font-size: 14px;
+
+    content: '\270f';
+    pointer-events: none;
+  }
 }

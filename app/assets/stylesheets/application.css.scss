@@ -1,32 +1,32 @@
-@import "bourbon";
-@import "bootstrap";
-@import "font-awesome";
-@import "ngprogress-lite";
-@import "angular-ui-select";
-@import "jquery_editable_label";
+@import 'bourbon.scss';
+@import 'bootstrap.scss';
+@import 'font-awesome.css';
+@import 'ngprogress-lite.css';
+@import 'angular-ui-select.css';
+@import 'jquery_editable_label.css';
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,900italic,700italic,500italic,400italic,300italic,100italic,900,700,500,300,100);
 
-@import "variables";
-@import "mixins";
-@import "main";
+@import 'variables';
+@import 'mixins';
+@import 'main';
 
-@import "directives/contentEdiatableDir.css.scss";
-@import "directives/logo.css.scss";
+@import 'directives/contentEdiatableDir';
+@import 'directives/logo';
 
-@import "vendor_overrides/ngprogress-lite";
+@import 'vendor_overrides/ngprogress-lite';
 
-@import "layouts/bugs";
-@import "layouts/projects";
-@import "layouts/users";
+@import 'layouts/bugs';
+@import 'layouts/projects';
+@import 'layouts/users';
 
-@import "bugs/edit";
-@import "bugs/feed";
-@import "bugs/groups";
-@import "bugs/index";
-@import "bugs/new";
-@import "bugs/show";
+@import 'bugs/edit';
+@import 'bugs/feed';
+@import 'bugs/groups';
+@import 'bugs/index';
+@import 'bugs/new';
+@import 'bugs/show';
 
-@import "projects/edit";
-@import "projects/index";
-@import "projects/new";
-@import "projects/show";
+@import 'projects/edit';
+@import 'projects/index';
+@import 'projects/new';
+@import 'projects/show';

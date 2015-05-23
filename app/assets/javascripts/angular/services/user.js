@@ -6,7 +6,7 @@ bugtracker.factory('User', ['$resource', function($resource) {
             logout: {method: 'GET', url: '/api/users/logout'},
             login_attempt: {method: 'POST', url: '/api/users/login_attempt'}
         });
-    };
+    }
 
     User.prototype.all = function(success, error) {
         return this.service.query(success, error);
@@ -40,5 +40,5 @@ bugtracker.factory('User', ['$resource', function($resource) {
         return this.service.confirm_email({confirm_token: confirmToken}, success, error);
     };
 
-    return new User;
+    return new User();
 }]);

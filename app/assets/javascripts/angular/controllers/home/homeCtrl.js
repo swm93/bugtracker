@@ -4,5 +4,5 @@ bugtracker.controller('HomeCtrl', ['$scope', '$rootScope', '$state', function($s
         var stateName = $rootScope.currentUser ? 'projects.index' : 'users.login';
 
         return $state.transitionTo(stateName);
-    }
+    };
 }]);

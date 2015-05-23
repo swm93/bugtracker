@@ -5,7 +5,7 @@ bugtracker.controller('BugNewCtrl', ['$scope', '$state', '$stateParams', 'Bug', 
 
     $scope.createBug = function() {
         $scope.bug.assignee_id = $scope.permission.selected.user.id;
-        
+
         Bug.create($stateParams.bugId, $stateParams.projectId, $scope.bug, function() {
             $state.transitionTo('projects.single.bugs.index', {projectId: $stateParams.projectId});
         }, function() {
@@ -14,6 +14,6 @@ bugtracker.controller('BugNewCtrl', ['$scope', '$state', '$stateParams', 'Bug', 
     };
 
     $scope.$watch('permission', function(val, prevVal) {
-        console.log($scope.permission)
+        console.log($scope.permission);
     }, true);
 }]);

@@ -1,23 +1,38 @@
 class PermissionsController < ApplicationController
   before_action :authenticate_user
-  before_action :validate_write_permissions, :only => [:edit, :update, :destory]
-  before_action :validate_read_permissions, :except => [:index, :new, :create]
-  
+  before_action :validate_write_permissions, only: [:edit, :update, :destory]
+  before_action :validate_read_permissions, except: [:index, :new, :create]
+
 
   def index
-    @permissions = Permission.where(:project_id => params[:project_id])
+    @permissions = Permission.where(project_id: params[:project_id])
 
-    render(:json => {:permissions => @permissions}, :except => [:user_id, :permission_type_id, :project_id], :include => {
-      :user => { :only => [:id, :name] },
-      :permission_type => { :only => [:id, :name] },
-      :project => { :only => [:id, :name] }
-    })
+    render(
+      json: {
+        permissions: @permissions
+      },
+      except: [:user_id, :permission_type_id, :project_id],
+      include: {
+        user: {
+          only: [:id, :name]
+        },
+        permission_type: {
+          only: [:id, :name]
+        },
+        project: {
+          only: [:id, :name]
+        }
+      }
+    )
   end
 
   def show
     @permission = Permission.find(params[:id])
 
-    render(:json => {:permission => @permission})
+    render(
+      json: {permission: @permission},
+      status: :ok
+    )
   end
 
   def create
@@ -29,9 +44,15 @@ class PermissionsController < ApplicationController
     # @permission.project = Project.find(params[:project_id]) unless permitted.has_key?(:project_id)
 
     if (@permission.save())
-      render(:json => @permission, :status => :created)
+      render(
+        json: @permission,
+        status: :created
+      )
     else
-      render(:json => @permission.errors, :status => :unprocessable_entity)
+      render(
+        json: @permission.errors,
+        status: :unprocessable_entity
+      )
     end
   end
 
@@ -39,19 +60,31 @@ class PermissionsController < ApplicationController
     @permission = Permission.find(params[:id])
 
     if (@permission.update(permission_params()))
-      render(:json => @permission, :status => :ok)
+      render(
+        json: @permission,
+        status: :ok
+      )
     else
-      render(:json => @permission.errors, :status => :unprocessable_entity)
+      render(
+        json: @permission.errors,
+        status: :unprocessable_entity
+      )
     end
   end
 
   def destroy
     @permission = Permission.find(params[:id])
-    
+
     if (@permission.destroy())
-      render(:nothing => true, :status => :no_content)
+      render(
+        nothing: true,
+        status: :no_content
+      )
     else
-      render(:json => @permission.errors, :status => :unprocessable_entity)
+      render(
+        json: @permission.errors,
+        status: :unprocessable_entity
+      )
     end
   end
 

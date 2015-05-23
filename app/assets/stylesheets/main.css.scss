@@ -5,336 +5,364 @@
 
 
 html {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    overflow: hidden;
-    height: 100%;
+  overflow: hidden;
+  height: 100%;
 
-    background-color: #EBEBEB;
+  background-color: $body-background-color;
 
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 
-h1, h2, h3, h4, h5, h6, p {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 
 textarea {
-    resize: vertical;
+  resize: vertical;
 }
 
 table.table {
-    margin: 0;
+  margin: 0;
 
-    tbody {
-        border-style: solid;
-        border-width: 0 1px;
+  tbody {
+    border-style: solid;
+    border-width: 0 1px;
+    border-color: $border-light-color;
+
+    tr {
+      border-color: $border-light-color;
+
+      &:last-child > td {
+        border-bottom: 1px solid $border-light-color;
+      }
+
+      td {
         border-color: $border-light-color;
 
-        tr {
-            border-color: $border-light-color;
-
-            &:last-child > td {
-                border-bottom: 1px solid $border-light-color;
-            }
-
-            td {
-                border-color: $border-light-color;
-
-                &.fit-width {
-                    width: 1px;
-                }
-            }
+        &.fit-width {
+          width: 1px;
         }
+      }
     }
+  }
 }
 
-table.table-hover > tbody > tr:hover > td, table.table-hover > tbody > tr:hover > th {
-    background-color: $green-faded-active-light;
+table.table-hover > tbody > tr:hover > td,
+table.table-hover > tbody > tr:hover > th {
+  background-color: $green-faded-active-light;
 }
 
 input[type="checkbox"] {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 label {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 * {
-    outline: none !important;
+  outline: none !important;
 
-    &::selection {
-        background: $selection-color;
-        }
-    &::-moz-selection {
-        background: $selection-color;
-    }
+  @include selection(true) {
+    background: $selection-color;
+  }
 }
 
 div[ui-view] {
-    display: block;
-    overflow: auto;
-    height: inherit;
+  display: block;
+  overflow: auto;
+  height: inherit;
 }
 
 *[ui-sref] {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .container-fluid {
-    height: inherit;
+  height: inherit;
 }
 
 .row {
-    margin: 0;
+  margin: 0;
 }
 
 .content-area {
-    padding: 10px;
+  padding: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: $border-lighter-color;
 
-    background-color: white;
+  background-color: $content-area-background-color;
 
-    border-width: 1px;
-    border-color: #e7e7e7;
-    border-style: solid;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 0;
+  }
 
-    h1, h2, h3, h4, h5, h6 {
-        margin-top: 0;
-    }
-
-    p.content-header {
-        font-size: 15px;
-        font-weight: 700;
-    }
+  p.content-header {
+    font-size: 15px;
+    font-weight: 700;
+  }
 }
 
 .form-content {
-    padding: 4px;
+  padding: 4px;
 }
 
 .stacked-panel {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 .padded-column {
-    padding: 0 50px;
+  padding: 0 50px;
 }
 
 #main-container {
-    position: absolute;
-    box-sizing: border-box;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    padding-top: $navbar-height + $breadcrumb-height;
+  position: absolute;
+  box-sizing: border-box;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: $navbar-height + $breadcrumb-height;
 
-    > div {
-        overflow: auto;
-        height: inherit;
-    }
+  > div {
+    overflow: auto;
+    height: inherit;
+  }
 }
 
 .navbar {
+  position: relative;
+  box-sizing: border-box;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: $navbar-height;
+  margin: 0;
+  border-radius: 0;
+
+  background-color: $navbar-background-color;
+
+
+  &.navbar-positioner {
     position: relative;
-    box-sizing: border-box;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: $navbar-height;
-    margin: 0;
+    z-index: -1;
+  }
 
-    background-color: $navbar-background-color;
+  li > a {
+    @include transition(color 0.15s ease, background-color 0.15s ease);
+  }
 
-    border-radius: 0;
+  li.active > a {
+    background-color: $green-faded-active !important;
+    color: $navbar-background-color !important;
+  }
 
-    &.navbar-positioner {
-        position: relative;
-        z-index: -1;
+  .navbar-header {
+    height: 100%;
+
+    .navbar-brand {
+      height: inherit;
+      padding: 5px 20px;
+      }
+  }
+
+  .navbar-collapse {
+    @media (max-width: 767px) {
+      background-color: $navbar-background-color;
     }
-
-    li > a {
-        @include transition(color 0.15s ease, background-color 0.15s ease);
-    }
-
-    li.active > a {
-        color: #FFFFFF !important;
-        background-color: $green-faded-active !important;
-    }
-
-    .navbar-header {
-        height: 100%;
-
-        .navbar-brand {
-            height: inherit;
-            padding: 5px 20px;
-        }
-    }
-
-    .navbar-collapse {
-        @media (max-width: 767px) {
-            background-color: $navbar-background-color;
-        }
-    }
+  }
 }
 
 .alert {
-    position: absolute;
-    @include box-sizing(border-box);
-    z-index: 1;
-    left: 0;
-    height: $alert-height;
-    width: 100%;
-    margin: 0;
+  @include box-sizing(border-box);
 
-    border-radius: 0;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  width: 100%;
+  height: $alert-height;
+  margin: 0;
+  border-radius: 0;
 
-    &.slide {
-        bottom: -$alert-height;
+  &.slide {
+    @include transition(bottom 0.3s ease-in-out);
 
-        opacity: 0;
+    bottom: -$alert-height;
 
-        @include transition(bottom 0.3s ease-in-out);
+    opacity: 0;
 
-        &.in {
-            bottom: 0;
+    &.in {
+      bottom: 0;
 
-            opacity: 1;
-        }
+      opacity: 1;
     }
+  }
 }
 
 breadcrumbs {
-    display: block;
+  display: block;
 
-    .breadcrumb {
-        position: relative;
-        box-sizing: border-box;
-        z-index: 1;
-        height: $breadcrumb-height;
-        width: 100%;
-        margin: 0;
-        padding: 4px 15px;
+  .breadcrumb {
+    position: relative;
+    box-sizing: border-box;
+    z-index: 1;
+    width: 100%;
+    height: $breadcrumb-height;
+    margin: 0;
+    padding: 4px 15px;
+    border-style: solid;
+    border-width: 0 1px 1px 1px;
+    border-radius: 0;
+    border-color: $border-lighter-color;
 
-        border-width: 0 1px 1px 1px;
-        border-style: solid;
-        border-color: #e7e7e7;
-        border-radius: 0;
-
-        > li + li::before {
-            padding: 0 0 0 5px;
-        }
-
-        &.breadcrumb-positioner {
-            position: relative;
-            z-index: -1;
-            padding: 0;
-
-            border: 0;
-        }
-
-        li {
-            font-size: 12px;
-            font-weight: 400;
-            text-transform: uppercase;
-
-            a {
-                color: $green-faded-active;
-
-                &:hover, &:active, &:focus {
-                    color: $green-active-dark;
-                    text-decoration: none;
-                }
-            }
-        }
+    > li + li::before {
+      padding: 0 0 0 5px;
     }
+
+    &.breadcrumb-positioner {
+      position: relative;
+      z-index: -1;
+      padding: 0;
+      border: 0;
+    }
+
+    li {
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+
+      a {
+        color: $green-faded-active;
+
+        &:hover,
+        &:active,
+        &:focus {
+          color: $green-active-dark;
+
+          text-decoration: none;
+        }
+      }
+    }
+  }
 }
 
 .alert-dismissable {
-    padding: 15px 50px;
+  padding: 15px 50px;
 
-    text-align: center;
+  text-align: center;
 
-    .close {
-        top: 0;
-        right: -50px;
-        padding: 15px;
-        margin-top: -15px;
-        width: 20px;
-        height: 20px;
-        @include box-sizing(content-box);
-    }
+  .close {
+    @include box-sizing(content-box);
+
+    top: 0;
+    right: -50px;
+    width: 20px;
+    height: 20px;
+    margin-top: -15px;
+    padding: 15px;
+  }
 }
 
 a.list-group-item.active {
-    background-color: $green-faded-active;
+  border-color: $green-faded-active;
+
+  background-color: $green-faded-active;
+
+  &:hover {
     border-color: $green-faded-active;
 
-    &:hover {
-        background-color: $green-faded-active;
-        border-color: $green-faded-active;
-    }
+    background-color: $green-faded-active;
+  }
 }
 
 .absolute-center {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 .clickable {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .no-select {
-    cursor: default;
-    @include user-select(none);
+  @include user-select(none);
+
+  cursor: default;
 }
 
 .no-link-style {
-    color: black;
+  color: $text-darkest-color;
 
-    &:hover {
-        color: black;
-        text-decoration: none;
-    }
+  &:hover {
+    color: $text-darkest-color;
+
+    text-decoration: none;
+  }
 }
 
 .media {
-    > .pull-left {
-        margin-right: 25px;
-    }
-    > .pull-right {
-        margin-left: 25px;
-    }
+  > .pull-left {
+    margin-right: 25px;
+  }
+
+  > .pull-right {
+    margin-left: 25px;
+  }
 }
 
 .btn-primary {
-    background-color: $green-faded-active;
+  border-color: transparent;
 
+  background-color: $green-faded-active;
+
+  &:hover,
+  &:active,
+  &:focus {
     border-color: transparent;
 
-    &:hover, &:active, &:focus {
-        background-color: $green-faded-active-dark;
+    background-color: $green-faded-active-dark;
+  }
+}
 
-        border-color: transparent;
-    }
+.btn-empty-view {
+  border-color: $green-faded-active-dark;
+
+  background-color: $green-faded-active;
+  color: $text-lightest-color;
+}
+
+.text-empty-view {
+  color: $text-dark-color;
 }
 
 .logo-isometric-cube {
-    height: inherit;
+  height: inherit;
 }
 
 @media (max-width: $screen-xs-max) {
-    .padded-column {
-        padding: 15px;
-    }
+  .padded-column {
+    padding: 15px;
+  }
 }

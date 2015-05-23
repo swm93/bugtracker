@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery :with => :exception
+  protect_from_forgery with: :exception
 
 
   def current_user
@@ -41,19 +41,28 @@ class ApplicationController < ActionController::Base
   ##    Not Found
   #   Return: Error with status :not_found (404).
   def not_found
-    render(:nothing => true, :status => :not_found)
+    render(
+      nothing: true,
+      status: :not_found
+    )
   end
 
   ##    Forbidden
   #   Return: Error with status :forbidden (403).
   def forbidden
-    render(:nothing => true, :status => :forbidden)
+    render(
+      nothing: true,
+      status: :forbidden
+    )
   end
 
   ##    Unauthorized
   #   Returns: Error with status :unauthorized (401).
   def unauthorized
-    render(:nothing => true, :status => :unauthorized)
+    render(
+      nothing: true,
+      status: :unauthorized
+    )
   end
 
   def parse_query_string(query_string)
@@ -68,7 +77,10 @@ class ApplicationController < ActionController::Base
   def get_permission
     if (current_user)
       project_id_key = get_project_id_key()
-      permission = Permission.where({:user_id => current_user.id, :project_id => params[project_id_key]})[0]
+      permission = Permission.where({
+        user_id: current_user.id,
+        project_id: params[project_id_key]
+      })[0]
     end
   end
 

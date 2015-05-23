@@ -1,162 +1,179 @@
+$name-label-text-color: #78CE97;
+$email-label-text-color: #DA9292;
+$password-label-text-color: #6EAEC7;
+$signup-button-text-color: #9C3498;
+$signup-button-border-color: #CFA5D1;
+$signup-button-focus-background-color: #FFFFFF;
+$signup-button-hover-background-color: #FAF2FA;
+
+$session-background-color: #FFFFFF;
+
+
 .session-container {
-    overflow: hidden;
-    width: 80%;
-    height: auto;
-    max-width: 760px;
-    padding: 15px;
+  overflow: hidden;
+  width: 80%;
+  height: auto;
+  max-width: 760px;
+  padding: 15px;
 
-    @media (min-width:768px) {
-        @include absolute-center-experimental;
+  @media (min-width:768px) {
+    @include absolute-center-experimental;
+  }
+
+  .session-header {
+    position: relative;
+
+    h3 {
+      width: 100%;
+      margin: 0;
+
+      line-height: inherit;
+      text-align: center;
     }
+  }
 
-    .session-header {
-        position: relative;
+  .session-content {
+    position: relative;
+    padding: 40px 0;
 
-        h3 {
-            width: 100%;
-            margin: 0;
+    .form-panel {
+      z-index: 1;
+      height: 100%;
+      padding: 0 40px;
 
-            line-height: inherit;
-            text-align: center;
+      .field-label > .glyphicon {
+        margin-right: 5px;
+      }
+
+      .form-row {
+        padding: 5px 0;
+
+        text-align: left;
+      }
+
+      .form-row-email {
+        color: $email-label-text-color;
+      }
+
+      .form-row-password {
+        color: $password-label-text-color;
+      }
+
+      .form-row-password-confirm {
+        color: $password-label-text-color;
+      }
+
+      .form-row-name {
+        color: $name-label-text-color;
+      }
+
+      .form-row-login-submit {
+        margin-top: 20px;
+
+        text-align: justify;
+
+        &:after {
+          display: inline-block;
+          width: 100%;
+          height: 0;
+
+          line-height: 0;
+          font-size: 0;
+
+          content: '';
         }
-    }
+      }
 
-    .session-content {
-        position: relative;
-        padding: 40px 0;
-
-        .form-panel {
-            z-index: 1;
-            height: 100%;
-            padding: 0 40px;
-
-            .field-label > .glyphicon {
-                margin-right: 5px;
-            }
-
-            .form-row {
-                padding: 5px 0px;
-
-                text-align: left;
-            }
-            .form-row-email {
-                color: #DA9292;
-            }
-            .form-row-password {
-                color: #6EAEC7;
-            }
-            .form-row-password-confirm {
-                color: #6EAEC7;
-            }
-            .form-row-name {
-                color: rgb(120, 206, 151);
-            }
-            .form-row-login-submit {
-                text-align: justify;
-                margin-top: 20px;
-
-                &:after {
-                    content: '';
-                    display: inline-block;
-                    width: 100%;
-                    height: 0;
-                    font-size: 0;
-                    line-height: 0;
-                }
-            }
-            .form-row-signup-submit {
-                text-align: center;
-            }
-
-            .btn-login {
-                display: inline-block;
-            }
-            .btn-signup {
-                width: 130px;
-
-                border-color: #CFA5D1;
-
-                color: #9C3498;
-
-                &:focus {
-                    background-color: #FFFFFF;
-                }
-                &:hover {
-                    background-color: rgb(250, 242, 250);
-                }
-                &:active {
-                    background-color: rgb(250, 242, 250);
-
-                    // @include box-shadow(inset 0 3px 5px rgba(185, 93, 163, 0.125));
-                }
-            }
-            .checkbox-remember-me {
-                display: inline-block;
-                margin: 0;
-            }
-        }
-    }
-
-    .panel-divider {
-        position: absolute;
-        height: 80%;
-
-        line-height: 80%;
+      .form-row-signup-submit {
         text-align: center;
+      }
 
-        .vertical-line {
-            position: absolute;
-            left: 50%;
-            width: 1px;
-            height: 100%;
-            margin: auto;
+      .btn-login {
+        display: inline-block;
+      }
 
-            background-color: $border-light-color;
+      .btn-signup {
+        width: 130px;
+        border-color: $signup-button-border-color;
+
+        color: $signup-button-text-color;
+
+        &:focus {
+          background-color: $signup-button-focus-background-color;
         }
 
-        .or-text {
-            position: absolute;
-            top: 50%;
-            width: 30px;
-            margin-top: -15px;
-            margin-left: -15px;
-
-            background: #FFFFFF;
-
-            line-height: 30px;
-            font-size: 22px;
-            font-weight: 100;
-            color: #DDDDDD;
+        &:hover,
+        &:active {
+          background-color: $signup-button-hover-background-color;
         }
+
+        .checkbox-remember-me {
+          display: inline-block;
+          margin: 0;
+        }
+      }
     }
+  }
+
+  .panel-divider {
+    position: absolute;
+    height: 80%;
+
+    line-height: 80%;
+    text-align: center;
+
+    .vertical-line {
+      position: absolute;
+      left: 50%;
+      width: 1px;
+      height: 100%;
+      margin: auto;
+
+      background-color: $border-light-color;
+    }
+
+    .or-text {
+      position: absolute;
+      top: 50%;
+      width: 30px;
+      margin-top: -15px;
+      margin-left: -15px;
+
+      background: $session-background-color;
+      color: $text-light-color;
+
+      line-height: 30px;
+      font-size: 22px;
+      font-weight: 100;
+    }
+  }
 }
 
 @media (max-width: 767px) {
-    body {
-        background-color: #FFFFFF;
+  body {
+    background-color: $session-background-color;
+  }
+
+  .session-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    padding: 0;
+    border: 0;
+
+    .session-header {
+      height: auto;
+      padding: 5px;
     }
 
-    .session-container {
-        position: relative;
-        padding: 0;
-        width: 100%;
+    .session-content {
+      height: auto;
+
+      .form-panel {
         height: auto;
-        min-height: 100%;
-
-        border: none;
-
-        .session-header {
-            padding: 5px;
-            height: auto;
-        }
-
-        .session-content {
-            height: auto;
-
-            .form-panel {
-                padding: 10px 40px;
-                height: auto;
-            }
-        }
+        padding: 10px 40px;
+      }
     }
+  }
 }

@@ -1,7 +1,7 @@
 bugtracker.factory('PermissionType', ['$resource', function($resource) {
     function PermissionType() {
         this.service = $resource('/api/permission_types/:permissionTypeId.json', {permissionTypeId: '@id'});
-    };
+    }
 
     PermissionType.prototype.all = function() {
         return this.service.query();
@@ -15,5 +15,5 @@ bugtracker.factory('PermissionType', ['$resource', function($resource) {
         return this.service.get({permissionTypeId: id});
     };
 
-    return new PermissionType;
+    return new PermissionType();
 }]);

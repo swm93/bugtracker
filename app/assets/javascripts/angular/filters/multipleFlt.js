@@ -7,7 +7,7 @@ bugtracker.filter('filterMultiple', ['$filter', function ($filter) {
             filteredData: [],
             applyFilter: function(obj, key) {
                 var fData = [];
-                if (this.filteredData.length == 0) {
+                if (this.filteredData.length === 0) {
                     this.filteredData = this.data;
                 }
                 if (!obj) {
@@ -44,5 +44,5 @@ bugtracker.filter('filterMultiple', ['$filter', function ($filter) {
             });
         }
         return filterObj.filteredData;
-    }
+    };
 }]);

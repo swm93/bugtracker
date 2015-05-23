@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   has_many :permissions
-  has_many :projects, :through => :permissions
-  validates :email, :presence => true, :uniqueness => true, :length => { :in => 3..50 }, :format => /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i
-  validates :password, :confirmation => true, :length => { :in => 6..50 }, :on => :create
+  has_many :projects, through: :permissions
+  validates :email, presence: true, uniqueness: true, length: { in: 3..50 }, format: /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i
+  validates :password, confirmation: true, length: { in: 6..50 }, on: :create
   before_create :generate_confirmation_token
   before_save :encrypt_password
   after_save :clear_password
@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
     self.active!
     self.confirm_token = nil
     self.confirm_token_created_at = nil
-    save!(:validate => false)
+    save!(validate: false)
   end
 
 

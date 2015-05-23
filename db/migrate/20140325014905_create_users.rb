@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password
       t.string :password_salt
       t.string :authentication_token
-      t.integer :status, :default => 0
+      t.integer :status, default: 0
       t.string :confirm_token
       t.datetime :confirm_token_created_at
 

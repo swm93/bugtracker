@@ -1,0 +1,14 @@
+---
+:checks_remove: []
+:checks_add:
+- :debugger
+- :gemfile_path
+- :jshint
+- :json
+- :merge_conflict
+- :nb_space
+- :ruby_symbol_hashrockets
+- :scss_lint
+- :tabs
+- :whitespace
+- :yaml

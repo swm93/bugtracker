@@ -7,7 +7,7 @@ bugtracker.controller('BugIndexCtrl', ['$scope', '$stateParams', '$filter', 'bug
     };
     $scope.sort = ['id'];
 
-    
+
     $("[data-toggle='tooltip']").tooltip();
 
     $scope.hasVisibleBugs = function() {

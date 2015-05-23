@@ -9,7 +9,7 @@ class Bug < ActiveRecord::Base
   belongs_to :project
 
   validates_uniqueness_of :number
-  before_validation :set_bug_number, :on => :create
+  before_validation :set_bug_number, on: :create
 
 
   private

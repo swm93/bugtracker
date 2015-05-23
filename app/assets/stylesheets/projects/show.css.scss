@@ -1,14 +1,14 @@
 #project-show-top-container {
 
-    .media-object {
-        width: 150px;
-        height: 150px;
-        padding: 5px;
-        border: 1px solid #eeeeee;
+  .media-object {
+    width: 150px;
+    height: 150px;
+    padding: 5px;
+    border: 1px solid $border-lighter-color;
 
-        @media (max-width: $screen-xs-min) {
-            width: 100px;
-            height: 100px;
-        }
+    @media (max-width: $screen-xs-min) {
+      width: 100px;
+      height: 100px;
     }
+  }
 }

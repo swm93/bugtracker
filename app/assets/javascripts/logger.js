@@ -1,7 +1,7 @@
 function Logger() {
     this.level = window.loggingLevel || 0;
     delete window.loggingLevel;
-};
+}
 
 Logger.prototype.debug = function(message) {
     if (this.level <= 0) {

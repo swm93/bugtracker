@@ -4,7 +4,7 @@ bugtracker.controller('ProjectEditCtrl', ['$scope', '$stateParams', 'project', '
     $scope.permissions = permissions;
     $scope.permissionTypes = PermissionType.all();
     $scope.permission = PermissionType.findById(1);
-    
+
 
     $scope.setPublic = function(val) {
         $scope.project.public = val;

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # before_action :save_login_state, :only => [:new, :create]
+  # before_action :save_login_state, only: [:new, :create]
 
 
   #TODO: remove/refactor this
@@ -12,13 +12,19 @@ class UsersController < ApplicationController
       @users = User.all();
     end
 
-    render(:json => @users, :except => [:password, :password_salt])
+    render(
+      json: @users,
+      except: [:password, :password_salt]
+    )
   end
 
   def show
     @user = User.find(params[:id])
 
-    render(:json => @user, :except => [:password, :password_salt])
+    render(
+      json: @user,
+      except: [:password, :password_salt]
+    )
   end
 
   def create
@@ -31,14 +37,26 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       @currentUser = @user
 
-      render(:json => @user, :except => [:password, :password_salt], :status => :created)
+      render(
+        json: @user,
+        except: [:password, :password_salt],
+        status: :created
+      )
     else
-      render(:json => @user.errors, :status => :unprocessable_entity)
+      render(
+        json: @user.errors,
+        status: :unprocessable_entity
+      )
     end
   end
 
   def get_current_user
-    render(:json => {:user => current_user} || {}, :except => [:password, :password_salt, :authentication_token])
+    render(
+      json: {
+        user: current_user
+      } || {},
+      except: [:password, :password_salt, :authentication_token]
+    )
   end
 
   def confirm_email

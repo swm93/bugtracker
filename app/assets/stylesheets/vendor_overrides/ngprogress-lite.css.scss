@@ -1,7 +1,9 @@
+// scss-lint:disable SelectorFormat
+
 .ngProgressLiteBar {
   background: $nprogress-color;
 }
 
 .ngProgressLite .ngProgressLiteBarShadow {
-    box-shadow: none;
+  box-shadow: none;
 }
