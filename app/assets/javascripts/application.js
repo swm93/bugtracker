@@ -5,6 +5,7 @@
 //= require angular
 //= require angular-animate
 //= require angular-flash
+//= require angular-rails-templates
 //= require angular-resource
 //= require angular-route
 //= require angular-sanitize
@@ -20,3 +21,4 @@
 //= require logger
 //= require main
 //= require_tree ./angular
+//= require_tree ../templates

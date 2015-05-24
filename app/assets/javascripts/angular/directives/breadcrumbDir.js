@@ -1,7 +1,7 @@
 var breadcrumbs = function($interpolate, $state) {
     return {
         restrict: 'E',
-        templateUrl: '/assets/breadcrumbs.html',
+        templateUrl: 'breadcrumbs.html',
         scope: {
             displaynameProperty: '@',
             routeProperty: '@'

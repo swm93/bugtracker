@@ -108,40 +108,40 @@ Bugtracker.Config.routes = {
     //  Home Routes  //
     'home': {
         url: '',
-        templateUrl: '/assets/layouts/home.html',
+        templateUrl: 'layouts/home.html',
         controller: 'HomeCtrl'
     },
     //  Error Routes  //
     'error': {
         abstract: true,
-        templateUrl: '/assets/layouts/errors.html',
+        templateUrl: 'layouts/errors.html',
         controller: 'ErrorCtrl'
     },
     'error.400': {
         url: '/400',
-        templateUrl: '/assets/errors/400.html',
+        templateUrl: 'errors/400.html',
         controller: 'Error400Ctrl'
     },
     'error.401': {
         url: '/401',
-        templateUrl: '/assets/errors/401.html',
+        templateUrl: 'errors/401.html',
         controller: 'Error401Ctrl'
     },
     'error.403': {
         url: '/403',
-        templateUrl: '/assets/errors/403.html',
+        templateUrl: 'errors/403.html',
         controller: 'Error403Ctrl'
     },
     'error.404': {
         url: '/404',
-        templateUrl: '/assets/errors/404.html',
+        templateUrl: 'errors/404.html',
         controller: 'Error404Ctrl'
     },
     //  User Routes  //
     'users': {
         abstract: true,
         url: '/users',
-        templateUrl: '/assets/layouts/users.html',
+        templateUrl: 'layouts/users.html',
         controller: 'UserCtrl',
         data: {
             breadcrumb: 'Users'
@@ -161,7 +161,7 @@ Bugtracker.Config.routes = {
     },
     'users.single.show': {
         url: '',
-        templateUrl: '/assets/users/show.html',
+        templateUrl: 'users/show.html',
         controller: 'UserShowCtrl',
         data: {
             breadcrumb: undefined
@@ -169,12 +169,12 @@ Bugtracker.Config.routes = {
     },
     'users.new': {
         url: '/signup',
-        templateUrl: '/assets/users/new.html',
+        templateUrl: 'users/new.html',
         controller: 'UserNewCtrl'
     },
     'users.login': {
         url: '/login',
-        templateUrl: '/assets/users/login.html',
+        templateUrl: 'users/login.html',
         controller: 'UserLoginCtrl'
     },
     'users.logout': {
@@ -184,7 +184,7 @@ Bugtracker.Config.routes = {
             user: Bugtracker.Config.resolve.user.logout
         }
     },
-    'users.confirm_email' : {
+    'users.confirm_email': {
         url: '/confirm_email/:confirmToken',
         controller: 'UserConfirmEmailCtrl',
         resolve: {
@@ -195,7 +195,7 @@ Bugtracker.Config.routes = {
     'projects': {
         abstract: true,
         url: '/projects',
-        templateUrl: '/assets/layouts/projects.html',
+        templateUrl: 'layouts/projects.html',
         controller: 'ProjectCtrl',
         data: {
             breadcrumb: 'Projects',
@@ -218,7 +218,7 @@ Bugtracker.Config.routes = {
     },
     'projects.index': {
         url: '',
-        templateUrl: '/assets/projects/index.html',
+        templateUrl: 'projects/index.html',
         controller: 'ProjectIndexCtrl',
         resolve: {
             projects: Bugtracker.Config.resolve.project.all
@@ -229,7 +229,7 @@ Bugtracker.Config.routes = {
     },
     'projects.single.show': {
         url: '',
-        templateUrl: '/assets/projects/show.html',
+        templateUrl: 'projects/show.html',
         controller: 'ProjectShowCtrl',
         data: {
             breadcrumb: undefined
@@ -237,7 +237,7 @@ Bugtracker.Config.routes = {
     },
     'projects.new': {
         url: '/new',
-        templateUrl: '/assets/projects/new.html',
+        templateUrl: 'projects/new.html',
         controller: 'ProjectNewCtrl',
         data: {
             breadcrumb: 'New'
@@ -245,7 +245,7 @@ Bugtracker.Config.routes = {
     },
     'projects.single.edit': {
         url: '/edit',
-        templateUrl: '/assets/projects/edit.html',
+        templateUrl: 'projects/edit.html',
         controller: 'ProjectEditCtrl',
         data: {
             breadcrumb: 'Edit'
@@ -255,7 +255,7 @@ Bugtracker.Config.routes = {
     'projects.single.bugs': {
         abstract: true,
         url: '/bugs',
-        templateUrl: '/assets/layouts/bugs.html',
+        templateUrl: 'layouts/bugs.html',
         controller: 'BugCtrl',
         data: {
             breadcrumb: 'Bugs',
@@ -276,7 +276,7 @@ Bugtracker.Config.routes = {
     },
     'projects.single.bugs.index': {
         url: '',
-        templateUrl: '/assets/bugs/index.html',
+        templateUrl: 'bugs/index.html',
         controller: 'BugIndexCtrl',
         data: {
             breadcrumb: undefined
@@ -284,7 +284,7 @@ Bugtracker.Config.routes = {
     },
     'projects.single.bugs.single.show': {
         url: '',
-        templateUrl: '/assets/bugs/show.html',
+        templateUrl: 'bugs/show.html',
         controller: 'BugShowCtrl',
         data: {
             breadcrumb: undefined
@@ -292,7 +292,7 @@ Bugtracker.Config.routes = {
     },
     'projects.single.bugs.new': {
         url: '/new',
-        templateUrl: '/assets/bugs/new.html',
+        templateUrl: 'bugs/new.html',
         controller: 'BugNewCtrl',
         data: {
             breadcrumb: 'New'
@@ -300,7 +300,7 @@ Bugtracker.Config.routes = {
     },
     'projects.single.bugs.single.edit': {
         url: '/edit',
-        templateUrl: '/assets/bugs/edit.html',
+        templateUrl: 'bugs/edit.html',
         controller: 'BugEditCtrl',
         data: {
             breadcrumb: 'Edit'
@@ -308,7 +308,7 @@ Bugtracker.Config.routes = {
     },
     'projects.single.bugs.feed': {
         url: '/feed',
-        templateUrl: '/assets/bugs/feed.html',
+        templateUrl: 'bugs/feed.html',
         controller: 'BugFeedCtrl',
         data: {
             breadcrumb: 'Feed'
@@ -330,7 +330,7 @@ Bugtracker.Config.flashAlerts = {
 /*/     Bugtracker Module
  *  Define the bugtracker module. This is the core object of the applicaiton.
 /*/
-bugtracker = angular.module('bugtracker', ['ngResource', 'ui.router', 'ui.select', 'ngSanitize', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'ngProgressLite']);
+bugtracker = angular.module('bugtracker', ['ngResource', 'ui.router', 'ui.select', 'templates', 'ngSanitize', 'angular-flash.service', 'angular-flash.flash-alert-directive', 'ngProgressLite']);
 
 /*/     Config
  *  Perform required setup for various providers:
@@ -398,6 +398,7 @@ bugtracker.run([
     });
 
     $rootScope.$on('$stateChangeError', function(e, toState, toParams, fromState, fromParams, error) {
+        Logger.error(error);
         switch (error.status) {
             case 401:
                 $state.transitionTo('users.login');

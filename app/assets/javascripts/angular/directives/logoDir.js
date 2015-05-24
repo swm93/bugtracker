@@ -1,7 +1,7 @@
 bugtracker.directive('logo', function() {
     return {
         restrict: 'E', // only activate on element attribute
-        templateUrl: '/assets/isometric-cube.svg',
+        templateUrl: 'images/isometric-cube.svg',
         link: function(scope, element, attrs) {
             var height = element.height();
             var width = element.height();
