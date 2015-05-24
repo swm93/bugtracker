@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
     render(
       json: @users,
-      except: [:password, :password_salt]
+      except: [:password, :password_salt, :authentication_token, :confirm_token, :confirm_token_created_at]
     )
   end
 
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
     render(
       json: @user,
-      except: [:password, :password_salt]
+      except: [:password, :password_salt, :authentication_token, :confirm_token, :confirm_token_created_at]
     )
   end
 

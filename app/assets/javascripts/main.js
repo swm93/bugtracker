@@ -141,16 +141,17 @@ Bugtracker.Config.routes = {
     'users': {
         abstract: true,
         url: '/users',
-        templateUrl: 'layouts/users.html',
+        template: '<div ui-view />',
         controller: 'UserCtrl',
         data: {
-            breadcrumb: 'Users'
+            breadcrumb: 'Users',
+            breadcrumbRoute: null
         }
     },
     'users.single': {
         abstract: true,
         url: '/{userId:[0-9]{1,8}}',
-        template: '<div ui-view />',
+        templateUrl: 'layouts/users.html',
         resolve: {
             user: Bugtracker.Config.resolve.user.findById
         },

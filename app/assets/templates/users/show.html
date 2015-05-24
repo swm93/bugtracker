@@ -1,1 +1,42 @@
-<span>{{user.name}}</span>
+<div class="col-sm-6">
+    <div class="content-area stacked-panel">
+        <div class="form-header">
+            <div id="label-user-name" class="form-content">{{ user.name }}</div>
+        </div>
+        <div class="form-section">
+            <p>Is too focused on work to write a bio, but if he/she had, it would go here.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+    </div>
+    <div class="content-area stacked-panel">
+        <div class="form-header">
+            <h4 class="form-content">About</h4>
+        </div>
+        <div class="form-section">
+            <div class="form-content">
+                <span>Member since {{ user.created_at | date }}.</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-6">
+<div class="content-area stacked-panel">
+        <div class="form-section">
+            <input type="file" name="file" onchange="angular.element(this).scope().uploadImage(this.files)" />
+        </div>
+    </div>
+    <div class="content-area stacked-panel">
+        <div class="form-header form-content">
+            <span>Contact Info</span>
+        </div>
+        <div class="form-section">
+            <div class="form-content">
+                <div id="label-user-email" class="form-content">{{ user.email }}</div>
+            </div>
+        </div>
+        <div class="form-section">
+            <div class="form-content">
+            </div>
+        </div>
+    </div>
+</div>
