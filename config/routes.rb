@@ -7,6 +7,7 @@ Bugtracker::Application.routes.draw do
       get 'logout' => 'sessions#logout'
       get 'current_user' => 'users#get_current_user'
       get 'confirm_email' => 'users#confirm_email'
+      get 'statistics' => 'users#statistics'
     end
     resources :users, only: ['show', 'create'], format: :json
 

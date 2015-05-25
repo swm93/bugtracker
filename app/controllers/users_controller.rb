@@ -55,7 +55,8 @@ class UsersController < ApplicationController
       json: {
         user: current_user
       } || {},
-      except: [:password, :password_salt, :authentication_token]
+      except: [:password, :password_salt, :authentication_token],
+      status: :ok
     )
   end
 
@@ -78,6 +79,30 @@ class UsersController < ApplicationController
         status: :bad_request
       )
     end
+  end
+
+  def statistics
+    if (current_user)
+      stats = {
+        number_projects: Permission.where({user_id: current_user.id}).count,
+        number_bugs: Bug.joins(project: :users).where({
+          users: {
+            id: current_user.id
+          }
+        }).count,
+        number_resolved_bugs: Bug.joins(project: :users).where({
+          users: {
+            id: current_user.id
+          },
+          status: 'resolved'
+        }).count
+      }
+    end
+
+    render(
+      json: stats,
+      status: :ok
+    )
   end
 
 

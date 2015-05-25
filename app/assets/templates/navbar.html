@@ -17,11 +17,14 @@
                 <li>
                     <a href>
                         <span class="glyphicon glyphicon-stats"></span>
-                        <span>You are currently working on 5 projects and have resolved 59% of the total bugs.</span>
+                        <span class="label-statistic">
+                            <ul class="texts">
+                                <li>{{ statistics[0] }}</li>
+                                <li>{{ statistics[1] }}</li>
+                            </ul>
+                        </span>
                     </a>
                 </li>
-                <!-- <li ui-sref="projects.index" ui-sref-active="active"><a href>All Projects</a></li> -->
-                <!-- <li ui-sref="projects.new" ui-sref-active="active"><a href>Create Project</a></li> -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">

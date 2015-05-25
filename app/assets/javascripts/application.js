@@ -15,6 +15,8 @@
 //= require handlebars.runtime
 //= require ngprogress-lite
 //= require jquery_editable_label
+//= require jquery.lettering
+//= require jquery.textillate
 
 //= require string_capitalize
 
