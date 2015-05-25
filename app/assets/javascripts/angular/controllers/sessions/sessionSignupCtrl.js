@@ -1,4 +1,4 @@
-bugtracker.controller('UserNewCtrl', ['$scope', '$http', 'flash', 'User', function($scope, $http, flash, User) {
+bugtracker.controller('SessionSignupCtrl', ['$scope', '$http', 'flash', 'User', function($scope, $http, flash, User) {
     $scope.user = {};
 
     $scope.createUser = function() {

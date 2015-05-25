@@ -22,6 +22,6 @@ class UserMailer < ActionMailer::Base
   private
 
   def confirm_email_url(token)
-    "#{root_url}#/users/confirm_email/#{token}"
+    "#{root_url}#/confirm_email/#{token}"
   end
 end

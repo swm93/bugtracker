@@ -22,9 +22,20 @@ Bugtracker.Config.resolve = {
             });
             return deferred.promise;
         },
-        logout: function(User, $q, $rootScope) {
+        statistics: function(User, $q) {
             var deferred = $q.defer();
-            User.logout(function(successData) {
+            User.statistics(function(successData) {
+                deferred.resolve(successData);
+            }, function(errorData) {
+                deferred.reject(errorData);
+            });
+            return deferred.promise;
+        }
+    },
+    session: {
+        logout: function(Session, $q, $rootScope) {
+            var deferred = $q.defer();
+            Session.logout(function(successData) {
                 $rootScope.currentUser = undefined;
                 deferred.resolve(successData);
             }, function(errorData) {
@@ -32,15 +43,15 @@ Bugtracker.Config.resolve = {
             });
             return deferred.promise;
         },
-        confirmEmail: function(User, $q, $stateParams) {
+        confirmEmail: function(Session, $q, $stateParams) {
             var deferred = $q.defer();
-            User.confirmEmail($stateParams.confirmToken, function(successData) {
+            Session.confirmEmail($stateParams.confirmToken, function(successData) {
                 deferred.resolve(successData);
             }, function(errorData) {
                 deferred.reject(errorData);
             });
             return deferred.promise;
-        }
+        },
     },
     project: {
         all: function(Project, $q) {
@@ -111,6 +122,7 @@ Bugtracker.Config.routes = {
         templateUrl: 'layouts/home.html',
         controller: 'HomeCtrl'
     },
+
     //  Error Routes  //
     'error': {
         abstract: true,
@@ -137,8 +149,48 @@ Bugtracker.Config.routes = {
         templateUrl: 'errors/404.html',
         controller: 'Error404Ctrl'
     },
+
+    //  Session Routes  //
+    'session': {
+        abstract: true,
+        templateUrl: 'layouts/session.html',
+        controller: 'SessionCtrl'
+    },
+    'session.signup': {
+        url: '/signup',
+        templateUrl: 'sessions/signup.html',
+        controller: 'SessionSignupCtrl'
+    },
+    'session.login': {
+        url: '/login',
+        templateUrl: 'sessions/login.html',
+        controller: 'SessionLoginCtrl'
+    },
+    'session.logout': {
+        url: '/logout',
+        controller: 'SessionLogoutCtrl',
+        resolve: {
+            user: Bugtracker.Config.resolve.session.logout
+        }
+    },
+    'session.confirm_email': {
+        url: '/confirm_email/:confirmToken',
+        controller: 'SessionConfirmEmailCtrl',
+        resolve: {
+            user: Bugtracker.Config.resolve.session.confirmEmail
+        }
+    },
+
+    //  App Routes  //
+    'app': {
+        abstract: true,
+        templateUrl: 'layouts/app.html',
+        data: {
+            breadcrumb: undefined
+        }
+    },
     //  User Routes  //
-    'users': {
+    'app.users': {
         abstract: true,
         url: '/users',
         template: '<div ui-view />',
@@ -148,19 +200,19 @@ Bugtracker.Config.routes = {
             breadcrumbRoute: null
         }
     },
-    'users.single': {
+    'app.users.single': {
         abstract: true,
         url: '/{userId:[0-9]{1,8}}',
-        templateUrl: 'layouts/users.html',
+        template: '<div ui-view />',
         resolve: {
             user: Bugtracker.Config.resolve.user.findById
         },
         data: {
             breadcrumb: '{{ userId }}',
-            breadcrumbRoute: 'user.single.show'
+            breadcrumbRoute: 'app.user.single.show'
         }
     },
-    'users.single.show': {
+    'app.users.single.show': {
         url: '',
         templateUrl: 'users/show.html',
         controller: 'UserShowCtrl',
@@ -168,56 +220,30 @@ Bugtracker.Config.routes = {
             breadcrumb: undefined
         }
     },
-    'users.new': {
-        url: '/signup',
-        templateUrl: 'users/new.html',
-        controller: 'UserNewCtrl'
-    },
-    'users.login': {
-        url: '/login',
-        templateUrl: 'users/login.html',
-        controller: 'UserLoginCtrl'
-    },
-    'users.logout': {
-        url: '/logout',
-        controller: 'UserLogoutCtrl',
-        resolve: {
-            user: Bugtracker.Config.resolve.user.logout
-        }
-    },
-    'users.confirm_email': {
-        url: '/confirm_email/:confirmToken',
-        controller: 'UserConfirmEmailCtrl',
-        resolve: {
-            user: Bugtracker.Config.resolve.user.confirmEmail
-        }
-    },
     //  Project Routes  //
-    'projects': {
+    'app.projects': {
         abstract: true,
         url: '/projects',
-        templateUrl: 'layouts/projects.html',
+        template: '<div ui-view />',
         controller: 'ProjectCtrl',
         data: {
             breadcrumb: 'Projects',
-            breadcrumbRoute: 'projects.index'
+            breadcrumbRoute: 'app.projects.index'
         }
     },
-    'projects.single': {
+    'app.projects.single': {
         abstract: true,
         url: '/{projectId:[0-9]{1,8}}',
         template: '<div ui-view />',
         resolve: {
-            project: Bugtracker.Config.resolve.project.findById,
-            bugs: Bugtracker.Config.resolve.bug.all,
-            permissions: Bugtracker.Config.resolve.permission.all
+            project: Bugtracker.Config.resolve.project.findById
         },
         data: {
             breadcrumb: '{{ projectId }}',
-            breadcrumbRoute: 'projects.single.show'
+            breadcrumbRoute: 'app.projects.single.show'
         }
     },
-    'projects.index': {
+    'app.projects.index': {
         url: '',
         templateUrl: 'projects/index.html',
         controller: 'ProjectIndexCtrl',
@@ -228,15 +254,19 @@ Bugtracker.Config.routes = {
             breadcrumb: undefined
         }
     },
-    'projects.single.show': {
+    'app.projects.single.show': {
         url: '',
         templateUrl: 'projects/show.html',
         controller: 'ProjectShowCtrl',
+        resolve: {
+            bugs: Bugtracker.Config.resolve.bug.all,
+            permissions: Bugtracker.Config.resolve.permission.all
+        },
         data: {
             breadcrumb: undefined
         }
     },
-    'projects.new': {
+    'app.projects.new': {
         url: '/new',
         templateUrl: 'projects/new.html',
         controller: 'ProjectNewCtrl',
@@ -244,26 +274,29 @@ Bugtracker.Config.routes = {
             breadcrumb: 'New'
         }
     },
-    'projects.single.edit': {
+    'app.projects.single.edit': {
         url: '/edit',
         templateUrl: 'projects/edit.html',
         controller: 'ProjectEditCtrl',
+        resolve: {
+            permissions: Bugtracker.Config.resolve.permission.all
+        },
         data: {
             breadcrumb: 'Edit'
         }
     },
     //  Bug Routes  //
-    'projects.single.bugs': {
+    'app.projects.single.bugs': {
         abstract: true,
         url: '/bugs',
         templateUrl: 'layouts/bugs.html',
         controller: 'BugCtrl',
         data: {
             breadcrumb: 'Bugs',
-            breadcrumbRoute: 'projects.single.bugs.index'
+            breadcrumbRoute: 'app.projects.single.bugs.index'
         }
     },
-    'projects.single.bugs.single': {
+    'app.projects.single.bugs.single': {
         abstract: true,
         url: '/{bugId:[0-9]{1,8}}',
         template: '<div ui-view />',
@@ -272,18 +305,21 @@ Bugtracker.Config.routes = {
         },
         data: {
             breadcrumb: '{{ bugId }}',
-            breadcrumbRoute: 'projects.single.bugs.single.show'
+            breadcrumbRoute: 'app.projects.single.bugs.single.show'
         }
     },
-    'projects.single.bugs.index': {
+    'app.projects.single.bugs.index': {
         url: '',
         templateUrl: 'bugs/index.html',
         controller: 'BugIndexCtrl',
+        resolve: {
+            bugs: Bugtracker.Config.resolve.bug.all
+        },
         data: {
             breadcrumb: undefined
         }
     },
-    'projects.single.bugs.single.show': {
+    'app.projects.single.bugs.single.show': {
         url: '',
         templateUrl: 'bugs/show.html',
         controller: 'BugShowCtrl',
@@ -291,15 +327,18 @@ Bugtracker.Config.routes = {
             breadcrumb: undefined
         }
     },
-    'projects.single.bugs.new': {
+    'app.projects.single.bugs.new': {
         url: '/new',
         templateUrl: 'bugs/new.html',
         controller: 'BugNewCtrl',
+        resolve: {
+            permissions: Bugtracker.Config.resolve.permission.all
+        },
         data: {
             breadcrumb: 'New'
         }
     },
-    'projects.single.bugs.single.edit': {
+    'app.projects.single.bugs.single.edit': {
         url: '/edit',
         templateUrl: 'bugs/edit.html',
         controller: 'BugEditCtrl',
@@ -307,10 +346,13 @@ Bugtracker.Config.routes = {
             breadcrumb: 'Edit'
         }
     },
-    'projects.single.bugs.feed': {
+    'app.projects.single.bugs.feed': {
         url: '/feed',
         templateUrl: 'bugs/feed.html',
         controller: 'BugFeedCtrl',
+        resolve: {
+            bugs: Bugtracker.Config.resolve.bug.all
+        },
         data: {
             breadcrumb: 'Feed'
         }
@@ -376,11 +418,11 @@ bugtracker.run([
     '$rootScope',
     '$state',
     'ngProgressLite',
-    'User',
+    'Session',
 
-    function($rootScope, $state, ngProgressLite, User) {
+    function($rootScope, $state, ngProgressLite, Session) {
     // Set the user on the $rootScope object if a session is in progress.
-    User.currentUser(function(successData) {
+    Session.currentUser(function(successData) {
         if (successData.user) {
             $rootScope.currentUser = successData.user;
         }
@@ -402,7 +444,7 @@ bugtracker.run([
         Logger.error(error);
         switch (error.status) {
             case 401:
-                $state.transitionTo('users.login');
+                $state.transitionTo('session.login');
                 break;
             default:
                 $state.transitionTo('error.' + error.status);

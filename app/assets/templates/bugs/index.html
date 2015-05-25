@@ -1,7 +1,7 @@
 <div ng-show="hasBugs()" id="bug-sidebar-container" class="content-area">
     <div class="sidebar no-select">
         <div class="sidebar-grouping">
-            <button ui-sref="projects.single.bugs.new" class="create-bug-btn btn btn-primary">Create a Bug</button>
+            <button ui-sref="app.projects.single.bugs.new" class="create-bug-btn btn btn-primary">Create a Bug</button>
         </div>
         <div class="sidebar-header">
             <p>
@@ -92,7 +92,7 @@
                     </tr>
                 </thead>
                 <tbody id="bugs-list-table-body">
-                    <tr ng-repeat="bug in bugs | filterMultiple:filter | orderBy:sort" ui-sref="projects.single.bugs.single.show({bugId: bug.id})" class="bug-row clickable">
+                    <tr ng-repeat="bug in bugs | filterMultiple:filter | orderBy:sort" ui-sref="app.projects.single.bugs.single.show({bugId: bug.id})" class="bug-row clickable">
                         <td class="bug-id-cell">{{ bug.id }}</td>
                         <td class="bug-summary-cell">{{ bug.summary }}</td>
                         <td class="bug-assignee-cell hidden-xs">{{ bug.assignee_id }}</td>
@@ -114,7 +114,7 @@
     <div class="col-xs-12 padded-column">
         <div id="container-no-bugs" class="jumbotron content-area stacked-panel text-center">
             <p class="msg-no-bugs text-empty-view">You haven't added any bugs yet. Add one now?</p>
-            <a ui-sref="projects.single.bugs.new" class="btn-create-bug btn btn-default btn-empty-view">Create a Bug</a>
+            <a ui-sref="app.projects.single.bugs.new" class="btn-create-bug btn btn-default btn-empty-view">Create a Bug</a>
         </div>
     </div>
 </div>
