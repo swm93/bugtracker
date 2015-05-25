@@ -39,7 +39,7 @@
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
                         <ul id="project-permissions-dropdown" class="dropdown-menu">
                             <li ng-repeat="p in permissionTypes">
-                                <a href ng-click="setPermission(p)" data-permission-type-id="{{ p.id }}">{{ p.name }}</a>
+                                <a href ng-click="setPermission(p)">{{ p }}</a>
                             </li>
                         </ul>
                     </span>
@@ -57,8 +57,8 @@
                     <tbody id="project-permissions-table-body">
                         <tr ng-repeat="p in permissions">
                             <td class="permissions-assignee-cell">{{ p.user.name }}</td>
-                            <td class="permissions-level-cell fit-width">{{ p.permission_type.name }}</td>
                             <td class="permissions-remove-cell fit-width"><span class="glyphicon glyphicon-ban-circle"></span></td>
+                            <td class="permissions-level-cell fit-width">{{ p.type }}</td>
                         </tr>
                     </tbody>
                 </table>

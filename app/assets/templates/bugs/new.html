@@ -11,14 +11,16 @@
         <div class="form-group-assignee form-group">
             <label for="field-bug-assignee" class="field-label">Assignee</label>
             <!-- <div id="field-bug-assignee" class="form-control"></div> -->
-            <div ui-select ng-model="permission.selected" theme="bootstrap">
+
+            <!-- TODO(scott): this has been temporarily disabled due to a bug in angular-ui-select -->
+<!--             <div ui-select ng-model="permission.selected" theme="bootstrap">
                 <div ui-select-match placeholder="Assignee">{{$select.selected.user.name}}</div>
-                <div ui-select-choices repeat="permission in permissions track by $index">
-                    <div ng-bind-html="permission.user.name | highlight: $select.search"></div>
+                <div ui-select-choices repeat="p in permissions track by $index">
+                    <div ng-bind-html="p.user.name | highlight: $select.search"></div>
                 </div>
-            </div>
+            </div> -->
         </div>
-     
+
         <div class="form-group">
             <button ng-click="createBug()" class="btn-create btn btn-default" name="commit" value="save" type="submit">Create</button>
             <button ui-sref="projects.single.bugs.index" class="btn-back btn btn-default" type="button">Back</button>

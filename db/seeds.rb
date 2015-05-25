@@ -6,32 +6,17 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-permission_types = PermissionType.create([
-  {
-    name: "admin",
-    read: 1,
-    write: 1,
-  },
-  {
-    name: "guest",
-    read: 0,
-    write: 1,
-  }
-  #in theory we could add another permission_type called blocked where read and write would be 0
-  #this should result in the public property being ignored and the user not being able to view the project at all
-  #however this would not prevent them from viewing public projects by loggin out
-])
 
 permissions = Permission.create([
   {
     project_id: 1,
     user_id: 1,
-    permission_type_id: 1
+    access: :write
   },
   {
     project_id: 2,
     user_id: 1,
-    permission_type_id: 2
+    access: :read
   }
 ])
 

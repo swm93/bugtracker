@@ -15,8 +15,6 @@ Bugtracker::Application.routes.draw do
       resources :bugs, only: ['index', 'show', 'create', 'update', 'destroy']
       resources :permissions, only: ['index', 'show', 'create', 'update', 'destroy']
     end
-
-    resources :permission_types, only: ['index', 'show'], format: :json
   end
 
   # resources :projects do

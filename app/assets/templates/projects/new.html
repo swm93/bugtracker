@@ -4,15 +4,15 @@
             <label for="field-project-name" class="field-label">
                 Project Name
             </label>
-            <input id="field-project-name" class="form-control" name="project[name]" type="text" placeholder="Project"></input>
+            <input ng-model="project.name" id="field-project-name" class="form-control" name="project[name]" type="text" placeholder="Project"></input>
         </div>
         <div class="form-group-description form-group">
             <label for="field-project-description" class="field-label">
                 Description
             </label>
-            <textarea id="field-project-description" class="form-control" name="project[description]" rows="3" placeholder="Description"></textarea>
+            <textarea ng-model="project.description" id="field-project-description" class="form-control" name="project[description]" rows="3" placeholder="Description"></textarea>
         </div>
-     
+
         <div class="form-group">
             <a class="btn-back btn btn-default" ui-sref="projects.index">Back</a>
             <button class="btn-create btn btn-default" name="commit" value="save" type="submit">Create</button>

@@ -1,5 +1,6 @@
 class Permission < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :project
-  belongs_to :permission_type
+  belongs_to :user, :dependent => :delete
+  belongs_to :project, :dependent => :delete
+
+  enum access: { read: 0, write: 1 }
 end

@@ -80,14 +80,14 @@ class ApplicationController < ActionController::Base
       permission = Permission.where({
         user_id: current_user.id,
         project_id: params[project_id_key]
-      })[0]
+      }).first
     end
   end
 
   #check if the current user has permissions for the current project
-  def has_permission?(type)
+  def has_permission?(access)
     permission = get_permission() if current_user
-    permission.permission_type[type] unless permission.nil?()
+    permission.access >= access unless permission.nil?()
   end
 
   def get_project_id_key

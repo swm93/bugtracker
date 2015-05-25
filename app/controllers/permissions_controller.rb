@@ -11,12 +11,9 @@ class PermissionsController < ApplicationController
       json: {
         permissions: @permissions
       },
-      except: [:user_id, :permission_type_id, :project_id],
+      except: [:user_id, :project_id],
       include: {
         user: {
-          only: [:id, :name]
-        },
-        permission_type: {
           only: [:id, :name]
         },
         project: {
@@ -36,12 +33,7 @@ class PermissionsController < ApplicationController
   end
 
   def create
-    permitted = permission_params()
-    @permission = Permission.create(permitted)
-    @permission.user_id = params[:user_id] unless permitted.has_key?(:user_id)
-    @permission.project_id = params[:project_id] unless permitted.has_key?(:project_id)
-    # @permission.user = User.find_by_email(params[:permission][:email]) unless permitted.has_key?(:user_id)
-    # @permission.project = Project.find(params[:project_id]) unless permitted.has_key?(:project_id)
+    @permission = Permission.new(permission_params())
 
     if (@permission.save())
       render(
@@ -95,8 +87,7 @@ class PermissionsController < ApplicationController
     params.require(:permission).permit(
       :user_id,
       :project_id,
-      :permission_type_id,
-      :email
+      :access
     )
   end
 end

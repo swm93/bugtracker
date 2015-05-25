@@ -1,9 +1,8 @@
-bugtracker.controller('ProjectEditCtrl', ['$scope', '$stateParams', 'project', 'permissions', 'Project', 'PermissionType', '$http', function($scope, $stateParams, project, permissions, Project, PermissionType, $http) {
+bugtracker.controller('ProjectEditCtrl', ['$scope', '$stateParams', 'project', 'permissions', 'Project', '$http', function($scope, $stateParams, project, permissions, Project, $http) {
     var modifiableProperties = ['name', 'description', 'public'];
     $scope.project = project;
     $scope.permissions = permissions;
-    $scope.permissionTypes = PermissionType.all();
-    $scope.permission = PermissionType.findById(1);
+    $scope.permissionTypes = ['read', 'write'];
 
 
     $scope.setPublic = function(val) {
@@ -14,7 +13,7 @@ bugtracker.controller('ProjectEditCtrl', ['$scope', '$stateParams', 'project', '
     };
 
     $scope.setPermission = function(val) {
-        $scope.permission = val;
+        $scope.permissions.access = val;
     };
 
     $scope.uploadImage = function(files) {
