@@ -6,10 +6,10 @@
 #   add properties: steps to reproduce, expected outcome, actual
 #     behavior, date due, version fixed in
 class Bug < ActiveRecord::Base
-  belongs_to :project
+  belongs_to :project, dependent: :destroy
 
   validates_uniqueness_of :number
-  before_validation :set_bug_number, on: :create
+  after_validation :set_bug_number, on: :create
 
 
   private
