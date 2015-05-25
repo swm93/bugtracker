@@ -8,6 +8,8 @@ var breadcrumbs = function($interpolate, $state) {
         },
         link: function(scope) {
             scope.breadcrumbs = [];
+            scope.currentUser = scope.$root.currentUser;
+
             if ($state.$current.name !== '') {
                 updateBreadcrumbsArray();
             }

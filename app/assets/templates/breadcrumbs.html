@@ -1,6 +1,17 @@
 <ol class="breadcrumb">
+    <li>
+        <a href class="glyphicon glyphicon-tasks" id="btn-breadcrumb-dropdown" data-toggle="dropdown" aria-expanded="true"></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="btn-breadcrumb-dropdown">
+            <li role="presentation">
+                <a class="fa fa-code" ui-sref="app.projects.index" role="menuitem" tabindex="-1"> Projects</a>
+            </li>
+            <li role="presentation">
+                <a class="fa fa-user" ui-sref="app.users.single.show({userId: currentUser.id})" role="menuitem" tabindex="-1"> Users</a>
+            </li>
+         </ul>
+    </li>
     <li ng-repeat="crumb in breadcrumbs" ng-class="{ active: $last }">
-        <a ui-sref="{{ crumb.route }}" ng-if="!$last">{{ crumb.displayName }}</a>
-        <span ng-show="$last">{{ crumb.displayName }}</span>
+        <a ui-sref="{{ crumb.route }}" ng-if="!$last && crumb.route !== null">{{ crumb.displayName }}</a>
+        <span ng-show="$last || crumb.route === null">{{ crumb.displayName }}</span>
     </li>
 </ol>
