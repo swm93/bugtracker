@@ -23,6 +23,7 @@ linters:
       - display
       - box-sizing
       - overflow
+      - float
       - z-index
       - vertical-align
       - top
