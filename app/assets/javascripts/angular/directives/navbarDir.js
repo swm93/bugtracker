@@ -35,21 +35,21 @@ var navbar = function($interval, $q, User) {
                     formatPercentResolvedBugs(data),
                     formatNumberProjects(data)
                 ];
-            });
 
-            $statisticLabel.textillate({
-                minDisplayTime: 15000,
-                initialDelay: 0,
-                loop: true,
-                autoStart: true,
-                in: {
-                    effect: 'fadeInUp',
-                    sync: true
-                },
-                out: {
-                    effect: 'fadeOutUp',
-                    sync: true
-                }
+                $statisticLabel.textillate({
+                    minDisplayTime: 15000,
+                    initialDelay: 0,
+                    loop: true,
+                    autoStart: true,
+                    in: {
+                        effect: 'fadeInUp',
+                        sync: true
+                    },
+                    out: {
+                        effect: 'fadeOutUp',
+                        sync: true
+                    }
+                });
             });
         }
     };
