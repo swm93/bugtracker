@@ -19,7 +19,11 @@ var navbar = function($interval, $q, User) {
 
             function formatPercentResolvedBugs(data) {
                 var percent = Math.round((data.number_resolved_bugs / data.number_bugs) * 100);
-                return "You have resolved " + percent + "% the bugs across all projects.";
+                if (_.isNaN(percent)) {
+                    percent = 100;
+                }
+
+                return percent + "% of the bugs across all your projects are resolved.";
             }
 
             function formatNumberProjects(data) {
