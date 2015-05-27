@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include PublicActivity::Model
+
   has_many :permissions
   has_many :projects, through: :permissions
   validates :email, presence: true, uniqueness: true, length: { in: 3..50 }, format: /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i
@@ -8,6 +10,8 @@ class User < ActiveRecord::Base
   after_save :clear_password
 
   enum status: { inactive: 0, active: 1 }
+
+  tracked
 
 
   def encrypt_password

@@ -59,5 +59,6 @@ gem 'bourbon'
 gem 'font-awesome-rails'
 gem 'nprogress-rails'
 gem 'paperclip', '~> 4.2'
+gem 'public_activity'
 
 gem 'jbuilder', '~> 1.2'

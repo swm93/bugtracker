@@ -6,10 +6,14 @@
 #   add properties: steps to reproduce, expected outcome, actual
 #     behavior, date due, version fixed in
 class Bug < ActiveRecord::Base
+  include PublicActivity::Model
+
   belongs_to :project, dependent: :destroy
 
   validates_uniqueness_of :number
   after_validation :set_bug_number, on: :create
+
+  tracked
 
 
   private
