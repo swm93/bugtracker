@@ -30,7 +30,7 @@
                 <li class="dropdown">
                     <a href class="dropdown-toggle" data-toggle="dropdown">{{ currentUser.name }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href>View Profile</a></li>
+                        <li><a ui-sref="app.users.single.show({userId: currentUser.id})" href>View Profile</a></li>
                         <li><a ui-sref="app.projects.index" href>Manage Projects</a></li>
                         <li><a href>Account Settings</a></li>
                         <li class="divider"></li>
