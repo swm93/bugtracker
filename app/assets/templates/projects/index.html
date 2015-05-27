@@ -1,24 +1,18 @@
-<div class="col-xs-12 padded-column">
-    <div class="content-area stacked-panel">
-        <table ng-if="projects.length" class="project-table table table-striped table-hover">
-            <tr ng-repeat="project in projects" class="project-row" ui-sref="app.projects.single.show({projectId: project.id})">
-                <td class="thumbnail-cell">
-                    <div class="thumbnail-container">
-                        <img ng-src="{{ project.image_url.thumb }}" />
-                    </div>
-                </td>
-                <td class="project-cell">
-                    <div class="project-cell-content">
-                        <h4>{{ project.name }}</h4>
-                        <blockquote>{{ project.description }}</blockquote>
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <div ng-if="!projects.length" class="project-row jumbotron">
-            <h2>No Projects to Display</h2>
-            <p>It looks like you haven't created any projects yet! Projects let you create logical groupings of bugs based on the body of work they are associated with. You can work with team members to easily manage all issues that arise within your project.</p>
-            <button class="btn btn-primary" ui-sref="app.projects.new">Create a Project</button>
+<div ng-if="projects.length" class="row projects-index">
+    <staggeredgrid cells="projects">
+        <div ui-sref="app.projects.single.show({projectId: cell.id})" class="content-area">
+            <div class="thumbnail-container">
+                <img ng-src="{{ cell.image_url.thumb }}" />
+            </div>
+            <h4>{{ cell.name }}</h4>
+            <p>{{ cell.description }}</p>
+            <div class="overflow-gradient"></div>
         </div>
-    </div>
+    </staggeredgrid>
+</div>
+
+<div ng-if="!projects.length" class="row jumbotron">
+    <h2>No Projects to Display</h2>
+    <p>It looks like you haven't created any projects yet! Projects let you create logical groupings of bugs based on the body of work they are associated with. You can work with team members to easily manage all issues that arise within your project.</p>
+    <button class="btn btn-primary" ui-sref="app.projects.new">Create a Project</button>
 </div>

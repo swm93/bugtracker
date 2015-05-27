@@ -1,39 +1,42 @@
-$thumbnail-background-color: #FFFFFF;
+staggeredgrid {
+  .grid-cell {
+    padding: 4px;
 
-.project-table {
-  .project-row {
-    .project-cell {
-      padding: 0;
+    .content-area {
+      position: relative;
+      box-sizing: content-box;
+      overflow: hidden;
+      max-height: 200px;
+      min-height: $thumbnail-small-size;
 
-      .project-cell-content {
-        padding: 8px;
+      cursor: pointer;
 
-        h4 {
-          margin: 0;
-          padding: 4px 0;
-        }
+      &:hover {
+        background-color: $green-faded-active-light;
       }
-    }
-
-    .thumbnail-cell {
-      width: 1px;
 
       .thumbnail-container {
-        display: table-cell;
-        box-sizing: content-box;
-        vertical-align: middle;
-        width: 75px;
-        height: 75px;
-        padding: 5px;
+        box-sizing: border-box;
+        float: right;
+        width: $thumbnail-small-size;
+        height: $thumbnail-small-size;
+        margin-left: 6px;
+        padding: 4px;
         border-style: solid;
         border-width: 1px;
         border-color: $border-light-color;
 
-        background-color: $thumbnail-background-color;
+        background-color: $content-area-background-color;
+      }
 
-        img {
-          width: inherit;
-        }
+      .overflow-gradient {
+        @include linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.75) 85%);
+
+        position: absolute;
+        top: 200px;
+        left: 0;
+        right: 0;
+        height: 20px;
       }
     }
   }
