@@ -26,11 +26,15 @@ class ProjectsController < ApplicationController
       methods: [ :image_url ],
       status: :ok
     )
-    #render(json: @project, include: { permissions: { include: [ :permission_type, user: { except: [:password, :password_salt] }]}})}#include: { users: { except: [:password, :password_salt], include: { permissions: { include: :permission_type }}}}) }
   end
 
   def create
-    @project = current_user.projects.create(project_params())
+    @project = current_user.projects.new(project_params())
+    @project.permissions.new({
+      user: current_user,
+      project: @project,
+      access: :write
+    })
 
     if (@project.save())
       render(

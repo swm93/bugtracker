@@ -75,18 +75,22 @@ class ApplicationController < ActionController::Base
   #   Return: Permission for the current user and project if one exists,
   #           otherwise nil
   def get_permission
+    project_id_key = get_project_id_key()
+    project = Project.find(params[project_id_key])
+
     if (current_user)
-      project_id_key = get_project_id_key()
       permission = Permission.where({
         user_id: current_user.id,
         project_id: params[project_id_key]
       }).first
     end
+
+    project.try(:public) || permission
   end
 
   #check if the current user has permissions for the current project
   def has_permission?(access)
-    permission = get_permission() if current_user
+    permission = get_permission()
     permission.access >= access unless permission.nil?()
   end
 
