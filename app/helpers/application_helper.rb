@@ -1,7 +1,8 @@
 module ApplicationHelper
+  include UserStylesHelper
 
   def get_relative_asset_path
-    return controller_name + "/" + action_name
+    return "#{controller_name}/#{action_name}"
   end
 
   def favicon_resolutions_link_tag

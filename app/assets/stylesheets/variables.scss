@@ -7,30 +7,62 @@ $alert-height: 50px;
 $thumbnail-small-size: 68px;
 
 //---- COLORS ----//
-$green-active: #42CA73;
-$green-active-dark: #69A169;
-$green-faded-active: #65B265;
-$green-faded-active-light: #EAF3EA;
-$green-faded-active-dark: #91BD91;
+// PALETTE
+$grey-palette:    #FFFFFF #EBEBEB #DDDDDD #CCCCCC #999999 #666666 #000000;
+$orange-palette:  #FFDDAA #FFAA64 #FF9339 #FF7604 #D36000 #A64B00 #804000;
+$green-palette:   #EAF3EA #93CE98 #91BD91 #42CA73 #65B265 #69A169 #3FA056;
 
-$body-background-color: #EBEBEB;
+$primary-color: nth($green-palette, 4) !default;
+$secondary-color: nth($grey-palette, 4) !default;
 
-$content-area-background-color: #FFFFFF;
+$primary-diff: palette-diff($green-palette);
+$secondary-diff: palette-diff($grey-palette);
+$primary-palette: create-palette($primary-color, $primary-diff);
+$secondary-palette: create-palette($secondary-color, $secondary-diff);
+// $primary-palette: create-palette(getRandomColor('hex'), $primary-diff);
+// $secondary-palette: create-palette(getRandomColor('hex'), $secondary-diff);
 
-$navbar-background-color: #FFFFFF;
+$primary-lightest-color:    nth($primary-palette, 1);
+$primary-lighter-color:     nth($primary-palette, 2);
+$primary-light-color:       nth($primary-palette, 3);
+$primary-medium-color:      nth($primary-palette, 4);
+$primary-dark-color:        nth($primary-palette, 5);
+$primary-darker-color:      nth($primary-palette, 6);
+$primary-darkest-color:     nth($primary-palette, 7);
 
-$text-lightest-color: #FFFFFF;
-$text-light-color: #DDDDDD;
-$text-dark-color: #666666;
-$text-darkest-color: #000000;
+$secondary-lightest-color:  nth($secondary-palette, 1);
+$secondary-lighter-color:   nth($secondary-palette, 2);
+$secondary-light-color:     nth($secondary-palette, 3);
+$secondary-medium-color:    nth($secondary-palette, 4);
+$secondary-dark-color:      nth($secondary-palette, 5);
+$secondary-darker-color:    nth($secondary-palette, 6);
+$secondary-darkest-color:   nth($secondary-palette, 7);
 
-$border-light-color: #DDDDDD;
-$border-lighter-color: #E7E7E7;
 
-$selection-color: rgb(232, 243, 231);
+// COLOR
+$green-faded-active-light: $primary-lightest-color;
+$green-faded-active-dark: $primary-light-color;
+$green-active: $primary-medium-color;
+$green-faded-active: $primary-dark-color;
+$green-active-dark: $primary-darker-color;
 
-$logo-left: #58BC71;
-$logo-right: #3FA056;
-$logo-top: #93CE98;
+$selection-color: $primary-lightest-color;
 
-$nprogress-color: $green-active;
+$body-background-color: $secondary-lighter-color;
+$content-area-background-color: $secondary-lightest-color;
+$navbar-background-color: $secondary-lightest-color;
+
+$text-lightest-color: $secondary-lightest-color;
+$text-light-color: $secondary-light-color;
+$text-dark-color: $secondary-darker-color;
+$text-darkest-color: $secondary-darkest-color;
+
+$border-lighter-color: $secondary-lighter-color;
+$border-light-color: $secondary-light-color;
+$border-medium-color: $secondary-medium-color;
+
+$logo-left: $primary-dark-color;
+$logo-right: $primary-darkest-color;
+$logo-top: $primary-lighter-color;
+
+$nprogress-color: $primary-medium-color;

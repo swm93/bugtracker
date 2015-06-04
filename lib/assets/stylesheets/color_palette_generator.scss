@@ -1,0 +1,142 @@
+$named-colors: 'AliceBlue', 'AntiqueWhite', 'Aqua', 'Aquamarine', 'Azure', 'Beige', 'Bisque', 'Black', 'BlanchedAlmond', 'Blue', 'BlueViolet', 'Brown', 'BurlyWood', 'CadetBlue', 'Chartreuse', 'Chocolate', 'Coral', 'CornflowerBlue', 'Cornsilk', 'Crimson', 'Cyan', 'DarkBlue', 'DarkCyan', 'DarkGoldenRod', 'DarkGray', 'DarkGrey', 'DarkGreen', 'DarkKhaki', 'DarkMagenta', 'DarkOliveGreen', 'Darkorange', 'DarkOrchid', 'DarkRed', 'DarkSalmon', 'DarkSeaGreen', 'DarkSlateBlue', 'DarkSlateGray', 'DarkSlateGrey', 'DarkTurquoise', 'DarkViolet', 'DeepPink', 'DeepSkyBlue', 'DimGray', 'DimGrey', 'DodgerBlue', 'FireBrick', 'FloralWhite', 'ForestGreen', 'Fuchsia', 'Gainsboro', 'GhostWhite', 'Gold', 'GoldenRod', 'Gray', 'Grey', 'Green', 'GreenYellow', 'HoneyDew', 'HotPink', 'IndianRed', 'Indigo', 'Ivory', 'Khaki', 'Lavender', 'LavenderBlush', 'LawnGreen', 'LemonChiffon', 'LightBlue', 'LightCoral', 'LightCyan', 'LightGoldenRodYellow', 'LightGray', 'LightGrey', 'LightGreen', 'LightPink', 'LightSalmon', 'LightSeaGreen', 'LightSkyBlue', 'LightSlateGray', 'LightSlateGrey', 'LightSteelBlue', 'LightYellow', 'Lime', 'LimeGreen', 'Linen', 'Magenta', 'Maroon', 'MediumAquaMarine', 'MediumBlue', 'MediumOrchid', 'MediumPurple', 'MediumSeaGreen', 'MediumSlateBlue', 'MediumSpringGreen', 'MediumTurquoise', 'MediumVioletRed', 'MidnightBlue', 'MintCream', 'MistyRose', 'Moccasin', 'NavajoWhite', 'Navy', 'OldLace', 'Olive', 'OliveDrab', 'Orange', 'OrangeRed', 'Orchid', 'PaleGoldenRod', 'PaleGreen', 'PaleTurquoise', 'PaleVioletRed', 'PapayaWhip', 'PeachPuff', 'Peru', 'Pink', 'Plum', 'PowderBlue', 'Purple', 'Red', 'RosyBrown', 'RoyalBlue', 'SaddleBrown', 'Salmon', 'SandyBrown', 'SeaGreen', 'SeaShell', 'Sienna', 'Silver', 'SkyBlue', 'SlateBlue', 'SlateGray', 'SlateGrey', 'Snow', 'SpringGreen', 'SteelBlue', 'Tan', 'Teal', 'Thistle', 'Tomato', 'Turquoise', 'Violet', 'Wheat', 'White', 'WhiteSmoke', 'Yellow', 'YellowGreen';
+
+@function randomizeColor(){
+  $color: (
+    octal: (
+      red: random(256)-1,
+      green: random(256)-1,
+      blue: random(256)-1
+    ),
+    percent: (
+      red: random(101)-1,
+      green: random(101)-1,
+      blue: random(101)-1,
+      saturation: random(101)-1,
+      light: random(101)-1
+    ),
+    deg: (
+      hue: random(361)-1
+    ),
+    fraction: (
+      alpha: random(100)/100
+    )
+  );
+  @return $color;
+}
+
+@function color($base, $component) {
+  $color: randomizeColor();
+  @return map-get(map-get($color, $base), $component);
+}
+
+@function getRandomColor($format: NULL) {
+  @if $format == "hex" {
+    @return rgb(color(octal, red), color(octal, green), color(octal, blue));
+  }
+  @else if $format == "rgb" {
+    @return unquote("rgb(#{color(octal, red)}, #{color(octal, green)}, #{color(octal, blue)})");
+  }
+  @else if $format == "%rgb" {
+    @return unquote("rgb(#{color(percent, red)}%, #{color(percent, green)}%, #{color(percent, blue)}%)");
+  }
+  @else if $format == "rgba" {
+    @return unquote("rgba(#{color(octal, red)}, #{color(octal, green)}, #{color(octal, blue)}, #{color(fraction, alpha)})");
+  }
+  @else if $format == "%rgba" {
+    @return unquote("rgba(#{color(percent, red)}%, #{color(percent, green)}%, #{color(percent, blue)}%, #{color(fraction, alpha)})");
+  }
+  @else if $format == "hsl" {
+    @return unquote("hsl(#{color(deg, hue)}, #{color(percent, saturation)}%, #{color(percent, light)}%)");
+  }
+  @else if $format == "hsla" {
+    @return unquote("hsla(#{color(deg, hue)}, #{color(percent, saturation)}%, #{color(percent, light)}%, #{color(fraction, alpha)})");
+  }
+  @else {
+    @return nth($named-colors, random(147));
+  }
+}
+
+
+
+@function color-diff($a, $b) {
+  $sat: saturation($a) - saturation($b);
+  $lig: lightness($a) - lightness($b);
+  $fn-sat: if($sat > 0, 'desaturate', 'saturate');
+  $fn-lig: if($lig > 0, 'darken', 'lighten');
+
+  @return (
+    adjust-hue: -(hue($a) - hue($b)),
+    #{$fn-sat}: abs($sat),
+    #{$fn-lig}: abs($lig)
+  );
+}
+
+@function palette-diff($palette) {
+  $base: nth($palette, 4);
+  $colors: $palette;
+  $diffs: ();
+
+  @each $color in $colors {
+    $diffs: append($diffs, color-diff($base, $color));
+  }
+
+  @return $diffs;
+}
+
+@function apply-diff($color, $diff) {
+  @each $function, $value in $diff {
+    $color: call($function, $color, $value);
+  }
+
+  @return $color;
+}
+
+@function create-palette($base-color, $palette-diff) {
+  $palette: ();
+
+  @each $diff in $palette-diff {
+    $palette: append($palette, apply-diff($base-color, $diff));
+  }
+
+  @return $palette;
+}
+
+@function palette($base-color) {
+  $colors: create-palette($base-color);
+  $keys: 'lightest' 'lighter' 'light' 'base' 'dark' 'darker' 'darkest';
+  $palette: ();
+
+  @for $i from 1 through min(length($colors), length($keys)) {
+    $palette: map-merge($palette, (nth($keys, $i): nth($colors, $i)));
+  }
+
+  @return $palette;
+}
+
+@function lightest($palette) {
+  @return map-get($palette, 'lightest');
+}
+
+@function lighter($palette) {
+  @return map-get($palette, 'lighter');
+}
+
+@function light($palette) {
+  @return map-get($palette, 'light');
+}
+
+@function base($palette) {
+  @return map-get($palette, 'base');
+}
+
+@function dark($palette) {
+  @return map-get($palette, 'dark');
+}
+
+@function darker($palette) {
+  @return map-get($palette, 'darker');
+}
+
+@function darkest($palette) {
+  @return map-get($palette, 'darkest');
+}
