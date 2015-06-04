@@ -47,12 +47,20 @@ linters:
       - padding-left
       - padding-right
       - border
-      - border-style
       - border-top
       - border-bottom
       - border-left
       - border-right
+      - border-style
+      - border-top-style
+      - border-bottom-style
+      - border-left-style
+      - border-right-style
       - border-width
+      - border-top-width
+      - border-bottom-width
+      - border-left-width
+      - border-right-width
       - border-radius
       - border-color
       - box-shadow
