@@ -27,8 +27,6 @@ class BugsController < ApplicationController
   end
 
   def create
-    # @project = Project.find(params[:project_id])
-    # @bug = @project.bugs.create(bug_params())
     permitted = bug_params()
     @bug = Bug.new(permitted)
     @bug.project_id = params[:project_id] unless permitted.has_key?(:project_id)

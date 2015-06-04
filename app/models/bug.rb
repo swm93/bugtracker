@@ -10,8 +10,11 @@ class Bug < ActiveRecord::Base
 
   belongs_to :project, dependent: :destroy
 
-  validates_uniqueness_of :number
   after_validation :set_bug_number, on: :create
+
+  validates :summary,
+    presence: true
+  validates_uniqueness_of :number
 
   tracked
 

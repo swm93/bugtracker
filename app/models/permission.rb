@@ -6,5 +6,10 @@ class Permission < ActiveRecord::Base
 
   enum access: { read: 0, write: 1 }
 
+  validates :project,
+    presence: true
+  validates :user,
+    presence: true
+
   tracked
 end
