@@ -5,7 +5,32 @@ var navbar = function($interval, $q, User) {
         link: function(scope, element) {
             var formats = [formatPercentResolvedBugs, formatNumberProjects];
             var currentFormat;
+            var $container = $('.navbar', element);
+            var $brand = $('.navbar-brand', element);
+            var $toggleButton = $('.navbar-toggle', element);
+            var $rightContainer = $('.navbar-nav.navbar-right', element);
+            var $statisticsContainer = $('.navbar-statistics', element);
             var $statisticLabel = $('.label-statistic', element);
+
+            var containerPadding = $container.outerWidth() - $container.width();
+            var brandWidth = $brand.outerWidth();
+
+            function updateStatisticsContainerWidth() {
+                var left = containerPadding / 2 + brandWidth;
+                var right = containerPadding / 2;
+
+                if ($rightContainer.is(':visible')) {
+                    right += $rightContainer.outerWidth();
+                }
+                if ($toggleButton.is(':visible')) {
+                    right += $toggleButton.outerWidth();
+                }
+
+                $statisticsContainer.css({
+                    left: left,
+                    right: right
+                });
+            }
 
             function getStatistics() {
                 var deferred = $q.defer();
@@ -51,6 +76,9 @@ var navbar = function($interval, $q, User) {
                     }
                 });
             });
+
+            $(window).on('resize', updateStatisticsContainerWidth);
+            updateStatisticsContainerWidth();
         }
     };
 };
