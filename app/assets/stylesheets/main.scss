@@ -4,6 +4,7 @@
 /*/
 
 
+// LAYOUT
 html {
   height: 100%;
 }
@@ -18,82 +19,20 @@ body {
   font-weight: 300;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-}
-
-textarea {
-  resize: vertical;
-}
-
-table.table {
-  margin: 0;
-
-  tbody {
-    border-style: solid;
-    border-width: 0 1px;
-    border-color: $border-light-color;
-
-    tr {
-      border-color: $border-light-color;
-
-      &:last-child > td {
-        border-bottom: 1px solid $border-light-color;
-      }
-
-      td {
-        border-color: $border-light-color;
-
-        &.fit-width {
-          width: 1px;
-        }
-      }
-    }
-  }
-}
-
-table.table-hover > tbody > tr:hover > td,
-table.table-hover > tbody > tr:hover > th {
-  background-color: $green-faded-active-light;
-}
-
-input[type="checkbox"] {
-  cursor: pointer;
-}
-
-label {
-  cursor: pointer;
-}
-
-* {
-  outline: none !important;
-
-  @include selection(true) {
-    background: $selection-color;
-  }
-}
-
 div[ui-view] {
   display: block;
   overflow: auto;
   height: inherit;
 }
 
-*[ui-sref] {
-  cursor: pointer;
-}
-
 .container-fluid {
   height: inherit;
   padding-left: 0;
   padding-right: 0;
+
+  .jumbotron {
+    border-radius: 0;
+  }
 }
 
 .row {
@@ -104,7 +43,8 @@ div[ui-view] {
   padding: 10px;
   border-style: solid;
   border-width: 1px;
-  border-color: $border-lighter-color;
+  border-color: $border-medium-color;
+  box-shadow: 0px 1px 5px $border-light-color;
 
   background-color: $content-area-background-color;
 
@@ -133,6 +73,14 @@ div[ui-view] {
 
 .padded-column {
   padding: 0 50px;
+
+  @media (max-width: $screen-xs-max) {
+    padding: 15px;
+  }
+}
+
+.absolute-center {
+  @include absolute-center();
 }
 
 #main-container {
@@ -149,52 +97,11 @@ div[ui-view] {
   }
 }
 
-.navbar {
-  position: relative;
-  box-sizing: border-box;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: $navbar-height;
-  margin: 0;
-  border-radius: 0;
 
-  background-color: $navbar-background-color;
-
-
-  &.navbar-positioner {
-    position: relative;
-    z-index: -1;
-  }
-
-  li > a {
-    @include transition(color 0.15s ease, background-color 0.15s ease);
-  }
-
-  li.active > a {
-    background-color: $green-faded-active !important;
-    color: $navbar-background-color !important;
-  }
-
-  .navbar-header {
-    height: 100%;
-
-    .navbar-brand {
-      height: inherit;
-      padding: 5px 20px;
-      }
-  }
-
-  .navbar-collapse {
-    @media (max-width: 767px) {
-      background-color: $navbar-background-color;
-    }
-  }
-}
+// ALERTS
 
 .alert {
-  @include box-sizing(border-box);
+  box-sizing: border-box;
 
   position: absolute;
   z-index: 1;
@@ -219,6 +126,50 @@ div[ui-view] {
   }
 }
 
+.alert-dismissable {
+  padding: 15px 50px;
+
+  text-align: center;
+
+  .close {
+    box-sizing: content-box;
+
+    top: 0;
+    right: -50px;
+    width: 20px;
+    height: 20px;
+    margin-top: -15px;
+    padding: 15px;
+  }
+}
+
+
+// BUTTONS
+
+.btn-primary {
+  border-color: transparent;
+
+  background-color: $green-faded-active;
+
+  &:hover,
+  &:active,
+  &:focus {
+    border-color: transparent;
+
+    background-color: $green-faded-active-dark;
+  }
+}
+
+.btn-empty-view {
+  border-color: $green-faded-active-dark;
+
+  background-color: $green-faded-active;
+  color: $text-lightest-color;
+}
+
+
+// BREADCRUMBS
+
 breadcrumbs {
   display: block;
 
@@ -231,9 +182,10 @@ breadcrumbs {
     margin: 0;
     padding: 4px 15px;
     border-style: solid;
-    border-width: 0 1px 1px 1px;
+    border-width: 0 0 1px 0;
     border-radius: 0;
-    border-color: $border-lighter-color;
+    border-color: $border-medium-color;
+    box-shadow: 0px 1px 5px $border-light-color;
 
     > li + li::before {
       padding: 0 0 0 5px;
@@ -266,52 +218,30 @@ breadcrumbs {
   }
 }
 
-.alert-dismissable {
-  padding: 15px 50px;
 
-  text-align: center;
+// INPUT
 
-  .close {
-    @include box-sizing(content-box);
+* {
+  outline: none !important;
 
-    top: 0;
-    right: -50px;
-    width: 20px;
-    height: 20px;
-    margin-top: -15px;
-    padding: 15px;
+  @include selection(true) {
+    background: $selection-color;
   }
 }
 
-a.list-group-item.active {
-  border-color: $green-faded-active;
-
-  background-color: $green-faded-active;
-
-  &:hover {
-    border-color: $green-faded-active;
-
-    background-color: $green-faded-active;
-  }
+textarea {
+  resize: vertical;
 }
 
-.absolute-center {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
-.clickable {
+input[type="checkbox"] {
   cursor: pointer;
 }
 
-.no-select {
-  @include user-select(none);
 
-  cursor: default;
+// LINKS
+
+*[ui-sref] {
+  cursor: pointer;
 }
 
 .no-link-style {
@@ -324,6 +254,13 @@ a.list-group-item.active {
   }
 }
 
+.clickable {
+  cursor: pointer;
+}
+
+
+// MEDIA
+
 .media {
   > .pull-left {
     margin-right: 25px;
@@ -334,37 +271,137 @@ a.list-group-item.active {
   }
 }
 
-.btn-primary {
-  border-color: transparent;
+.logo-isometric-cube {
+  height: inherit;
+}
 
-  background-color: $green-faded-active;
 
-  &:hover,
-  &:active,
-  &:focus {
-    border-color: transparent;
+// NAVBAR
 
-    background-color: $green-faded-active-dark;
+.navbar {
+  position: relative;
+  z-index: 2;
+  height: $navbar-height;
+  margin: 0;
+  padding: 0 5px;
+  border-width: 0 0 1px 0;
+  border-radius: 0;
+  border-color: $border-lighter-color;
+
+  background-color: $navbar-background-color;
+
+
+  &.navbar-positioner {
+    position: relative;
+    z-index: -1;
+  }
+
+  li > a {
+    @include transition(color 0.15s ease, background-color 0.15s ease);
+  }
+
+  li.active > a {
+    background-color: $green-faded-active !important;
+    color: $navbar-background-color !important;
+  }
+
+  .navbar-header {
+    height: 100%;
+    margin: 0;
+
+    .navbar-toggle {
+      margin-right: 0;
+    }
+
+    .navbar-brand {
+      height: inherit;
+      min-width: 75px;
+      padding: 5px 15px;
+    }
+
+    .navbar-statistics {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: $navbar-height;
+      right: $navbar-height;
+
+      line-height: $navbar-height;
+      color: $text-dark-color;
+
+      cursor: default;
+    }
+  }
+
+  .navbar-collapse {
+    @media (max-width: 767px) {
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      box-shadow: 0px 1px 5px $border-light-color;
+
+      background-color: $navbar-background-color;
+    }
   }
 }
 
-.btn-empty-view {
-  border-color: $green-faded-active-dark;
 
-  background-color: $green-faded-active;
-  color: $text-lightest-color;
+// TABLES
+
+table.table {
+  margin: 0;
+
+  tbody {
+    border-style: solid;
+    border-width: 0 1px;
+    border-color: $border-light-color;
+
+    tr {
+      border-color: $border-light-color;
+
+      &:last-child > td {
+        border-bottom: 1px solid $border-light-color;
+      }
+
+      td {
+        border-color: $border-light-color;
+
+        &.fit-width {
+          width: 1px;
+        }
+      }
+    }
+  }
+}
+
+table.table-hover > tbody > tr:hover > td,
+table.table-hover > tbody > tr:hover > th {
+  background-color: $green-faded-active-light;
+}
+
+
+// TEXT
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+label {
+  cursor: pointer;
 }
 
 .text-empty-view {
   color: $text-dark-color;
 }
 
-.logo-isometric-cube {
-  height: inherit;
-}
+.no-select {
+  @include user-select(none);
 
-@media (max-width: $screen-xs-max) {
-  .padded-column {
-    padding: 15px;
-  }
+  cursor: default;
 }

@@ -131,7 +131,7 @@ $bug-status-cell-width: 84px;
 
       td,
       th {
-        @include box-sizing(border-box);
+        box-sizing: border-box;
 
         display: inline-block !important;
 

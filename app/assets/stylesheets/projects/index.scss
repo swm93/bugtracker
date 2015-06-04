@@ -8,6 +8,9 @@ staggeredgrid {
       overflow: hidden;
       max-height: 200px;
       min-height: $thumbnail-small-size;
+      border-style: solid;
+      border-width: 1px;
+      border-color: $border-medium-color;
 
       cursor: pointer;
 
